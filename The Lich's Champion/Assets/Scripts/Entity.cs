@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
+    // all entity stats
     // Start is called before the first frame update
     void Start()
     {
