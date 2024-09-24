@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IUtility
+public abstract class Utility : Item
 {
+    [SerializeField][Min(0)] protected float cooldown_ActionNormal;
+    [SerializeField][Min(0)] protected float cooldown_ActionSpecial;
+
     /// <summary>
     /// Function called when player inputs normal action
     /// </summary>
