@@ -7,7 +7,7 @@ public abstract class Weapon : Utility
     [SerializeField] [Min(0)] protected int damage;
     [SerializeField] [Min(0)] protected int specialDamage;
     [SerializeField] protected GameObject spriteObject;
-    [SerializeField] protected Collider2D hitbox;
+    [SerializeField] protected EntityCollisionDetection entityCollisionDetector;
     protected Entity entityInRange;
 
     protected abstract void DealDamage(Entity e);

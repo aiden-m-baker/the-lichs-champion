@@ -16,15 +16,15 @@ public class Halberd : Weapon
         // Get and set necessary objects
         if (!spriteObject)
             spriteObject = transform.Find("SpriteObject").gameObject;
-        if (!hitbox)
-            hitbox = transform.Find("HitboxObject").GetComponent<Collider2D>();
+        if (!entityCollisionDetector)
+            entityCollisionDetector = transform.Find("HitboxObject").GetComponent<EntityCollisionDetection>();
 
         // Setup sprite
         spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
         spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
 
         // Setup hitbox
-        hitbox.gameObject.SetActive(false);
+        entityCollisionDetector.gameObject.SetActive(false);
 
         // Resets cooldowns
         ResetAction();
@@ -54,7 +54,7 @@ public class Halberd : Weapon
         // Set and start countdown
         cooldownTracker_ActionNormal = cooldown_ActionNormal;
 
-        hitbox.gameObject.SetActive(true);
+        entityCollisionDetector.gameObject.SetActive(true);
 
         StartCoroutine(SwingSwordSprite());
 
@@ -74,7 +74,7 @@ public class Halberd : Weapon
 
     protected override void DealDamage(Entity e)
     {
-        hitbox.gameObject.SetActive(false);
+        entityCollisionDetector.gameObject.SetActive(false);
         throw new System.NotImplementedException();
     }
 
