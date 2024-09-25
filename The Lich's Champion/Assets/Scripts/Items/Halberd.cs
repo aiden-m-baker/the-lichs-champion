@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : Weapon
+public class Halberd : Weapon
 {
     [SerializeField] private Vector3 defaultRotation = Vector3.zero;
     [SerializeField] [Min(0)] private float defaultScale = 1;
 
     private void Awake()
     {
-        // Set sword stats
-        name = "Sword";
+        // Set halberd stats
+        name = "Halberd";
         rarity = Rarity.Common;
 
         // Get and set necessary objects
@@ -101,7 +101,7 @@ public class Sword : Weapon
 
         while (rot.z < 95)
         {
-            rot.z += 800 * Time.deltaTime;
+            rot.z += 500 * Time.deltaTime;
             spriteObject.transform.rotation = Quaternion.Euler(rot);
             yield return new WaitForEndOfFrame();
         }

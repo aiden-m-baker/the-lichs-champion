@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5884235797127152891
+--- !u!1001 &1785925605876975473
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,7 +50,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Name
-      value: Sword
+      value: Dagger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[3].x
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[3].y
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58,31 +86,31 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1009936440032559695}
+      addedObject: {fileID: 7360779061004614255}
   m_SourcePrefab: {fileID: 100100000, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
---- !u!1 &8451906743677463804 stripped
+--- !u!1 &4335511578438479734 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
-  m_PrefabInstance: {fileID: 5884235797127152891}
+  m_PrefabInstance: {fileID: 1785925605876975473}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1009936440032559695
+--- !u!114 &7360779061004614255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8451906743677463804}
+  m_GameObject: {fileID: 4335511578438479734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597430dba27ec3443ac4fa8660059144, type: 3}
+  m_Script: {fileID: 11500000, guid: 31182df8d71a2394e96ba56139ee56e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 19a5a80c6544aa54dbb9d3a3a86ca3c6, type: 3}
-  cooldown_ActionNormal: 1.5
-  cooldown_ActionSpecial: 7
-  damage: 8
+  sprite: {fileID: 21300000, guid: 54e42bd5c9638a544bedf57abeadb028, type: 3}
+  cooldown_ActionNormal: 0.75
+  cooldown_ActionSpecial: 5
+  damage: 9
   specialDamage: 15
   spriteObject: {fileID: 0}
   hitbox: {fileID: 0}
-  defaultRotation: {x: 0, y: 0, z: 45}
-  defaultScale: 0.6
+  defaultRotation: {x: 0, y: 0, z: 30}
+  defaultScale: 0.45
