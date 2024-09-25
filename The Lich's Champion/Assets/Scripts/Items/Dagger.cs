@@ -75,7 +75,7 @@ public class Dagger : Weapon
     protected override void DealDamage(Entity e)
     {
         entityCollisionDetector.gameObject.SetActive(false);
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     protected override void ResetAction()
