@@ -12,8 +12,8 @@ public enum Rarity
 
 public abstract class Item : MonoBehaviour
 {
-    [SerializeField] protected string name;
-    [SerializeField] protected string description;
-    [SerializeField] protected Rarity rarity;
-    [SerializeField] protected Sprite sprite;
+     [SerializeField] protected Sprite sprite;
+     protected string name;
+     protected string description;
+     protected Rarity rarity;
 }
