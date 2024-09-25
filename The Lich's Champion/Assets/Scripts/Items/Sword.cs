@@ -72,6 +72,15 @@ public class Sword : Weapon
         rot.z = 10;
         spriteObject.transform.rotation = Quaternion.Euler(rot);
 
+        yield return new WaitForSeconds(0.05f);
+
+        while (rot.z < 100)
+        {
+            rot.z += 500 * Time.deltaTime;
+            spriteObject.transform.rotation = Quaternion.Euler(rot);
+            yield return new WaitForEndOfFrame();
+        }
+
         yield return null;
     }
 }
