@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,16 @@ public class PlayerEntity : Entity
     private float maxSpeed = 4;
     [SerializeField]
     private float frictionCoeff = 10f;
+
+    public bool frictionApplied = false;
+
+    // dash
+
+    public float dashCd = 5f;
+    public float dashCdTimer = 0f;
+    public float dashDuration = 0.5f;
+    public float dashDurationTimer = 0f;
+    public bool isDashing = false;
 
     // player exclusive stats
 
@@ -102,10 +113,18 @@ public class PlayerEntity : Entity
     // Update is called once per frame
     void Update()
     {
-        if (!Input.GetKey(KeyCode.A) && 
+        if (frictionApplied)
+        {
+            frictionApplied = false;
+        }
+        // apply friction when no keys are pressed
+        // and not while dashing
+        // TODO: remake this for controller
+        if ((!Input.GetKey(KeyCode.A) && 
             !Input.GetKey(KeyCode.D) && 
             !Input.GetKey(KeyCode.W) && 
-            !Input.GetKey(KeyCode.S))
+            !Input.GetKey(KeyCode.S)) &&
+            !isDashing)
         {
             //acceleration = Vector3.zero;
             // friction
@@ -113,8 +132,24 @@ public class PlayerEntity : Entity
             friction.Normalize();
             friction = friction * frictionCoeff;
             acceleration += friction / mass;
+            frictionApplied = true;
         }
 
+
+        // count dash cooldown
+        if (dashCdTimer > 0)
+        {
+            dashCdTimer -= Time.deltaTime;
+        }
+
+        // if you are dashing, lock the player's movement
+        // if the dash duration is over, stop dashing
+        if (isDashing)
+        {
+            dashDurationTimer -= Time.deltaTime;
+            if (dashDurationTimer <= 0)
+                isDashing = false;
+        }
 
         SimpleMovement();
 
@@ -139,21 +174,36 @@ public class PlayerEntity : Entity
 
     public void SimpleMovement()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !isDashing)
         {
             acceleration += Vector3.right * speed * Time.deltaTime * 10000;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !isDashing)
         {
             acceleration += Vector3.left * speed * Time.deltaTime * 10000;
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !isDashing)
         {
             acceleration += Vector3.up * speed * Time.deltaTime * 10000;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && !isDashing)
         {
             acceleration += Vector3.down * speed * Time.deltaTime * 10000;
+        }
+        if (Input.GetKey(KeyCode.Space) && dashCdTimer <= 0)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            Debug.Log(mousePos);
+            velocity = Vector3.zero;
+            acceleration = Vector3.zero;
+            acceleration += (mousePos - position).normalized * speed * Time.deltaTime * 1000000;
+
+            // reset timers
+            dashCdTimer = dashCd;
+            dashDurationTimer = dashDuration;
+
+            isDashing = true;
         }
     }
 }
