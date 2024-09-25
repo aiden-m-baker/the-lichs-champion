@@ -8,43 +8,24 @@ public class Sword : Weapon
 
     private void Awake()
     {
+        // Set sword stats
         name = "Sword";
         rarity = Rarity.Common;
+
+        // Get and set necessary objects
         if (!spriteObject)
             spriteObject = transform.Find("SpriteObject").gameObject;
         if (!hitbox)
             hitbox = transform.Find("HitboxObject").GetComponent<Collider2D>();
 
+        // Setup sprite
         spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
 
+        // Setup hitbox
+        hitbox.gameObject.SetActive(false);
+
+        // Resets cooldowns
         ResetAction();
-    }
-
-    /// <summary>
-    /// Swing sword in front of player,
-    /// </summary>
-    public override void ActionNormal()
-    {
-        if (cooldownTracker_ActionNormal > 0) return;
-
-        ResetAction();
-
-        // Set and start countdown
-        cooldownTracker_ActionNormal = cooldown_ActionNormal;
-        //print(cooldownTracker_ActionNormal);
-
-        StartCoroutine(SwingSwordSprite());
-    }
-
-    /// <summary>
-    /// Grab, stab, and push back enemy player
-    /// </summary>
-    public override void ActionSpecial()
-    {
-        if (cooldownTracker_ActionSpecial > 0) return;
-
-        // Set and start countdown
-        cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
     }
 
     private void Update()
@@ -57,6 +38,39 @@ public class Sword : Weapon
     protected override void LateUpdate()
     {
         base.LateUpdate();
+    }
+
+    /// <summary>
+    /// Swing sword in front of player,
+    /// </summary>
+    protected override void ActionNormal()
+    {
+        if (cooldownTracker_ActionNormal > 0) return;
+
+        ResetAction();
+
+        // Set and start countdown
+        cooldownTracker_ActionNormal = cooldown_ActionNormal;
+
+        hitbox.gameObject.SetActive(true);
+
+        StartCoroutine(SwingSwordSprite());
+    }
+
+    /// <summary>
+    /// Grab, stab, and push back enemy player
+    /// </summary>
+    protected override void ActionSpecial()
+    {
+        if (cooldownTracker_ActionSpecial > 0) return;
+
+        // Set and start countdown
+        cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+    }
+
+    protected override void DealDamage(Entity e)
+    {
+        throw new System.NotImplementedException();
     }
 
     protected override void ResetAction()
@@ -89,4 +103,6 @@ public class Sword : Weapon
 
         yield return null;
     }
+
+
 }

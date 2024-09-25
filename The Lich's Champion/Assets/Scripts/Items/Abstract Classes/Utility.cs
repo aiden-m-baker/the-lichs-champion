@@ -12,12 +12,12 @@ public abstract class Utility : Item
     /// <summary>
     /// Function called when player inputs normal action
     /// </summary>
-    public abstract void ActionNormal();
+    protected abstract void ActionNormal();
 
     /// <summary>
     /// Function called when player inputs specialized action. Can do nothing if specific item does not have a special action
     /// </summary>
-    public abstract void ActionSpecial();
+    protected abstract void ActionSpecial();
 
     protected virtual void LateUpdate()
     {
