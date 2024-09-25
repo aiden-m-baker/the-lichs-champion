@@ -223,6 +223,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1009936440032559695, guid: 0172835c3233ece4f8e0728fb05a307f, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ab0d33c9a9200644baa5ba5827a9d8af, type: 3}
+    - target: {fileID: 1009936440032559695, guid: 0172835c3233ece4f8e0728fb05a307f, type: 3}
       propertyPath: defaultRotation.z
       value: 45
       objectReference: {fileID: 0}
