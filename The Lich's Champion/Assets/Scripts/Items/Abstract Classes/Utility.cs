@@ -22,14 +22,15 @@ public abstract class Utility : Item
     protected virtual void LateUpdate()
     {
         // If cooldowns are less than 0, reset tracker to 0. Else, count down timer
-        cooldownTracker_ActionNormal = cooldownTracker_ActionNormal < 0 ? 0 : cooldownTracker_ActionNormal - Time.deltaTime;
-        cooldownTracker_ActionSpecial = cooldownTracker_ActionSpecial < 0 ? 0 : cooldownTracker_ActionSpecial - Time.deltaTime;
+        cooldownTracker_ActionNormal -= Time.deltaTime;
+        cooldownTracker_ActionSpecial -= Time.deltaTime;
+
+        if (cooldownTracker_ActionNormal < 0)
+            cooldownTracker_ActionNormal = 0;
+
+        if (cooldownTracker_ActionSpecial < 0)
+            cooldownTracker_ActionSpecial = 0;
     }
 
-    protected virtual void ResetAction()
-    {
-        StopAllCoroutines();
-        cooldownTracker_ActionNormal = 0;
-        cooldownTracker_ActionSpecial = 0;
-    }
+    protected abstract void ResetAction();
 }

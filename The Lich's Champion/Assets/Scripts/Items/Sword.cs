@@ -27,12 +27,11 @@ public class Sword : Weapon
     {
         if (cooldownTracker_ActionNormal > 0) return;
 
+        ResetAction();
+
         // Set and start countdown
         cooldownTracker_ActionNormal = cooldown_ActionNormal;
-
-        print("Attacking Normal!");
-
-        ResetAction();
+        //print(cooldownTracker_ActionNormal);
 
         StartCoroutine(SwingSwordSprite());
     }
@@ -50,6 +49,7 @@ public class Sword : Weapon
 
     private void Update()
     {
+        //print(cooldownTracker_ActionNormal);
         if (Input.GetKey(KeyCode.Mouse0))
             ActionNormal();
     }
@@ -61,22 +61,28 @@ public class Sword : Weapon
 
     protected override void ResetAction()
     {
-        base.ResetAction();
+        StopAllCoroutines();
+        cooldownTracker_ActionNormal = 0;
+        cooldownTracker_ActionSpecial = 0;
 
         spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
     }
 
+    /// <summary>
+    /// Temporary animation for demonstration purposes
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SwingSwordSprite()
     {
         Vector3 rot = Vector3.zero;
-        rot.z = 10;
+        rot.z = -45;
         spriteObject.transform.rotation = Quaternion.Euler(rot);
 
         yield return new WaitForSeconds(0.05f);
 
-        while (rot.z < 100)
+        while (rot.z < 160)
         {
-            rot.z += 500 * Time.deltaTime;
+            rot.z += 1200 * Time.deltaTime;
             spriteObject.transform.rotation = Quaternion.Euler(rot);
             yield return new WaitForEndOfFrame();
         }
