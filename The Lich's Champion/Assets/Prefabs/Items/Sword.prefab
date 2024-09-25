@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Name
-      value: Sword Variant
+      value: Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -78,9 +78,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 19a5a80c6544aa54dbb9d3a3a86ca3c6, type: 3}
-  cooldown_ActionNormal: 0.25
-  cooldown_ActionSpecial: 0.75
-  damage: 10
-  specialDamage: 20
+  cooldown_ActionNormal: 3
+  cooldown_ActionSpecial: 7
+  damage: 8
+  specialDamage: 15
   spriteObject: {fileID: 0}
   hitbox: {fileID: 0}
+  defaultRotation: {x: 0, y: 0, z: 45}

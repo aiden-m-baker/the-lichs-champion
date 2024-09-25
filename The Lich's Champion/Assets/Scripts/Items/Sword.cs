@@ -55,6 +55,8 @@ public class Sword : Weapon
         hitbox.gameObject.SetActive(true);
 
         StartCoroutine(SwingSwordSprite());
+
+        DealDamage(entityInRange);
     }
 
     /// <summary>
