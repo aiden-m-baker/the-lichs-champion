@@ -9,7 +9,7 @@ public class PlayerEntity : Entity
     private int health;
     private int maxHealth;
     private int damage;
-    private float speed = 100;
+    private float speed = 5;
     private float healthRegen;
     private int energy;
     private int maxEnergy;
@@ -30,9 +30,9 @@ public class PlayerEntity : Entity
     [SerializeField]
     private float mass = 1;
     [SerializeField]
-    private float maxSpeed = 10;
+    private float maxSpeed = 4;
     [SerializeField]
-    private float frictionCoeff = 0.1f;
+    private float frictionCoeff = 10f;
 
     // player exclusive stats
 
@@ -102,12 +102,18 @@ public class PlayerEntity : Entity
     // Update is called once per frame
     void Update()
     {
-
-        // friction
-        Vector3 friction = velocity * -1;
-        friction.Normalize();
-        friction = friction * frictionCoeff;
-        acceleration += friction / mass;
+        if (!Input.GetKey(KeyCode.A) && 
+            !Input.GetKey(KeyCode.D) && 
+            !Input.GetKey(KeyCode.W) && 
+            !Input.GetKey(KeyCode.S))
+        {
+            //acceleration = Vector3.zero;
+            // friction
+            Vector3 friction = velocity * -1;
+            friction.Normalize();
+            friction = friction * frictionCoeff;
+            acceleration += friction / mass;
+        }
 
 
         SimpleMovement();
@@ -135,19 +141,19 @@ public class PlayerEntity : Entity
     {
         if (Input.GetKey(KeyCode.D))
         {
-            acceleration += Vector3.right * speed * Time.deltaTime * 1000;
+            acceleration += Vector3.right * speed * Time.deltaTime * 10000;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            acceleration += Vector3.left * speed * Time.deltaTime * 1000;
+            acceleration += Vector3.left * speed * Time.deltaTime * 10000;
         }
         if (Input.GetKey(KeyCode.W))
         {
-            acceleration += Vector3.up * speed * Time.deltaTime * 1000;
+            acceleration += Vector3.up * speed * Time.deltaTime * 10000;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            acceleration += Vector3.down * speed * Time.deltaTime * 1000;
+            acceleration += Vector3.down * speed * Time.deltaTime * 10000;
         }
     }
 }

@@ -323,6 +323,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTemp
       objectReference: {fileID: 0}
+    - target: {fileID: 3991630681358395707, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: maxSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991630681358395707, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: frictionCoeff
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5108834094256618926, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
