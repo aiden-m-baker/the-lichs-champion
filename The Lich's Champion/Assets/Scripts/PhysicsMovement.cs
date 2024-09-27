@@ -8,7 +8,7 @@ public class PhysicsMovement : MonoBehaviour
 
     public float mass = 5f;
 
-    [SerializeField] private float maxSpeed = 1;
+    [SerializeField] private float maxSpeed = 5;
 
     void Update()
     {
