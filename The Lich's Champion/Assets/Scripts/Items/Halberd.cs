@@ -58,7 +58,7 @@ public class Halberd : Weapon
 
         StartCoroutine(SwingSwordSprite());
 
-        DealDamage(entityInRange);
+        DealDamage(entityCollisionDetector.EntityHit);
     }
 
     /// <summary>
@@ -74,8 +74,12 @@ public class Halberd : Weapon
 
     protected override void DealDamage(Entity e)
     {
+        if (!entityCollisionDetector)
+            throw new System.NullReferenceException();
+
         entityCollisionDetector.gameObject.SetActive(false);
-        //throw new System.NotImplementedException();
+
+        e.Health -= damage;
     }
 
     protected override void ResetAction()
