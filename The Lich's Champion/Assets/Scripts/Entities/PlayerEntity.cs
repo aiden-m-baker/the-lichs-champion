@@ -37,6 +37,11 @@ public class PlayerEntity : Entity
 
     public bool frictionApplied = false;
 
+    // weapons
+
+    [SerializeField]
+    Utility weapon;
+
     // dash
 
     public float dashCd = 5f;
@@ -152,6 +157,10 @@ public class PlayerEntity : Entity
         }
 
         SimpleMovement();
+
+        // weapon usage
+        if (Input.GetKey(KeyCode.Mouse0) && weapon != null)
+            weapon.ActionNormal();
 
         velocity += acceleration * Time.deltaTime;
 
