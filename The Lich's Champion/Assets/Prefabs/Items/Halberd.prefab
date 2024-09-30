@@ -122,11 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3cb3ba300e076254ab92dd04c22f891f, type: 3}
+  prefab: {fileID: 5951128165991331760}
   cooldown_ActionNormal: 0
   cooldown_ActionSpecial: 0
   damage: 0
   specialDamage: 0
   spriteObject: {fileID: 0}
-  hitbox: {fileID: 0}
+  entityCollisionDetector: {fileID: 0}
   defaultRotation: {x: 0, y: 0, z: 40}
   defaultScale: 1
