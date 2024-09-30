@@ -156,11 +156,11 @@ public class PlayerEntity : Entity
                 isDashing = false;
         }
 
+        // movement
         SimpleMovement();
 
-        // weapon usage
-        if (Input.GetKey(KeyCode.Mouse0) && weapon != null)
-            weapon.ActionNormal();
+        // weapon input
+        SimpleWeaponUse();
 
         velocity += acceleration * Time.deltaTime;
 
@@ -217,5 +217,11 @@ public class PlayerEntity : Entity
 
             isDashing = true;
         }
+    }
+    public void SimpleWeaponUse()
+    {
+        // weapon usage
+        if (Input.GetKey(KeyCode.Mouse0) && weapon != null)
+            weapon.ActionNormal();
     }
 }
