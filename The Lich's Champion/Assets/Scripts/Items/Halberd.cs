@@ -33,8 +33,8 @@ public class Halberd : Weapon
     private void Update()
     {
         //print(cooldownTracker_ActionNormal);
-        if (Input.GetKey(KeyCode.Mouse0))
-            ActionNormal();
+        //if (Input.GetKey(KeyCode.Mouse0))
+            //ActionNormal();
     }
 
     protected override void LateUpdate()
