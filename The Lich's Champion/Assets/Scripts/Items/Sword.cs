@@ -101,6 +101,12 @@ public class Sword : Weapon
         rot.z = -45;
         spriteObject.transform.rotation = Quaternion.Euler(rot);
 
+        EdgeCollider2D edgeCollider = entityCollisionDetector.GetComponent<EdgeCollider2D>();
+        for(int i = 1; i < edgeCollider.pointCount; ++i)
+        {
+            Gizmos.DrawLine(edgeCollider.points[i - 1], edgeCollider.points[i]);
+        }
+
         yield return new WaitForSeconds(0.05f);
 
         while (rot.z < 95)

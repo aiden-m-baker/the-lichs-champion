@@ -17,15 +17,17 @@ public abstract class Utility : Item
     //public abstract float CooldownTracker_ActionSpecial { get; }
     #endregion
 
+
+
     /// <summary>
     /// Function called when player inputs normal action
     /// </summary>
-    protected abstract void ActionNormal();
+    public abstract void ActionNormal();
 
     /// <summary>
     /// Function called when player inputs specialized action. Can do nothing if specific item does not have a special action
     /// </summary>
-    protected abstract void ActionSpecial();
+    public abstract void ActionSpecial();
 
     protected virtual void LateUpdate()
     {
