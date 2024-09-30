@@ -4,10 +4,18 @@ using UnityEngine;
 
 public abstract class Utility : Item
 {
+    [SerializeField] protected GameObject prefab;
     [SerializeField][Min(0)] protected float cooldown_ActionNormal;
     [SerializeField][Min(0)] protected float cooldown_ActionSpecial;
     protected float cooldownTracker_ActionNormal;
     protected float cooldownTracker_ActionSpecial;
+
+    #region Properites
+    //public abstract float Cooldown_ActionNormal { get; }
+    //public abstract float Cooldown_ActionSpecial { get; }
+    //public abstract float CooldownTracker_ActionNormal { get; }
+    //public abstract float CooldownTracker_ActionSpecial { get; }
+    #endregion
 
     /// <summary>
     /// Function called when player inputs normal action
