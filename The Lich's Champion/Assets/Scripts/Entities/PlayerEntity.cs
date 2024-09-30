@@ -221,7 +221,7 @@ public class PlayerEntity : Entity
     public void SimpleWeaponUse()
     {
         // weapon usage
-        if (Input.GetKey(KeyCode.Mouse0) && weapon != null)
-            weapon.ActionNormal();
+        if (Input.GetKey(KeyCode.Mouse0) && weapon != null) ;
+            //weapon.ActionNormal();
     }
 }
