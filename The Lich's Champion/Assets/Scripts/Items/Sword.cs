@@ -45,7 +45,7 @@ public class Sword : Weapon
     /// <summary>
     /// Swing sword in front of player,
     /// </summary>
-    protected override void ActionNormal()
+    public override void ActionNormal()
     {
         if (cooldownTracker_ActionNormal > 0) return;
 
@@ -64,7 +64,7 @@ public class Sword : Weapon
     /// <summary>
     /// Grab, stab, and push back enemy player
     /// </summary>
-    protected override void ActionSpecial()
+    public override void ActionSpecial()
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
