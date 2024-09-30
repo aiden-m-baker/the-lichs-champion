@@ -58,7 +58,7 @@ public class Dagger : Weapon
 
         StartCoroutine(SwingSwordSprite());
 
-        DealDamage(entityInRange);
+        DealDamage(entityCollisionDetector.EntityHit);
     }
 
     /// <summary>
@@ -74,8 +74,12 @@ public class Dagger : Weapon
 
     protected override void DealDamage(Entity e)
     {
+        if (!entityCollisionDetector)
+            throw new System.NullReferenceException();
+
         entityCollisionDetector.gameObject.SetActive(false);
-        //throw new System.NotImplementedException();
+
+        e.Health -= damage;
     }
 
     protected override void ResetAction()

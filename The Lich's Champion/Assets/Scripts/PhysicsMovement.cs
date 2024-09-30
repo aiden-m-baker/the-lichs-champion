@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PhysicsMovement : MonoBehaviour
 {
@@ -24,5 +25,9 @@ public class PhysicsMovement : MonoBehaviour
     public void ApplyForce(Vector3 force)
     {
         _acceleration += force / mass;
+    }
+    public void Move(InputAction.CallbackContext context)
+    {
+        Debug.Log(context);
     }
 }
