@@ -156,7 +156,10 @@ public class PlayerEntity : Entity
         velocity += acceleration * Time.deltaTime;
 
         // clamp the velocity to the max speed
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        if (isDashing)
+            velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
+        else
+            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         position += velocity * Time.deltaTime;
         direction = velocity.normalized;
