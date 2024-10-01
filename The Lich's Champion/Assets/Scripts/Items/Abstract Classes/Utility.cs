@@ -9,6 +9,8 @@ public abstract class Utility : Item
 {
     [SerializeField] protected GameObject prefab;
     [SerializeField] protected GameObject spriteObject;
+    [SerializeField] protected Vector3 defaultRotation = Vector3.zero;
+    [SerializeField][Min(0)] protected float defaultScale = 1;
     [SerializeField][Min(0)] protected float cooldown_ActionNormal;
     [SerializeField][Min(0)] protected float cooldown_ActionSpecial;
     protected float cooldownTracker_ActionNormal;
@@ -21,6 +23,24 @@ public abstract class Utility : Item
     //public abstract float CooldownTracker_ActionNormal { get; }
     //public abstract float CooldownTracker_ActionSpecial { get; }
     #endregion
+
+    protected virtual void Awake()
+    {
+        // Get and set prefab object
+        if (!prefab)
+            prefab = gameObject;
+
+        // Get and set sprite object
+        if (!spriteObject)
+            spriteObject = transform.Find("SpriteObject").gameObject;
+
+        // Setup sprite
+        spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
+
+        // Resets cooldowns
+        ResetAction();
+    }
 
     /// <summary>
     /// Function called when player inputs normal action

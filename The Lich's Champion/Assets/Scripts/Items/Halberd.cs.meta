@@ -4,7 +4,10 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - sprite: {fileID: 21300000, guid: 19a5a80c6544aa54dbb9d3a3a86ca3c6, type: 3}
+  - sprite: {fileID: 21300000, guid: 3cb3ba300e076254ab92dd04c22f891f, type: 3}
+  - prefab: {instanceID: 0}
+  - spriteObject: {instanceID: 0}
+  - entityCollisionDetector: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
