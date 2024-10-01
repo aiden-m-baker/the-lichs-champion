@@ -72,16 +72,6 @@ public class Halberd : Weapon
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
     }
 
-    protected override void DealDamage(Entity e)
-    {
-        if (!entityCollisionDetector)
-            throw new System.NullReferenceException();
-
-        entityCollisionDetector.gameObject.SetActive(false);
-
-        e.Health -= damage;
-    }
-
     protected override void ResetAction()
     {
         StopAllCoroutines();

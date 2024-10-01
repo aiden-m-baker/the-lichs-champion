@@ -15,5 +15,13 @@ public abstract class Weapon : Utility
     /// Damage logic for targeted entity. Damage handling is up to the weapon.
     /// </summary>
     /// <param name="e">Entity targeted by the weapon</param>
-    protected abstract void DealDamage(Entity e);
+    protected virtual void DealDamage(Entity e) 
+    {
+        if (!entityCollisionDetector)
+            throw new System.NullReferenceException();
+
+        entityCollisionDetector.gameObject.SetActive(false);
+
+        e.TakeDamage(damage);
+    }
 }
