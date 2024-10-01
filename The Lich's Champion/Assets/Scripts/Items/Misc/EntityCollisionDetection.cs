@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class EntityCollisionDetection : MonoBehaviour
 {
-    private Entity entityHit = null;
+    private GameObject entityHit = null;
 
     public Entity EntityHit
     {
-        get { return entityHit; }
+        get 
+        {
+            if(!entityHit)
+                return null;
+
+            // Attempt to get the entity script
+            // Return null otherwise
+            if(entityHit.TryGetComponent(out Entity e))
+                return e;
+
+            return null;
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        entityHit = collision.GetComponent<Entity>();
-
-        if (!entityHit) entityHit = null;
+        entityHit = collision.gameObject;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Entity>() == entityHit) entityHit = null;
+        if (collision.gameObject == entityHit) entityHit = null;
     }
 }
