@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// For cosmetic purposes
+/// </summary>
 public enum Rarity
 {
     Common,
@@ -10,6 +13,9 @@ public enum Rarity
     Legendary
 }
 
+/// <summary>
+/// Basic Item class. Holds basic information for all types of items used ingame.
+/// </summary>
 public abstract class Item : MonoBehaviour
 {
      [SerializeField] protected Sprite sprite;
