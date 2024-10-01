@@ -78,4 +78,5 @@ public abstract class Entity : MonoBehaviour
     {
         
     }
+    public abstract void TakeDamage(int damage);
 }

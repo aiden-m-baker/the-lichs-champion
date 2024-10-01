@@ -78,4 +78,8 @@ public class AIEntity : Entity
     {
         
     }
+    public override void TakeDamage(int damage)
+    {
+        throw new System.NotImplementedException();
+    }
 }

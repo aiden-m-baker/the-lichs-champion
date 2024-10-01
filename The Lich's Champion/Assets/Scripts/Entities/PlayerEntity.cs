@@ -8,7 +8,7 @@ public class PlayerEntity : Entity
 {
     // all entity stats
     private int health;
-    private int maxHealth;
+    private int maxHealth = 100;
     private int damage;
     private float speed = 5;
     private float healthRegen;
@@ -113,6 +113,8 @@ public class PlayerEntity : Entity
     void Start()
     {
         position = transform.position;
+        // temp health value
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -161,6 +163,8 @@ public class PlayerEntity : Entity
 
         // weapon input
         SimpleWeaponUse();
+
+        TakeDamage();
 
         velocity += acceleration * Time.deltaTime;
 
@@ -223,5 +227,9 @@ public class PlayerEntity : Entity
         // weapon usage
         if (Input.GetKey(KeyCode.Mouse0) && weapon != null) ;
             //weapon.ActionNormal();
+    }
+    public override void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }
