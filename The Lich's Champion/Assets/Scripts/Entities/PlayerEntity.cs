@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class PlayerEntity : Entity
 {
@@ -115,78 +113,79 @@ public class PlayerEntity : Entity
         position = transform.position;
         // temp health value
         health = maxHealth;
-        weapon.ActionNormal();
+        //weapon.ActionNormal();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (frictionApplied)
-        {
-            frictionApplied = false;
-        }
+        //if (frictionApplied)
+        //{
+        //    frictionApplied = false;
+        //}
         // apply friction when no keys are pressed
         // and not while dashing
         // TODO: remake this for controller
-        if ((!Input.GetKey(KeyCode.A) && 
-            !Input.GetKey(KeyCode.D) && 
-            !Input.GetKey(KeyCode.W) && 
-            !Input.GetKey(KeyCode.S)) &&
-            !isDashing)
-        {
-            //acceleration = Vector3.zero;
-            // friction
-            Vector3 friction = velocity * -1;
-            friction.Normalize();
-            friction = friction * frictionCoeff;
-            acceleration += friction / mass;
-            frictionApplied = true;
-        }
+        //if ((!Input.GetKey(KeyCode.A) && 
+        //    !Input.GetKey(KeyCode.D) && 
+        //    !Input.GetKey(KeyCode.W) && 
+        //    !Input.GetKey(KeyCode.S)) &&
+        //    !isDashing)
+        //{
+        //    //acceleration = Vector3.zero;
+        //    // friction
+        //    Vector3 friction = velocity * -1;
+        //    friction.Normalize();
+        //    friction = friction * frictionCoeff;
+        //    acceleration += friction / mass;
+        //    frictionApplied = true;
+        //}
 
 
-        // count dash cooldown
-        if (dashCdTimer > 0)
-        {
-            dashCdTimer -= Time.deltaTime;
-        }
+        //// count dash cooldown
+        //if (dashCdTimer > 0)
+        //{
+        //    dashCdTimer -= Time.deltaTime;
+        //}
 
-        // if you are dashing, lock the player's movement
-        // if the dash duration is over, stop dashing
-        if (isDashing)
-        {
-            dashDurationTimer -= Time.deltaTime;
-            if (dashDurationTimer <= 0)
-                isDashing = false;
-        }
+        //// if you are dashing, lock the player's movement
+        //// if the dash duration is over, stop dashing
+        //if (isDashing)
+        //{
+        //    dashDurationTimer -= Time.deltaTime;
+        //    if (dashDurationTimer <= 0)
+        //        isDashing = false;
+        //}
 
         // movement
-        SimpleMovement();
+        // SimpleMovement();
 
         // weapon input
-        SimpleWeaponUse();
+        // SimpleWeaponUse();
 
         //TakeDamage();
 
-        velocity += acceleration * Time.deltaTime;
+        //velocity += acceleration * Time.deltaTime;
 
         // clamp the velocity to the max speed
-        if (isDashing)
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
-        else
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        //if (isDashing)
+        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
+        //else
+        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
-        position += velocity * Time.deltaTime;
-        direction = velocity.normalized;
+        //position += velocity * Time.deltaTime;
+        //direction = velocity.normalized;
 
-        transform.position = position;
-        acceleration = Vector3.zero;
+        //transform.position = position;
+
+        //acceleration = Vector3.zero;
 
         // rotate the player to face the direction they are moving
-        if (velocity != Vector3.zero)
-        {
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
-            transform.rotation = rotation;
-        }
+        //if (velocity != Vector3.zero)
+        //{
+        //    Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        //    transform.rotation = rotation;
+        //}
     }
 
     public void SimpleMovement()
@@ -236,5 +235,13 @@ public class PlayerEntity : Entity
     public override void ApplyStatusEffect(StatusEffect effect)
     {
         throw new NotImplementedException();
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Dash!!");
+        }
     }
 }
