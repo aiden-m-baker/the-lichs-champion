@@ -14,14 +14,13 @@ public abstract class Utility : Item
     protected float cooldownTracker_ActionNormal;
     protected float cooldownTracker_ActionSpecial;
 
+    // Properties disabled rn cause im lazy and they're unneeded so far
     #region Properites
     //public abstract float Cooldown_ActionNormal { get; }
     //public abstract float Cooldown_ActionSpecial { get; }
     //public abstract float CooldownTracker_ActionNormal { get; }
     //public abstract float CooldownTracker_ActionSpecial { get; }
     #endregion
-
-
 
     /// <summary>
     /// Function called when player inputs normal action
@@ -33,6 +32,9 @@ public abstract class Utility : Item
     /// </summary>
     public abstract void ActionSpecial();
 
+    /// <summary>
+    /// Default LateUpdate tracks ability cooldowns. Use base.LateUpdate(); at the start of each overridden LateUpdate method
+    /// </summary>
     protected virtual void LateUpdate()
     {
         // If cooldowns are less than 0, reset tracker to 0. Else, count down timer
@@ -46,5 +48,8 @@ public abstract class Utility : Item
             cooldownTracker_ActionSpecial = 0;
     }
 
+    /// <summary>
+    /// Reset logic when needed. Can be used to reset cooldowns and animations.
+    /// </summary>
     protected abstract void ResetAction();
 }
