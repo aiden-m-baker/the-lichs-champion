@@ -87,7 +87,7 @@ public abstract class Entity : MonoBehaviour
     /// Take damage function for the entity
     /// </summary>
     /// <param name="damage">how much will be deducted from player health</param>
-    public abstract void TakeDamage(int damage);
+    public abstract void TakeDamage(int damage, Vector3 sourceLoc);
 
     /// <summary>
     /// Apply a status effect to the entity

@@ -78,7 +78,7 @@ public class AIEntity : Entity
     {
         
     }
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
         throw new System.NotImplementedException();
     }

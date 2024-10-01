@@ -225,9 +225,14 @@ public class PlayerEntity : Entity
         if (Input.GetKey(KeyCode.Mouse0) && weapon != null) 
             weapon.ActionNormal();
     }
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
         health -= damage;
+        if (sourceLoc != null)
+        {
+            // 0.1f == knockback constant
+            transform.position = (transform.position - sourceLoc).normalized * 0.1f;
+        }
     }
     public override void ApplyStatusEffect(StatusEffect effect)
     {

@@ -73,6 +73,8 @@ public class TargetDummy : Entity
     void Start()
     {
         health = maxHealth;
+        // knockback test code
+        // TakeDamage(10, new Vector3(0, -1, 0));
     }
 
     // Update is called once per frame
@@ -80,9 +82,14 @@ public class TargetDummy : Entity
     {
         
     }
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
         health -= damage;
+        if (sourceLoc != null)
+        {
+            // 0.1f == knockback constant
+            transform.position += (transform.position - sourceLoc).normalized * 0.1f;
+        }
     }
     public override void ApplyStatusEffect(StatusEffect effect)
     {
