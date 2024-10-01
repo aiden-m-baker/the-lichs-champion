@@ -164,7 +164,7 @@ public class PlayerEntity : Entity
         // weapon input
         SimpleWeaponUse();
 
-        TakeDamage();
+        //TakeDamage();
 
         velocity += acceleration * Time.deltaTime;
 
