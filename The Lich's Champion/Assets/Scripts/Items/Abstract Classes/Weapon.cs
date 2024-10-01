@@ -11,6 +11,17 @@ public abstract class Weapon : Utility
     [SerializeField] [Min(0)] protected int specialDamage;
     [SerializeField] protected EntityCollisionDetection entityCollisionDetector;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        // Setup hitbox
+        if (!entityCollisionDetector)
+            entityCollisionDetector = transform.Find("HitboxObject").GetComponent<EntityCollisionDetection>();
+
+        entityCollisionDetector.gameObject.SetActive(false);
+    }
+
     /// <summary>
     /// Damage logic for targeted entity. Damage handling is up to the weapon.
     /// </summary>

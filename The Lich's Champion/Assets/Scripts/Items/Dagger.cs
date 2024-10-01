@@ -7,27 +7,13 @@ public class Dagger : Weapon
     [SerializeField] private Vector3 defaultRotation = Vector3.zero;
     [SerializeField][Min(0)] private float defaultScale = 1;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         // Set dagger stats
         name = "Dagger";
         rarity = Rarity.Common;
-
-        // Get and set necessary objects
-        if (!spriteObject)
-            spriteObject = transform.Find("SpriteObject").gameObject;
-        if (!entityCollisionDetector)
-            entityCollisionDetector = transform.Find("HitboxObject").GetComponent<EntityCollisionDetection>();
-
-        // Setup sprite
-        spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
-        spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
-
-        // Setup hitbox
-        entityCollisionDetector.gameObject.SetActive(false);
-
-        // Resets cooldowns
-        ResetAction();
     }
 
     private void Update()
