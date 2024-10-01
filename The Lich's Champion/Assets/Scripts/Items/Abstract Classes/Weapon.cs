@@ -19,7 +19,7 @@ public abstract class Weapon : Utility
         if (!entityCollisionDetector)
             entityCollisionDetector = transform.Find("HitboxObject").GetComponent<EntityCollisionDetection>();
 
-        entityCollisionDetector.gameObject.SetActive(false);
+        //entityCollisionDetector.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -36,6 +36,6 @@ public abstract class Weapon : Utility
 
         e.TakeDamage(damage);
 
-        entityCollisionDetector.gameObject.SetActive(false);
+        //entityCollisionDetector.gameObject.SetActive(false);
     }
 }
