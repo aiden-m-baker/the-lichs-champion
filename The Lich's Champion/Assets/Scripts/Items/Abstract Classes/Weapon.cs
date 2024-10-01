@@ -29,10 +29,13 @@ public abstract class Weapon : Utility
     protected virtual void DealDamage(Entity e) 
     {
         if (!entityCollisionDetector)
-            throw new System.NullReferenceException();
+            throw new System.NullReferenceException("Entity Collision Detector not found!");
 
-        entityCollisionDetector.gameObject.SetActive(false);
+        if (!e)
+            return;
 
         e.TakeDamage(damage);
+
+        entityCollisionDetector.gameObject.SetActive(false);
     }
 }
