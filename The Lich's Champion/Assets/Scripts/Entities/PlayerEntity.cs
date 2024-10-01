@@ -40,6 +40,11 @@ public class PlayerEntity : Entity
     [SerializeField]
     Utility weapon;
 
+    // camera
+
+    [SerializeField]
+    private Camera mainCam;
+
     // dash
 
     public float dashCd = 5f;
@@ -181,7 +186,9 @@ public class PlayerEntity : Entity
         //acceleration = Vector3.zero;
 
         // rotate the player to face the direction they are moving
-        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        Vector3 worldPos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        worldPos -= transform.position;
+        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, worldPos.normalized);
         transform.rotation = rotation;
     }
 
