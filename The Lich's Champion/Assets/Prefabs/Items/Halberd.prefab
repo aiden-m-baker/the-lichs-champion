@@ -104,6 +104,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4306013515442581042}
   m_SourcePrefab: {fileID: 100100000, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+--- !u!114 &1393304839671070023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7287547644852331248, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+  m_PrefabInstance: {fileID: 8535608437302976439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e20dad055bc24fb7ae8491c2754b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5951128165991331760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
@@ -123,11 +134,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3cb3ba300e076254ab92dd04c22f891f, type: 3}
   prefab: {fileID: 5951128165991331760}
+  spriteObject: {fileID: 8994109614292887904}
+  defaultRotation: {x: 0, y: 0, z: 40}
+  defaultScale: 1
   cooldown_ActionNormal: 0
   cooldown_ActionSpecial: 0
   damage: 0
   specialDamage: 0
-  spriteObject: {fileID: 0}
-  entityCollisionDetector: {fileID: 0}
-  defaultRotation: {x: 0, y: 0, z: 40}
-  defaultScale: 1
+  entityCollisionDetector: {fileID: 1393304839671070023}
+--- !u!1 &8994109614292887904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 767280638714656471, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+  m_PrefabInstance: {fileID: 8535608437302976439}
+  m_PrefabAsset: {fileID: 0}
