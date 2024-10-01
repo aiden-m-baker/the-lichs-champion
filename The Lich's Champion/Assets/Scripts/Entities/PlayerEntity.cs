@@ -232,4 +232,8 @@ public class PlayerEntity : Entity
     {
         health -= damage;
     }
+    public override void ApplyStatusEffect(StatusEffect effect)
+    {
+        throw new NotImplementedException();
+    }
 }

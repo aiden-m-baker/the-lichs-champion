@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
 
+public enum StatusEffect
+{
+    Stunned
+}
 public abstract class Entity : MonoBehaviour
 {
     #region all entity stats properties
@@ -78,5 +82,16 @@ public abstract class Entity : MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// Take damage function for the entity
+    /// </summary>
+    /// <param name="damage">how much will be deducted from player health</param>
     public abstract void TakeDamage(int damage);
+
+    /// <summary>
+    /// Apply a status effect to the entity
+    /// </summary>
+    /// <param name="effect">What kind of effect is being applied?</param>
+    public abstract void ApplyStatusEffect(StatusEffect effect);
 }
