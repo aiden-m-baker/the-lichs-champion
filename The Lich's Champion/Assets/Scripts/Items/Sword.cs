@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    [SerializeField] private Vector3 defaultRotation = Vector3.zero;
-    [SerializeField] [Min(0)] private float defaultScale = 1;
 
     protected override void Awake()
     {
