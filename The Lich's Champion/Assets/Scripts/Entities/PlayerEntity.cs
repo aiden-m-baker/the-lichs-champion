@@ -142,11 +142,11 @@ public class PlayerEntity : Entity
         //}
 
 
-        //// count dash cooldown
-        //if (dashCdTimer > 0)
-        //{
-        //    dashCdTimer -= Time.deltaTime;
-        //}
+        // count dash cooldown
+        if (dashCdTimer > 0)
+        {
+            dashCdTimer -= Time.deltaTime;
+        }
 
         //// if you are dashing, lock the player's movement
         //// if the dash duration is over, stop dashing
@@ -181,11 +181,8 @@ public class PlayerEntity : Entity
         //acceleration = Vector3.zero;
 
         // rotate the player to face the direction they are moving
-        //if (velocity != Vector3.zero)
-        //{
-        //    Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
-        //    transform.rotation = rotation;
-        //}
+        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        transform.rotation = rotation;
     }
 
     public void SimpleMovement()
@@ -239,9 +236,18 @@ public class PlayerEntity : Entity
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        // canceled == released
+        // performed == pressed
+        // started == pressed
+        if (context.performed && dashCdTimer <= 0)
         {
             Debug.Log("Dash!!");
+            dashCdTimer = dashCd;
         }
+    }
+    public void SwingWeaponNormal()
+    {
+        if (weapon != null)
+            weapon.ActionNormal();
     }
 }
