@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class PlayerEntity : Entity
 {
@@ -178,7 +176,7 @@ public class PlayerEntity : Entity
         position += velocity * Time.deltaTime;
         direction = velocity.normalized;
 
-        transform.position = position;
+        //transform.position = position;
         acceleration = Vector3.zero;
 
         // rotate the player to face the direction they are moving
@@ -236,5 +234,13 @@ public class PlayerEntity : Entity
     public override void ApplyStatusEffect(StatusEffect effect)
     {
         throw new NotImplementedException();
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Dash!!");
+        }
     }
 }

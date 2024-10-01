@@ -142,6 +142,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a8a25afc-81c2-4281-bb7e-561d695542bc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "badf6408-ceab-4f16-b903-a6017f9c44c3",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -158,6 +169,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1567ae19-7092-4a5d-96b4-ab26d7db2088",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
