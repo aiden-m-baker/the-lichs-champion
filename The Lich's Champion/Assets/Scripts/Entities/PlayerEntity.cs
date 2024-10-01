@@ -115,33 +115,33 @@ public class PlayerEntity : Entity
         position = transform.position;
         // temp health value
         health = maxHealth;
-        weapon.ActionNormal();
+        //weapon.ActionNormal();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (frictionApplied)
-        {
-            frictionApplied = false;
-        }
+        //if (frictionApplied)
+        //{
+        //    frictionApplied = false;
+        //}
         // apply friction when no keys are pressed
         // and not while dashing
         // TODO: remake this for controller
-        if ((!Input.GetKey(KeyCode.A) && 
-            !Input.GetKey(KeyCode.D) && 
-            !Input.GetKey(KeyCode.W) && 
-            !Input.GetKey(KeyCode.S)) &&
-            !isDashing)
-        {
-            //acceleration = Vector3.zero;
-            // friction
-            Vector3 friction = velocity * -1;
-            friction.Normalize();
-            friction = friction * frictionCoeff;
-            acceleration += friction / mass;
-            frictionApplied = true;
-        }
+        //if ((!Input.GetKey(KeyCode.A) && 
+        //    !Input.GetKey(KeyCode.D) && 
+        //    !Input.GetKey(KeyCode.W) && 
+        //    !Input.GetKey(KeyCode.S)) &&
+        //    !isDashing)
+        //{
+        //    //acceleration = Vector3.zero;
+        //    // friction
+        //    Vector3 friction = velocity * -1;
+        //    friction.Normalize();
+        //    friction = friction * frictionCoeff;
+        //    acceleration += friction / mass;
+        //    frictionApplied = true;
+        //}
 
 
         // count dash cooldown
@@ -160,10 +160,10 @@ public class PlayerEntity : Entity
         }
 
         // movement
-        SimpleMovement();
+        // SimpleMovement();
 
         // weapon input
-        SimpleWeaponUse();
+        // SimpleWeaponUse();
 
         //TakeDamage();
 
