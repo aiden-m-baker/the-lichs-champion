@@ -142,20 +142,20 @@ public class PlayerEntity : Entity
         //}
 
 
-        // count dash cooldown
-        if (dashCdTimer > 0)
-        {
-            dashCdTimer -= Time.deltaTime;
-        }
+        //// count dash cooldown
+        //if (dashCdTimer > 0)
+        //{
+        //    dashCdTimer -= Time.deltaTime;
+        //}
 
-        // if you are dashing, lock the player's movement
-        // if the dash duration is over, stop dashing
-        if (isDashing)
-        {
-            dashDurationTimer -= Time.deltaTime;
-            if (dashDurationTimer <= 0)
-                isDashing = false;
-        }
+        //// if you are dashing, lock the player's movement
+        //// if the dash duration is over, stop dashing
+        //if (isDashing)
+        //{
+        //    dashDurationTimer -= Time.deltaTime;
+        //    if (dashDurationTimer <= 0)
+        //        isDashing = false;
+        //}
 
         // movement
         // SimpleMovement();
@@ -165,26 +165,27 @@ public class PlayerEntity : Entity
 
         //TakeDamage();
 
-        velocity += acceleration * Time.deltaTime;
+        //velocity += acceleration * Time.deltaTime;
 
         // clamp the velocity to the max speed
-        if (isDashing)
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
-        else
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        //if (isDashing)
+        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
+        //else
+        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
-        position += velocity * Time.deltaTime;
-        direction = velocity.normalized;
+        //position += velocity * Time.deltaTime;
+        //direction = velocity.normalized;
 
         //transform.position = position;
-        acceleration = Vector3.zero;
+
+        //acceleration = Vector3.zero;
 
         // rotate the player to face the direction they are moving
-        if (velocity != Vector3.zero)
-        {
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
-            transform.rotation = rotation;
-        }
+        //if (velocity != Vector3.zero)
+        //{
+        //    Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        //    transform.rotation = rotation;
+        //}
     }
 
     public void SimpleMovement()
