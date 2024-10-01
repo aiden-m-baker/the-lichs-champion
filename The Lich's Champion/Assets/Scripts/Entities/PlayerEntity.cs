@@ -115,6 +115,7 @@ public class PlayerEntity : Entity
         position = transform.position;
         // temp health value
         health = maxHealth;
+        weapon.ActionNormal();
     }
 
     // Update is called once per frame
@@ -225,8 +226,8 @@ public class PlayerEntity : Entity
     public void SimpleWeaponUse()
     {
         // weapon usage
-        if (Input.GetKey(KeyCode.Mouse0) && weapon != null) ;
-            //weapon.ActionNormal();
+        if (Input.GetKey(KeyCode.Mouse0) && weapon != null) 
+            weapon.ActionNormal();
     }
     public override void TakeDamage(int damage)
     {
