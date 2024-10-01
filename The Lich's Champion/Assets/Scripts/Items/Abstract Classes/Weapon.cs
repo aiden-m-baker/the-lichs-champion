@@ -34,7 +34,7 @@ public abstract class Weapon : Utility
         if (!e)
             return;
 
-        e.TakeDamage(damage);
+        e.TakeDamage(damage, transform.position);
 
         //entityCollisionDetector.gameObject.SetActive(false);
     }

@@ -74,7 +74,7 @@ public class TargetDummy : Entity
     {
         health = maxHealth;
         // knockback test code
-        // TakeDamage(10, new Vector3(0, -1, 0));
+        TakeDamage(10, new Vector3(0, -1, 0));
     }
 
     // Update is called once per frame
