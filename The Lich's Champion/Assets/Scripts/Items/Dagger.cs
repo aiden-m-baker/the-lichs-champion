@@ -80,7 +80,7 @@ public class Dagger : Weapon
         while (rot.z < 95)
         {
             rot.z += 1200 * Time.deltaTime;
-            spriteObject.transform.rotation = Quaternion.Euler(rot);
+            spriteObject.transform.localRotation = Quaternion.Euler(rot);
             yield return new WaitForEndOfFrame();
         }
 

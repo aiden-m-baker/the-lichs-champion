@@ -79,7 +79,7 @@ public class Halberd : Weapon
         while (rot.z < 95)
         {
             rot.z += 500 * Time.deltaTime;
-            spriteObject.transform.rotation = Quaternion.Euler(rot);
+            spriteObject.transform.localRotation = Quaternion.Euler(rot);
             yield return new WaitForEndOfFrame();
         }
 
