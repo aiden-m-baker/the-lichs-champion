@@ -65,6 +65,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5ee7697b-5e60-49ff-bba7-0979cccea46b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8ee65aba-a76d-4a64-8d97-61d708f7508e",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -158,6 +169,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f2abc4a-d8fe-4c86-8370-4a67d1ca5e05",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
