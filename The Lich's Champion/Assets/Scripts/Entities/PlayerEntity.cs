@@ -112,6 +112,14 @@ public class PlayerEntity : Entity
 
     #endregion
 
+    public bool IsDead
+    {
+        get
+        {
+            return health <= 0;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
