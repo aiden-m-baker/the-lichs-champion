@@ -150,6 +150,17 @@
                     "action": "AttackLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a47145ef-1840-4f5d-82e3-876c7e833db8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AttackLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
