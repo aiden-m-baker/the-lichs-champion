@@ -1,19 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class AIEntity : Entity
+public class TargetDummy : Entity
 {
     // all entity stats
     private int health;
-    private int maxHealth;
-    private int damage;
-    private float speed;
+    private int maxHealth = 100;
+    private int damage = 0;
+    private float speed = 0;
     private float healthRegen;
     private int energy;
     private int maxEnergy;
     private float energyRegen;
+
+    // player IFrames
+    public float iFrameDuration = 0.5f;
+    public float iFrameTimer = 0f;
 
     // properties
     #region player stat properties
@@ -67,23 +72,41 @@ public class AIEntity : Entity
     }
 
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = maxHealth;
+        // knockback test code
+        // TakeDamage(10, new Vector3(0, -1, 0));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // count IFrame cooldown
+        if (iFrameTimer > 0)
+        {
+            iFrameTimer -= Time.deltaTime;
+        }
+
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
-        throw new System.NotImplementedException();
+        if (iFrameTimer <= 0)
+        {
+            health -= damage;
+            iFrameTimer = iFrameDuration;
+
+            if (sourceLoc != null)
+            {
+                // 0.1f == knockback constant
+                transform.position += (transform.position - sourceLoc).normalized * 0.1f;
+            }
+        }
     }
     public override void ApplyStatusEffect(StatusEffect effect)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

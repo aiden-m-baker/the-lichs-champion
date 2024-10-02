@@ -4,37 +4,21 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    [SerializeField] private Vector3 defaultRotation = Vector3.zero;
-    [SerializeField] [Min(0)] private float defaultScale = 1;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         // Set sword stats
         name = "Sword";
         rarity = Rarity.Common;
-
-        // Get and set necessary objects
-        if (!spriteObject)
-            spriteObject = transform.Find("SpriteObject").gameObject;
-        if (!entityCollisionDetector)
-            entityCollisionDetector = transform.Find("HitboxObject").GetComponent<EntityCollisionDetection>();
-
-        // Setup sprite
-        spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
-        spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
-
-        // Setup hitbox
-        entityCollisionDetector.gameObject.SetActive(false);
-
-        // Resets cooldowns
-        ResetAction();
     }
 
     private void Update()
     {
         //print(cooldownTracker_ActionNormal);
-        if (Input.GetKey(KeyCode.Mouse0))
-            ActionNormal();
+        //if (Input.GetKey(KeyCode.Mouse0))
+            //ActionNormal();
     }
 
     protected override void LateUpdate()
@@ -45,7 +29,7 @@ public class Sword : Weapon
     /// <summary>
     /// Swing sword in front of player,
     /// </summary>
-    protected override void ActionNormal()
+    public override void ActionNormal()
     {
         if (cooldownTracker_ActionNormal > 0) return;
 
@@ -58,28 +42,18 @@ public class Sword : Weapon
 
         StartCoroutine(SwingSwordSprite());
 
-        DealDamage(entityCollisionDetector.EntityHit);
+        DealDamage();
     }
 
     /// <summary>
     /// Grab, stab, and push back enemy player
     /// </summary>
-    protected override void ActionSpecial()
+    public override void ActionSpecial()
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
-    }
-
-    protected override void DealDamage(Entity e)
-    {
-        if(!entityCollisionDetector)
-            throw new System.NullReferenceException();
-
-        entityCollisionDetector.gameObject.SetActive(false);
-
-        e.Health -= damage;
     }
 
     protected override void ResetAction()
@@ -101,12 +75,18 @@ public class Sword : Weapon
         rot.z = -45;
         spriteObject.transform.rotation = Quaternion.Euler(rot);
 
+        //EdgeCollider2D edgeCollider = entityCollisionDetector.GetComponent<EdgeCollider2D>();
+        //for(int i = 1; i < edgeCollider.pointCount; ++i)
+        //{
+        //    Gizmos.DrawLine(edgeCollider.points[i - 1], edgeCollider.points[i]);
+        //}
+
         yield return new WaitForSeconds(0.05f);
 
         while (rot.z < 95)
         {
             rot.z += 800 * Time.deltaTime;
-            spriteObject.transform.rotation = Quaternion.Euler(rot);
+            spriteObject.transform.localRotation= Quaternion.Euler(rot);
             yield return new WaitForEndOfFrame();
         }
 

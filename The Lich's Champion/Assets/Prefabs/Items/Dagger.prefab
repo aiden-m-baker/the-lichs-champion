@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1029249575454747244, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029249575454747244, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029249575454747244, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 2264059596158361178, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +64,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dagger
       objectReference: {fileID: 0}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Size.x
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Size.y
+      value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 54e42bd5c9638a544bedf57abeadb028, type: 3}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Points.Array.size
       value: 4
@@ -88,6 +120,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7360779061004614255}
   m_SourcePrefab: {fileID: 100100000, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+--- !u!1 &1327730988587774374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 767280638714656471, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+  m_PrefabInstance: {fileID: 1785925605876975473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4335511578438479734 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
@@ -107,11 +144,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 54e42bd5c9638a544bedf57abeadb028, type: 3}
   prefab: {fileID: 4335511578438479734}
+  spriteObject: {fileID: 1327730988587774374}
+  defaultRotation: {x: 0, y: 0, z: 30}
+  defaultScale: 0.45
   cooldown_ActionNormal: 0.75
   cooldown_ActionSpecial: 5
   damage: 9
   specialDamage: 15
-  spriteObject: {fileID: 0}
-  entityCollisionDetector: {fileID: 0}
-  defaultRotation: {x: 0, y: 0, z: 30}
-  defaultScale: 0.45
+  timeDetectDamage: 0.1
+  entityCollisionDetector: {fileID: 9073187650268702081}
+--- !u!114 &9073187650268702081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7287547644852331248, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+  m_PrefabInstance: {fileID: 1785925605876975473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e20dad055bc24fb7ae8491c2754b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
