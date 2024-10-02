@@ -16,6 +16,10 @@ public class TargetDummy : Entity
     private int maxEnergy;
     private float energyRegen;
 
+    // player IFrames
+    public float iFrameDuration = 0.5f;
+    public float iFrameTimer = 0f;
+
     // properties
     #region player stat properties
 
@@ -80,15 +84,25 @@ public class TargetDummy : Entity
     // Update is called once per frame
     void Update()
     {
-        
+        // count IFrame cooldown
+        if (iFrameTimer > 0)
+        {
+            iFrameTimer -= Time.deltaTime;
+        }
+
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
-        health -= damage;
-        if (sourceLoc != null)
+        if (iFrameTimer <= 0)
         {
-            // 0.1f == knockback constant
-            transform.position += (transform.position - sourceLoc).normalized * 0.1f;
+            health -= damage;
+            iFrameTimer = iFrameDuration;
+
+            if (sourceLoc != null)
+            {
+                // 0.1f == knockback constant
+                transform.position += (transform.position - sourceLoc).normalized * 0.1f;
+            }
         }
     }
     public override void ApplyStatusEffect(StatusEffect effect)

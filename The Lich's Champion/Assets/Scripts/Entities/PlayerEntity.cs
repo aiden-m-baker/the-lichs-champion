@@ -53,6 +53,10 @@ public class PlayerEntity : Entity
     public float dashDurationTimer = 0f;
     public bool isDashing = false;
 
+    // player IFrames
+    public float iFrameDuration = 0.5f;
+    public float iFrameTimer = 0f;
+
     // player exclusive stats
 
     // levels?
@@ -154,6 +158,11 @@ public class PlayerEntity : Entity
         //    frictionApplied = true;
         //}
 
+        // count IFrame cooldown
+        if (iFrameTimer > 0)
+        {
+            iFrameTimer -= Time.deltaTime;
+        }
 
         // count dash cooldown
         if (dashCdTimer > 0)
@@ -242,12 +251,18 @@ public class PlayerEntity : Entity
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
-        health -= damage;
-        if (sourceLoc != null)
+        if (iFrameTimer <= 0)
         {
-            // 0.1f == knockback constant
-            transform.position = (transform.position - sourceLoc).normalized * 0.1f;
+            health -= damage;
+            iFrameTimer = iFrameDuration;
+
+            if (sourceLoc != null)
+            {
+                // 0.1f == knockback constant
+                transform.position = (transform.position - sourceLoc).normalized * 0.1f;
+            }
         }
+
     }
     public override void ApplyStatusEffect(StatusEffect effect)
     {
