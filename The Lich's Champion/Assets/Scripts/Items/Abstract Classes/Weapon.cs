@@ -55,5 +55,7 @@ public abstract class Weapon : Utility
             timeDetectDamageTracker -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+
+        yield return null;
     }
 }
