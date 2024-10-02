@@ -158,7 +158,7 @@ MonoBehaviour:
     m_ActionId: 52bda5b1-3a7b-4a14-8813-99423433dc78
     m_ActionName: Player/Dash[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Controller
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
