@@ -41,7 +41,7 @@ public class Halberd : Weapon
 
         StartCoroutine(SwingSwordSprite());
 
-        DealDamage(entityCollisionDetector.EntityHit);
+        DealDamage();
     }
 
     /// <summary>
