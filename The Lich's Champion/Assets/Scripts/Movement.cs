@@ -5,7 +5,6 @@ public class Movement : MonoBehaviour
 {
     private PlayerInput _playerInput;
     private InputAction _moveAction;
-    private Vector2 movementInput;
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private int controller;
@@ -18,8 +17,8 @@ public class Movement : MonoBehaviour
 
     public void Update()
     {
-        transform.position += new Vector3(movementInput.x, movementInput.y, 0) * (movementSpeed * Time.deltaTime);
-    }
+        var input = _moveAction.ReadValue<Vector2>();
 
-    public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
+        transform.position += new Vector3(input.x, input.y, 0) * (movementSpeed * Time.deltaTime);
+    }
 }
