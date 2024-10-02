@@ -7,6 +7,12 @@ public class MenuScript : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("WeaponTest");
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Pressed Quit");
     }
 }

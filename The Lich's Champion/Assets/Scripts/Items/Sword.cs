@@ -42,7 +42,7 @@ public class Sword : Weapon
 
         StartCoroutine(SwingSwordSprite());
 
-        DealDamage(entityCollisionDetector.EntityHit);
+        DealDamage();
     }
 
     /// <summary>
