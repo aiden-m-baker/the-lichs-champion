@@ -42,7 +42,7 @@ public class Dagger : Weapon
 
         StartCoroutine(SwingSwordSprite());
 
-        DealDamage(entityCollisionDetector.EntityHit);
+        DealDamage();
     }
 
     /// <summary>

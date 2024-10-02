@@ -19,8 +19,6 @@ public class Movement : MonoBehaviour
     {
         var input = _moveAction.ReadValue<Vector2>();
 
-        Debug.Log(input);
-
         transform.position += new Vector3(input.x, input.y, 0) * (movementSpeed * Time.deltaTime);
     }
 }
