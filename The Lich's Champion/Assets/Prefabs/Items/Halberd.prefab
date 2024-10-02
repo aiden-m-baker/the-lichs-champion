@@ -157,6 +157,7 @@ MonoBehaviour:
   cooldown_ActionSpecial: 0
   damage: 0
   specialDamage: 0
+  timeDetectDamage: 0.15
   entityCollisionDetector: {fileID: 1393304839671070023}
 --- !u!1 &8994109614292887904 stripped
 GameObject:
