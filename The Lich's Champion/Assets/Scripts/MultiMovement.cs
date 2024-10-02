@@ -11,7 +11,7 @@ public class MultiMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * speed);
+        transform.position += (new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * speed);
     }
 
     public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
