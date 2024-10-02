@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1029249575454747244, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029249575454747244, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029249575454747244, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2264059596158361178, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -51,6 +63,54 @@ PrefabInstance:
     - target: {fileID: 2657745206987286535, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Size.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Size.y
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ab0d33c9a9200644baa5ba5827a9d8af, type: 3}
+    - target: {fileID: 3697560800983305662, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[3].x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[3].y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[4].x
+      value: -0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
