@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4d3c697246eb0448615305984d015d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFrameDuration: 0.5
+  iFrameTimer: 0
 --- !u!50 &134042854
 Rigidbody2D:
   serializedVersion: 4
@@ -676,6 +678,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5108834094256618926, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
   m_PrefabInstance: {fileID: 4700900064011377129}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2002789101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6084489533226502462, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+  m_PrefabInstance: {fileID: 4700900064011377129}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683421647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe88770043435049aeafb81cdcc1a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4700900064011377129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,6 +705,34 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2002789101}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MultiMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801607098141248924, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5040255609884934853, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

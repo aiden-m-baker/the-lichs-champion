@@ -202,11 +202,11 @@ public class PlayerEntity : Entity
 
         //acceleration = Vector3.zero;
 
-        // rotate the player to face the direction they are moving
-        Vector3 worldPos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        worldPos -= transform.position;
-        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, worldPos.normalized);
-        transform.rotation = rotation;
+        //// rotate the player to face the direction they are moving
+        //Vector3 worldPos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        //worldPos -= transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(Vector3.forward, worldPos.normalized);
+        //transform.rotation = rotation;
     }
 
     public void SimpleMovement()
