@@ -16,6 +16,8 @@ public abstract class Utility : Item
     protected float cooldownTracker_ActionNormal;
     protected float cooldownTracker_ActionSpecial;
 
+    protected Animator animator;
+
     // Properties disabled rn cause im lazy and they're unneeded so far
     #region Properites
     //public abstract float Cooldown_ActionNormal { get; }
@@ -37,6 +39,7 @@ public abstract class Utility : Item
         // Setup sprite
         spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
         spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
+        animator = spriteObject.GetComponent<Animator>();
 
         // Resets cooldowns
         ResetAction();
