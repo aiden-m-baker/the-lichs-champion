@@ -40,7 +40,7 @@ public class Sword : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
-        StartCoroutine(SwingSwordSprite());
+        animator.Play("actionNormal_Sword");
 
         DealDamage();
     }
@@ -69,29 +69,29 @@ public class Sword : Weapon
     /// Temporary animation for demonstration purposes
     /// </summary>
     /// <returns></returns>
-    private IEnumerator SwingSwordSprite()
-    {
-        Vector3 rot = Vector3.zero;
-        rot.z = -45;
-        spriteObject.transform.rotation = Quaternion.Euler(rot);
+    //private IEnumerator SwingSwordSprite()
+    //{
+    //    Vector3 rot = Vector3.zero;
+    //    rot.z = -45;
+    //    spriteObject.transform.rotation = Quaternion.Euler(rot);
 
-        //EdgeCollider2D edgeCollider = entityCollisionDetector.GetComponent<EdgeCollider2D>();
-        //for(int i = 1; i < edgeCollider.pointCount; ++i)
-        //{
-        //    Gizmos.DrawLine(edgeCollider.points[i - 1], edgeCollider.points[i]);
-        //}
+    //    //EdgeCollider2D edgeCollider = entityCollisionDetector.GetComponent<EdgeCollider2D>();
+    //    //for(int i = 1; i < edgeCollider.pointCount; ++i)
+    //    //{
+    //    //    Gizmos.DrawLine(edgeCollider.points[i - 1], edgeCollider.points[i]);
+    //    //}
 
-        yield return new WaitForSeconds(0.05f);
+    //    yield return new WaitForSeconds(0.05f);
 
-        while (rot.z < 95)
-        {
-            rot.z += 800 * Time.deltaTime;
-            spriteObject.transform.localRotation= Quaternion.Euler(rot);
-            yield return new WaitForEndOfFrame();
-        }
+    //    while (rot.z < 95)
+    //    {
+    //        rot.z += 800 * Time.deltaTime;
+    //        spriteObject.transform.localRotation= Quaternion.Euler(rot);
+    //        yield return new WaitForEndOfFrame();
+    //    }
 
-        yield return null;
-    }
+    //    yield return null;
+    //}
 
 
 }

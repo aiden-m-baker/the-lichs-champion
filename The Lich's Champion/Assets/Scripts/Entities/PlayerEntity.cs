@@ -259,7 +259,7 @@ public class PlayerEntity : Entity
             if (sourceLoc != null)
             {
                 // 0.1f == knockback constant
-                transform.position = (transform.position - sourceLoc).normalized * 0.1f;
+                transform.position += (transform.position - sourceLoc).normalized * 0.1f;
             }
         }
 

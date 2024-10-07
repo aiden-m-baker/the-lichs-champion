@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Points.Array.data[4].x
       value: -0.55
       objectReference: {fileID: 0}
+    - target: {fileID: 4476986022641726173, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1e1f3665412b5c0469caf5bd77312056, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
