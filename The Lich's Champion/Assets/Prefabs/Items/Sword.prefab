@@ -166,5 +166,6 @@ MonoBehaviour:
   cooldown_ActionSpecial: 7
   damage: 8
   specialDamage: 15
-  timeDetectDamage: 0.125
+  timeDetectDamage: 0.2
+  windUpTime: 0.2
   entityCollisionDetector: {fileID: 3786279000566834699}

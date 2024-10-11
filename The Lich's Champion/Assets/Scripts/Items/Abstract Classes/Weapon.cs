@@ -10,6 +10,7 @@ public abstract class Weapon : Utility
     [SerializeField] [Min(0)] protected int damage;
     [SerializeField] [Min(0)] protected int specialDamage;
     [SerializeField] [Min(0)] protected float timeDetectDamage;
+    [SerializeField] [Min(0)] protected float windUpTime;
     [SerializeField] protected EntityCollisionDetection entityCollisionDetector;
 
     protected override void Awake()
