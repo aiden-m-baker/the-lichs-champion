@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Points.Array.data[3].y
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4476986022641726173, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 449b5d8c02b427f45b45b68aa558351b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -151,7 +155,8 @@ MonoBehaviour:
   cooldown_ActionSpecial: 5
   damage: 9
   specialDamage: 15
-  timeDetectDamage: 0.1
+  timeDetectDamage: 0.15
+  windUpTime: 0.1
   entityCollisionDetector: {fileID: 9073187650268702081}
 --- !u!114 &9073187650268702081 stripped
 MonoBehaviour:

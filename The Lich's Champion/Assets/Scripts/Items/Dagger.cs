@@ -40,9 +40,9 @@ public class Dagger : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
-        StartCoroutine(SwingSwordSprite());
+        animator.Play("actionNormal_Dagger");
 
-        DealDamage();
+        Invoke("DealDamage", windUpTime);
     }
 
     /// <summary>
