@@ -42,7 +42,8 @@ public class Sword : Weapon
 
         animator.Play("actionNormal_Sword");
 
-        DealDamage();
+        Invoke("DealDamage", 0.2f);
+        //DealDamage();
     }
 
     /// <summary>
