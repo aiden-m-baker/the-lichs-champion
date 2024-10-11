@@ -39,9 +39,9 @@ public class Halberd : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
-        StartCoroutine(SwingSwordSprite());
+        animator.Play("actionNormal_Halberd");
 
-        DealDamage();
+        Invoke("DealDamage", windUpTime);
     }
 
     /// <summary>
@@ -63,28 +63,4 @@ public class Halberd : Weapon
 
         spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
     }
-
-    /// <summary>
-    /// Temporary animation for demonstration purposes
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator SwingSwordSprite()
-    {
-        Vector3 rot = Vector3.zero;
-        rot.z = -45;
-        spriteObject.transform.rotation = Quaternion.Euler(rot);
-
-        yield return new WaitForSeconds(0.05f);
-
-        while (rot.z < 95)
-        {
-            rot.z += 500 * Time.deltaTime;
-            spriteObject.transform.localRotation = Quaternion.Euler(rot);
-            yield return new WaitForEndOfFrame();
-        }
-
-        yield return null;
-    }
-
-
 }

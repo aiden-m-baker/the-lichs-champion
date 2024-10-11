@@ -162,8 +162,8 @@ MonoBehaviour:
   spriteObject: {fileID: 6560879225329021484}
   defaultRotation: {x: 0, y: 0, z: 45}
   defaultScale: 0.6
-  cooldown_ActionNormal: 1.5
-  cooldown_ActionSpecial: 7
+  cooldown_ActionNormal: 1
+  cooldown_ActionSpecial: 5
   damage: 8
   specialDamage: 15
   timeDetectDamage: 0.2
