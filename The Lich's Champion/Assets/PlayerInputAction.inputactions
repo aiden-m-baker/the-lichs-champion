@@ -131,6 +131,17 @@
                 },
                 {
                     "name": "",
+                    "id": "be5f3179-2de1-463d-be3d-967ca779cb61",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8ef614a7-3578-4803-b00a-5770a251e820",
                     "path": "<Keyboard>/space",
                     "interactions": "",
