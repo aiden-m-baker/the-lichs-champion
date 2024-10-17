@@ -18,9 +18,16 @@ public enum Rarity
 /// </summary>
 public abstract class Item : MonoBehaviour
 {
-    
-     [Header("Object Params")] [SerializeField] protected Sprite sprite;
-     protected string name;
-     protected string description;
-     protected Rarity rarity;
+    [Header("Object Params")][SerializeField] protected Sprite sprite;
+    [SerializeField] protected GameObject prefab;
+    [SerializeField] protected GameObject spriteObject;
+    protected string name;
+    protected string description;
+    protected Rarity rarity;
+
+    #region Properties
+    public Sprite Sprite { get { return sprite; } }
+    public GameObject Prefab { get { return prefab; } }
+    public GameObject SpriteObject { get { return spriteObject; } }
+    #endregion
 }
