@@ -42,12 +42,15 @@ public class PlayerEntity : Entity
 
 
     //inputs
-    private InputAction pickUpAction;
+    public PlayerInputAction playerControls;
+    private InputAction pickUp;
 
     // camera
 
     [SerializeField]
     private Camera mainCam;
+    Vector2 screenWorldPos;
+    float boundsOffset = 0.2f;
 
     // dash
     public float dashCd = 5f;
@@ -127,18 +130,49 @@ public class PlayerEntity : Entity
         }
     }
 
+    private void Awake()
+    {
+        playerControls = new PlayerInputAction();
+    }
+
+    private void OnEnable()
+    {
+        pickUp = playerControls.Player.WeaponPickUp;
+        pickUp.Enable();
+    }
+
+    private void OnDisable()
+    {
+        pickUp.Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if(!mainCam)
+            mainCam = Camera.main;
+
         position = transform.position;
         // temp health value
         health = maxHealth;
         //weapon.ActionNormal();
+        screenWorldPos = new Vector2((float)Screen.width / Screen.height * mainCam.orthographicSize, mainCam.orthographicSize);
     }
 
     // Update is called once per frame
     void Update()
     {
+        #region Bounds
+        if (transform.position.x > screenWorldPos.x - boundsOffset)
+            transform.position = new Vector3(screenWorldPos.x - boundsOffset, transform.position.y, 0);
+        else if (transform.position.x < -screenWorldPos.x + boundsOffset)
+            transform.position = new Vector3(-screenWorldPos.x + boundsOffset, transform.position.y, 0);
+        if (transform.position.y > screenWorldPos.y - boundsOffset)
+            transform.position = new Vector3(transform.position.x, screenWorldPos.y - boundsOffset, 0);
+        else if (transform.position.y < -screenWorldPos.y + boundsOffset)
+            transform.position = new Vector3(transform.position.x, -screenWorldPos.y + boundsOffset, 0);
+        #endregion
+
         //if (frictionApplied)
         //{
         //    frictionApplied = false;
@@ -287,7 +321,6 @@ public class PlayerEntity : Entity
     }
     public void SwingWeaponNormal()
     {
-        print("yippie");
         if (weapon != null)
             weapon.ActionNormal();
     }
@@ -296,16 +329,21 @@ public class PlayerEntity : Entity
     //determines pick up weapons
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "ItemObject" && Input.GetKey(KeyCode.Space))
+        if (!(collision.tag == "ItemObject" && pickUp.IsPressed()))
+            return;
+
+        ItemObject weapon = collision.GetComponent<ItemObject>();
+
+        if (!(weapon.Item is Weapon))
+            return;
+
+        if (this.weapon)
         {
-            print("worked");
-            ItemObject weapon = collision.GetComponent<ItemObject>();
-            if(weapon.Item is Weapon)
-            {
-                this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
-                Destroy(collision.gameObject);
-            }
-            
+            if (this.weapon.GetType() == weapon.Item.GetType())
+                return;
+            Destroy(this.weapon.gameObject);
         }
+
+        this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
     }
 }
