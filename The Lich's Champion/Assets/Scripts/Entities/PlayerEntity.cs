@@ -302,6 +302,7 @@ public class PlayerEntity : Entity
             if(weapon.Item is Weapon)
             {
                 this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
+                Destroy(collision.gameObject);
             }
             
         }
