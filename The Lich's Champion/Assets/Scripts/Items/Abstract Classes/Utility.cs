@@ -7,8 +7,6 @@ using UnityEngine;
 /// </summary>
 public abstract class Utility : Item
 {
-    [SerializeField] protected GameObject prefab;
-    [SerializeField] protected GameObject spriteObject;
     [Header("Position Default Params")]
     [SerializeField] protected Vector3 defaultRotation = Vector3.zero;
     [SerializeField][Min(0)] protected float defaultScale = 1;
