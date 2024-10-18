@@ -304,7 +304,6 @@ public class PlayerEntity : Entity
     }
     public void SwingWeaponNormal()
     {
-        print("yippie");
         if (weapon != null)
             weapon.ActionNormal();
     }
@@ -315,10 +314,15 @@ public class PlayerEntity : Entity
     {
         if (collision.tag == "ItemObject" && pickUp.IsPressed())
         {
-            print("worked");
             ItemObject weapon = collision.GetComponent<ItemObject>();
             if(weapon.Item is Weapon)
             {
+                if (this.weapon.GetType() == weapon.Item.GetType())
+                    return;
+
+                if (this.weapon)
+                    Destroy(this.weapon.gameObject);
+                
                 this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
                 Destroy(collision.gameObject);
             }
