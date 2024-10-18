@@ -39,10 +39,11 @@ public class PlayerEntity : Entity
 
     [SerializeField]
     Utility weapon;
+    bool isPickingUp = false;
 
 
     //inputs
-    public PlayerInputAction playerControls;
+    public PlayerInput playerInput;
     private InputAction pickUp;
 
     // camera
@@ -132,18 +133,20 @@ public class PlayerEntity : Entity
 
     private void Awake()
     {
-        playerControls = new PlayerInputAction();
+        if (!mainCam)
+            mainCam = Camera.main;
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
     {
-        pickUp = playerControls.Player.WeaponPickUp;
-        pickUp.Enable();
+        //pickUp = playerInput.Player.WeaponPickUp;
+        //pickUp.Enable();
     }
 
     private void OnDisable()
     {
-        pickUp.Disable();
+        //pickUp.Disable();
     }
 
     // Start is called before the first frame update
@@ -246,6 +249,9 @@ public class PlayerEntity : Entity
         //transform.rotation = rotation;
     }
 
+    /// <summary>
+    /// DEPRECATED
+    /// </summary>
     public void SimpleMovement()
     {
         if (Input.GetKey(KeyCode.D) && !isDashing)
@@ -319,6 +325,10 @@ public class PlayerEntity : Entity
             dashCdTimer = dashCd;
         }
     }
+    public void OnPickup(InputAction.CallbackContext context)
+    {
+        isPickingUp = context.started || context.performed;
+    }
     public void SwingWeaponNormal()
     {
         if (weapon != null)
@@ -329,9 +339,9 @@ public class PlayerEntity : Entity
     //determines pick up weapons
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!(collision.tag == "ItemObject" && pickUp.IsPressed()))
+        if (!(collision.tag == "ItemObject" && isPickingUp))
             return;
-
+        
         ItemObject weapon = collision.GetComponent<ItemObject>();
 
         if (!(weapon.Item is Weapon))

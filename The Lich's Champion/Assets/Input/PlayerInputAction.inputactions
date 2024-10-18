@@ -204,6 +204,17 @@
                 },
                 {
                     "name": "",
+                    "id": "787a6333-08f4-47cb-a505-f80a2eddbe61",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "WeaponPickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "da3615ea-e78e-41eb-a349-462814f82d93",
                     "path": "<Mouse>/position",
                     "interactions": "",

@@ -67,6 +67,12 @@ public class MultiMovement : MonoBehaviour
         get { return playerInput.currentControlScheme; }
     }
 
+    private void Awake()
+    {
+        if (!mainCam)
+            mainCam = Camera.main;
+    }
+
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
