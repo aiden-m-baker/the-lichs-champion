@@ -214,6 +214,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 52bda5b1-3a7b-4a14-8813-99423433dc78
     m_ActionName: Player/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d37be9-a2d8-482a-ba2f-1da5da30b6cc
+    m_ActionName: Player/WeaponPickUp[/XInputControllerWindows/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -231,7 +235,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe88770043435049aeafb81cdcc1a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  mainCam: {fileID: 0}
   speed: 5
+  mass: 1
+  movementInput: {x: 0, y: 0}
+  moveSpeed: 2000
+  dash: 0
+  dashing: 0
+  position: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  frictionApplied: 0
 --- !u!61 &3572950608319990482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -285,14 +301,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669726535697170254}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -316,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 22215443
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
