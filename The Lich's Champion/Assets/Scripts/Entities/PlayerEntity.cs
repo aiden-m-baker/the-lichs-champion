@@ -251,6 +251,8 @@ public class PlayerEntity : Entity
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
+        // TODO: add knockback to the player thats not instant
+        // TODO: if hit multiple times in a row player will be unstoppable (maybe)
         if (iFrameTimer <= 0)
         {
             health -= damage;
@@ -259,7 +261,7 @@ public class PlayerEntity : Entity
             if (sourceLoc != null)
             {
                 // 0.1f == knockback constant
-                transform.position = (transform.position - sourceLoc).normalized * 0.1f;
+                transform.position += (transform.position - sourceLoc).normalized * 0.1f;
             }
         }
 

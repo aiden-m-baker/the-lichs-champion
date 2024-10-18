@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Points.Array.data[4].x
       value: -0.55
       objectReference: {fileID: 0}
+    - target: {fileID: 4476986022641726173, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1e1f3665412b5c0469caf5bd77312056, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -158,9 +162,10 @@ MonoBehaviour:
   spriteObject: {fileID: 6560879225329021484}
   defaultRotation: {x: 0, y: 0, z: 45}
   defaultScale: 0.6
-  cooldown_ActionNormal: 1.5
-  cooldown_ActionSpecial: 7
+  cooldown_ActionNormal: 1
+  cooldown_ActionSpecial: 5
   damage: 8
   specialDamage: 15
-  timeDetectDamage: 0.125
+  timeDetectDamage: 0.2
+  windUpTime: 0.2
   entityCollisionDetector: {fileID: 3786279000566834699}

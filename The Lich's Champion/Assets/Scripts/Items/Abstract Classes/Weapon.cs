@@ -10,6 +10,7 @@ public abstract class Weapon : Utility
     [SerializeField] [Min(0)] protected int damage;
     [SerializeField] [Min(0)] protected int specialDamage;
     [SerializeField] [Min(0)] protected float timeDetectDamage;
+    [SerializeField] [Min(0)] protected float windUpTime;
     [SerializeField] protected EntityCollisionDetection entityCollisionDetector;
 
     protected override void Awake()
@@ -42,16 +43,17 @@ public abstract class Weapon : Utility
 
     protected virtual IEnumerator DetectDamage()
     {
-        Entity e;
         float timeDetectDamageTracker = timeDetectDamage;
 
         while (timeDetectDamageTracker >= 0)
         {
-            // Get entity hit
-            e = entityCollisionDetector.EntityHit;
-            // If entity found (that isnt parent), damage entity
-            if (e && e.gameObject != transform.parent.gameObject)
-                e.TakeDamage(damage, transform.position);
+            foreach (Entity e in entityCollisionDetector.EntityHit)
+            {
+                // If entity found (that isnt parent), damage entity
+                if (e.gameObject != transform.parent.gameObject)
+                    e.TakeDamage(damage, transform.position);
+            }
+            
             timeDetectDamageTracker -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

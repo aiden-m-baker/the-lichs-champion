@@ -7,14 +7,16 @@ using UnityEngine;
 /// </summary>
 public abstract class Utility : Item
 {
-    [SerializeField] protected GameObject prefab;
-    [SerializeField] protected GameObject spriteObject;
+    [Header("Position Default Params")]
     [SerializeField] protected Vector3 defaultRotation = Vector3.zero;
     [SerializeField][Min(0)] protected float defaultScale = 1;
+    [Header("Interaction Params")]
     [SerializeField][Min(0)] protected float cooldown_ActionNormal;
     [SerializeField][Min(0)] protected float cooldown_ActionSpecial;
     protected float cooldownTracker_ActionNormal;
     protected float cooldownTracker_ActionSpecial;
+
+    protected Animator animator;
 
     // Properties disabled rn cause im lazy and they're unneeded so far
     #region Properites
@@ -37,6 +39,7 @@ public abstract class Utility : Item
         // Setup sprite
         spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
         spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
+        animator = spriteObject.GetComponent<Animator>();
 
         // Resets cooldowns
         ResetAction();
