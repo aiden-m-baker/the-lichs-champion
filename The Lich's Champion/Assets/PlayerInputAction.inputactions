@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "AimMouse",
+                    "type": "Value",
+                    "id": "812378dd-75d7-41a7-b65c-febc5db5b1b2",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "AttackLeft",
                     "type": "Button",
                     "id": "8b9461f8-9fbc-4660-a9e1-c4687a7a7e9f",
@@ -140,12 +149,12 @@
                 },
                 {
                     "name": "",
-                    "id": "be5f3179-2de1-463d-be3d-967ca779cb61",
-                    "path": "<Mouse>/position",
+                    "id": "561b0a0f-a3d3-47e9-bc3f-f52c7a865b97",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
-                    "groups": "MouseKeyboard",
-                    "action": "Aim",
+                    "groups": "Gamepad",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -190,6 +199,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "WeaponPickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da3615ea-e78e-41eb-a349-462814f82d93",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "AimMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

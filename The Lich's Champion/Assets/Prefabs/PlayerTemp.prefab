@@ -198,9 +198,9 @@ MonoBehaviour:
     m_ActionName: Player/AttackRight
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3991630681358395707}
-        m_TargetAssemblyTypeName: PlayerEntity, Assembly-CSharp
-        m_MethodName: Dash
+      - m_Target: {fileID: 6084489533226502462}
+        m_TargetAssemblyTypeName: MultiMovement, Assembly-CSharp
+        m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,6 +216,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 99d37be9-a2d8-482a-ba2f-1da5da30b6cc
     m_ActionName: Player/WeaponPickUp[/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6084489533226502462}
+        m_TargetAssemblyTypeName: MultiMovement, Assembly-CSharp
+        m_MethodName: OnAimMouse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 812378dd-75d7-41a7-b65c-febc5db5b1b2
+    m_ActionName: Player/AimMouse[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -233,14 +249,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe88770043435049aeafb81cdcc1a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 4801607098141248924}
   mainCam: {fileID: 0}
   speed: 5
   mass: 1
   movementInput: {x: 0, y: 0}
-  moveSpeed: 2000
-  dash: 0
   dashing: 0
+  dashPressed: 0
+  dashTimer: 0
+  dashMax: 0.15
+  dashCdMax: 5
+  dashCdTimer: 0
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
