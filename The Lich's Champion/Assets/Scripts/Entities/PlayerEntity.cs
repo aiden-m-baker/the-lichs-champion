@@ -136,12 +136,12 @@ public class PlayerEntity : Entity
     private void OnEnable()
     {
         pickUp = playerControls.Player.WeaponPickUp;
-        playerControls.Enable();
+        pickUp.Enable();
     }
 
     private void OnDisable()
     {
-        playerControls.Disable();
+        pickUp.Disable();
     }
 
     // Start is called before the first frame update
@@ -314,17 +314,19 @@ public class PlayerEntity : Entity
     {
         if (collision.tag == "ItemObject" && pickUp.IsPressed())
         {
+            print("ispressed");
             ItemObject weapon = collision.GetComponent<ItemObject>();
             if(weapon.Item is Weapon)
             {
-                if (this.weapon.GetType() == weapon.Item.GetType())
-                    return;
-
                 if (this.weapon)
-                    Destroy(this.weapon.gameObject);
+                {
+                    if (this.weapon.GetType() == weapon.Item.GetType())
+                                        return;
+                        Destroy(this.weapon.gameObject);
+                }
                 
+
                 this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
-                Destroy(collision.gameObject);
             }
             
         }
