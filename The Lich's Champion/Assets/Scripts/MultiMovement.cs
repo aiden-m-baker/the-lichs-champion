@@ -51,53 +51,53 @@ public class MultiMovement : MonoBehaviour
         Debug.Log(playerInput.currentControlScheme);
         // TODO: Add a deadzone to the movement input, so letting go of the joystick doesnt flick you
         // old non-physics input
-        // transform.position += (new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * speed);
-        if (frictionApplied)
-            frictionApplied = false;
-        // apply friction when no keys are pressed
-        if (movementInput.magnitude == 0 && !dashing) 
-        {
-            // zero out acceleration
-            acceleration = Vector3.zero;
-            // apply friction
-            Vector3 friction = velocity * -1;
-            friction.Normalize();
-            friction *= frictionCoeff;
-            ApplyForce(friction);
-            frictionApplied = true;
-        }
+        transform.position += (new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * speed);
+        //if (frictionApplied)
+        //    frictionApplied = false;
+        //// apply friction when no keys are pressed
+        //if (movementInput.magnitude == 0 && !dashing) 
+        //{
+        //    // zero out acceleration
+        //    acceleration = Vector3.zero;
+        //    // apply friction
+        //    Vector3 friction = velocity * -1;
+        //    friction.Normalize();
+        //    friction *= frictionCoeff;
+        //    ApplyForce(friction);
+        //    frictionApplied = true;
+        //}
 
 
-        // apply force on direction from controller
-        if (movementInput.magnitude > 0)
-        {
-            ApplyForce(movementInput);
-        }
+        //// apply force on direction from controller
+        //if (movementInput.magnitude > 0)
+        //{
+        //    ApplyForce(movementInput);
+        //}
 
-        // apply acceleration to velocity
-        velocity += acceleration * Time.deltaTime;
-        // clamp velocity to max speed ( unless you're dashing )
-        if (dashing)
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
-        else if (!dashing) {
-            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-        }
-        // apply velocity to position
-        position += velocity * Time.deltaTime;
-        // TODO: Add a deadzone to the aim input, letting go of the joystick should not flick you
+        //// apply acceleration to velocity
+        //velocity += acceleration * Time.deltaTime;
+        //// clamp velocity to max speed ( unless you're dashing )
+        //if (dashing)
+        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
+        //else if (!dashing) {
+        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        //}
+        //// apply velocity to position
+        //position += velocity * Time.deltaTime;
+        //// TODO: Add a deadzone to the aim input, letting go of the joystick should not flick you
 
-        // apply position to transform
-        transform.position = position;
+        //// apply position to transform
+        //transform.position = position;
 
-        // Rotate the player to face the direction of the right joystick
-        // if there is currently no input, apply previously saved input
-        // as current input
+        //// Rotate the player to face the direction of the right joystick
+        //// if there is currently no input, apply previously saved input
+        //// as current input
         
-        // look towards your aim stick orientation (or previous orientation)
-        if (CurrentControlScheme == "MouseKeyboard")
-        {
-            aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
-        }
+        //// look towards your aim stick orientation (or previous orientation)
+        //if (CurrentControlScheme == "MouseKeyboard")
+        //{
+        //    aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
+        //}
         if (aimInput.magnitude == 0 && CurrentControlScheme != "MouseKeyboard")
         {
             aimInput = previousAimInput;

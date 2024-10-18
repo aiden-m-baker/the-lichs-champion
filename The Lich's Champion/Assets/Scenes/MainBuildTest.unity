@@ -713,6 +713,18 @@ PrefabInstance:
       propertyPath: timeDetectDamage
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7079043488471391063, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079043488471391063, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_LinearDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079043488471391063, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7521437114805257015, guid: e67b18b8bfdefc54bb54f2b1d933a9a9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
