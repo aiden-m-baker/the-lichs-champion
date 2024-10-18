@@ -21,7 +21,7 @@ public abstract class Item : MonoBehaviour
     [Header("Object Params")][SerializeField] protected Sprite sprite;
     [SerializeField] protected GameObject prefab;
     [SerializeField] protected GameObject spriteObject;
-    protected string name;
+    protected string itemName;
     protected string description;
     protected Rarity rarity;
 
