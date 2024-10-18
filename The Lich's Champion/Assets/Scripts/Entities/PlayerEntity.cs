@@ -287,7 +287,6 @@ public class PlayerEntity : Entity
     }
     public void SwingWeaponNormal()
     {
-        print("yippie");
         if (weapon != null)
             weapon.ActionNormal();
     }
