@@ -8,6 +8,10 @@ public class MultiMovement : MonoBehaviour
     // current movement input
     [SerializeField]
     private PlayerInput playerInput;
+    // camera
+    [SerializeField]
+    private Camera mainCam;
+
     [SerializeField]
     private float speed = 5;
     [SerializeField]
@@ -88,12 +92,18 @@ public class MultiMovement : MonoBehaviour
         // Rotate the player to face the direction of the right joystick
         // if there is currently no input, apply previously saved input
         // as current input
-        if (aimInput.magnitude == 0)
+        
+        // look towards your aim stick orientation (or previous orientation)
+        if (CurrentControlScheme == "MouseKeyboard")
+        {
+            aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
+        }
+        if (aimInput.magnitude == 0 && CurrentControlScheme != "MouseKeyboard")
         {
             aimInput = previousAimInput;
         }
 
-        // look towards your aim stick orientation (or previous orientation)
+
         Quaternion rotation = Quaternion.LookRotation(Vector3.forward, aimInput.normalized);
         transform.rotation = rotation;
 
