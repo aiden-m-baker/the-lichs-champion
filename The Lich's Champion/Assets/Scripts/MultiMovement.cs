@@ -51,8 +51,14 @@ public class MultiMovement : MonoBehaviour
         Debug.Log(playerInput.currentControlScheme);
         // TODO: Add a deadzone to the movement input, so letting go of the joystick doesnt flick you
         // old non-physics input
-        transform.position += (new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * speed);
-        
+        transform.position += (Vector3)movementInput * Time.deltaTime * speed;
+
+
+        //// look towards your aim stick orientation (or previous orientation)
+        //if (CurrentControlScheme == "MouseKeyboard")
+        //{
+        //    aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
+        //}
         // save previous rotation
         if (aimInput.magnitude == 0 && CurrentControlScheme != "MouseKeyboard")
         {
@@ -64,7 +70,8 @@ public class MultiMovement : MonoBehaviour
         transform.rotation = rotation;
 
         // save previous input
-        previousAimInput = aimInput;
+        if (aimInput.magnitude > 0)
+            previousAimInput = aimInput;
     }
 
     public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
