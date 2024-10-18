@@ -42,7 +42,8 @@ public class PlayerEntity : Entity
 
 
     //inputs
-    private InputAction pickUpAction;
+    public PlayerInputAction playerControls;
+    private InputAction pickUp;
 
     // camera
 
@@ -125,6 +126,22 @@ public class PlayerEntity : Entity
         {
             return health <= 0;
         }
+    }
+
+    private void Awake()
+    {
+        playerControls = new PlayerInputAction();
+    }
+
+    private void OnEnable()
+    {
+        pickUp = playerControls.Player.WeaponPickUp;
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     // Start is called before the first frame update
@@ -296,7 +313,7 @@ public class PlayerEntity : Entity
     //determines pick up weapons
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "ItemObject" && Input.GetKey(KeyCode.Space))
+        if (collision.tag == "ItemObject" && pickUp.IsPressed())
         {
             print("worked");
             ItemObject weapon = collision.GetComponent<ItemObject>();
