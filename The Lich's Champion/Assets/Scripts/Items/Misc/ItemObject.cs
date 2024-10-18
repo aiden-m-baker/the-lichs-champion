@@ -16,7 +16,7 @@ public class ItemObject : MonoBehaviour
 
     private void Start()
     {
-        ResetItemObject();
+        ResetItemObject();  
     }
 
     public void ResetItemObject()
@@ -36,5 +36,11 @@ public class ItemObject : MonoBehaviour
         s.transform.SetParent(transform);
         s.transform.localScale = item.SpriteObject.transform.localScale;
         s.transform.position -= item.Sprite.bounds.center * s.transform.localScale.x;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 }
