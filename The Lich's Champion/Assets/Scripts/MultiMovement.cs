@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class MultiMovement : MonoBehaviour
     // camera
     [SerializeField]
     private Camera mainCam;
+    
+    private Rigidbody2D _rb;
 
     [SerializeField]
     private float speed = 5;
@@ -21,6 +24,8 @@ public class MultiMovement : MonoBehaviour
 
     private Vector2 aimInput;
     private Vector2 previousAimInput;
+    
+    [SerializeField] private float moveSpeed = 2000f;
 
     // dash contains whether or not the button is pressed
     // dashing contains whether or not you are currently dashing
@@ -45,14 +50,20 @@ public class MultiMovement : MonoBehaviour
         get { return playerInput.currentControlScheme; }
     }
 
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerInput.currentControlScheme);
+        //Debug.Log(playerInput.currentControlScheme);
         // TODO: Add a deadzone to the movement input, so letting go of the joystick doesnt flick you
         // old non-physics input
-        transform.position += (Vector3)movementInput * Time.deltaTime * speed;
-
+        //transform.position += (Vector3)movementInput * Time.deltaTime * speed;
+        
+        _rb.AddForce(movementInput * (moveSpeed * Time.deltaTime));
 
         //// look towards your aim stick orientation (or previous orientation)
         //if (CurrentControlScheme == "MouseKeyboard")
@@ -74,7 +85,10 @@ public class MultiMovement : MonoBehaviour
             previousAimInput = aimInput;
     }
 
-    public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        movementInput = ctx.ReadValue<Vector2>();
+    }
 
     public void OnAim(InputAction.CallbackContext ctx) => aimInput = ctx.ReadValue<Vector2>();
     public void OnDash(InputAction.CallbackContext ctx) => dash = ctx.ReadValueAsButton();
