@@ -5,10 +5,14 @@ using UnityEngine.InputSystem;
 
 public class MultiMovement : MonoBehaviour
 {
+    // current movement input
+    [SerializeField]
+    private PlayerInput playerInput;
     [SerializeField]
     private float speed = 5;
     [SerializeField]
     private float mass = 1;
+    [SerializeField]
     private Vector2 movementInput;
 
     private Vector2 aimInput;
@@ -16,6 +20,7 @@ public class MultiMovement : MonoBehaviour
 
     // dash contains whether or not the button is pressed
     // dashing contains whether or not you are currently dashing
+    [SerializeField]
     private bool dash, dashing;
     // dashCdMax is the total dash cooldown
     // dashCdTimer is a helper variable to count said cooldown
@@ -25,18 +30,45 @@ public class MultiMovement : MonoBehaviour
     [SerializeField]
     private Vector3 position, velocity, direction, acceleration;
     private float maxSpeed = 4;
-    private float frictionCoeff = 10f;
+    private float frictionCoeff = 50f;
 
+    [SerializeField]
     private bool frictionApplied = false;
+
+    // properties
+    public string CurrentControlScheme
+    {
+        get { return playerInput.currentControlScheme; }
+    }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(playerInput.currentControlScheme);
         // TODO: Add a deadzone to the movement input, so letting go of the joystick doesnt flick you
         // old non-physics input
         // transform.position += (new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * speed);
+        if (frictionApplied)
+            frictionApplied = false;
+        // apply friction when no keys are pressed
+        if (movementInput.magnitude == 0 && !dashing) 
+        {
+            // zero out acceleration
+            acceleration = Vector3.zero;
+            // apply friction
+            Vector3 friction = velocity * -1;
+            friction.Normalize();
+            friction *= frictionCoeff;
+            ApplyForce(friction);
+            frictionApplied = true;
+        }
 
 
+        // apply force on direction from controller
+        if (movementInput.magnitude > 0)
+        {
+            ApplyForce(movementInput);
+        }
 
         // apply acceleration to velocity
         velocity += acceleration * Time.deltaTime;
@@ -50,6 +82,8 @@ public class MultiMovement : MonoBehaviour
         position += velocity * Time.deltaTime;
         // TODO: Add a deadzone to the aim input, letting go of the joystick should not flick you
 
+        // apply position to transform
+        transform.position = position;
 
         // Rotate the player to face the direction of the right joystick
         // if there is currently no input, apply previously saved input
