@@ -40,13 +40,16 @@ public class PlayerEntity : Entity
     [SerializeField]
     Utility weapon;
 
+
+    //inputs
+    private InputAction pickUpAction;
+
     // camera
 
     [SerializeField]
     private Camera mainCam;
 
     // dash
-
     public float dashCd = 5f;
     public float dashCdTimer = 0f;
     public float dashDuration = 0.5f;
@@ -286,5 +289,21 @@ public class PlayerEntity : Entity
     {
         if (weapon != null)
             weapon.ActionNormal();
+    }
+
+
+    //determines pick up weapons
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "ItemObject" && Input.GetKeyDown(KeyCode.Space))
+        {
+            print("BUS");
+            ItemObject weapon = collision.GetComponent<ItemObject>();
+            if(weapon.Item is Weapon)
+            {
+                this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
+            }
+            
+        }
     }
 }
