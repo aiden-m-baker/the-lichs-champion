@@ -52,6 +52,7 @@ public class MultiMovement : MonoBehaviour
 
     private void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
