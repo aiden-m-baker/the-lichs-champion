@@ -287,6 +287,7 @@ public class PlayerEntity : Entity
     }
     public void SwingWeaponNormal()
     {
+        print("yippie");
         if (weapon != null)
             weapon.ActionNormal();
     }
@@ -295,9 +296,9 @@ public class PlayerEntity : Entity
     //determines pick up weapons
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "ItemObject" && Input.GetKeyDown(KeyCode.Space))
+        if (collision.tag == "ItemObject" && Input.GetKey(KeyCode.Space))
         {
-            print("BUS");
+            print("worked");
             ItemObject weapon = collision.GetComponent<ItemObject>();
             if(weapon.Item is Weapon)
             {
