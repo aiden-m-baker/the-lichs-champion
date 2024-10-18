@@ -298,10 +298,15 @@ public class PlayerEntity : Entity
     {
         if (collision.tag == "ItemObject" && Input.GetKey(KeyCode.Space))
         {
-            print("worked");
             ItemObject weapon = collision.GetComponent<ItemObject>();
             if(weapon.Item is Weapon)
             {
+                if (this.weapon.GetType() == weapon.Item.GetType())
+                    return;
+
+                if (this.weapon)
+                    Destroy(this.weapon.gameObject);
+                
                 this.weapon = Instantiate(weapon.Item.Prefab, transform).GetComponent<Utility>();
                 Destroy(collision.gameObject);
             }
