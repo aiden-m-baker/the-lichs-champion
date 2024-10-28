@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Basic weapon class. Holds information for damaging opponents.
+/// Basic weapon class. Holds extra information for damaging opponents.
 /// </summary>
 public abstract class Weapon : Utility
 {
-    [SerializeField] [Min(0)] protected int damage;
-    [SerializeField] [Min(0)] protected int specialDamage;
-    [SerializeField] [Min(0)] protected float timeDetectDamage;
-    [SerializeField] [Min(0)] protected float windUpTime;
-    [SerializeField] protected EntityCollisionDetection entityCollisionDetector;
+    [SerializeField] [Min(0)] [Tooltip("Value for how much damage Normal Actions do.")]
+    protected int damage;
+
+    [SerializeField] [Min(0)] [Tooltip("Value for how much damage Special Actions do.")]
+    protected int specialDamage;
+
+    [SerializeField] [Min(0)] [Tooltip("Amount of time (in seconds) the collider and collision detection remain active and checking for damage.")]
+    protected float timeDetectDamage;
+
+    [SerializeField] [Min(0)] [Tooltip("Amount of time (in seconds) delayed between the player's input and the first frame damage detection is turned on.")]
+    protected float windUpTime;
+
+    [SerializeField] [Tooltip("The collider object. Used to get information from the weapon's hitbox.")]
+    protected EntityCollisionDetection entityCollisionDetector;
 
     protected override void Awake()
     {
+        // Call base class Awake
         base.Awake();
 
-        // Setup hitbox
+        // Get and set hitbox object
         if (!entityCollisionDetector)
             entityCollisionDetector = transform.Find("HitboxObject").GetComponent<EntityCollisionDetection>();
-
-        //entityCollisionDetector.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -41,6 +49,10 @@ public abstract class Weapon : Utility
         //entityCollisionDetector.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Started to detect damage over certain amount of seconds
+    /// </summary>
+    /// <returns></returns>
     protected virtual IEnumerator DetectDamage()
     {
         float timeDetectDamageTracker = timeDetectDamage;

@@ -8,16 +8,30 @@ using UnityEngine;
 public abstract class Utility : Item
 {
     [Header("Position Default Params")]
-    [SerializeField] protected Vector3 defaultRotation = Vector3.zero;
-    [SerializeField][Min(0)] protected float defaultScale = 1;
+
+    [SerializeField] [Tooltip("[Could potentially be deleted] The default rotation of the spriteObject.")] 
+    protected Vector3 defaultRotation = Vector3.zero;
+
+    [SerializeField] [Min(0)] [Tooltip("The default scale of the spriteObject.")] 
+    protected float defaultScale = 1;
+
     [Header("Interaction Params")]
-    [SerializeField][Min(0)] protected float cooldown_ActionNormal;
-    [SerializeField][Min(0)] protected float cooldown_ActionSpecial;
+
+    [SerializeField] [Min(0)] [Tooltip("The amount of time (in seconds) the Normal action takes to refresh.")] 
+    protected float cooldown_ActionNormal;
+
+    [SerializeField] [Min(0)] [Tooltip("The amount of time (in seconds) the Special action takes to refresh.")] 
+    protected float cooldown_ActionSpecial;
+
+    [Tooltip("The tracker variable for Normal actions. Represented in seconds.")]
     protected float cooldownTracker_ActionNormal;
+
+    [Tooltip("The tracker variable for Special actions. Represented in seconds.")]
     protected float cooldownTracker_ActionSpecial;
 
+    [Tooltip("The animator object. Used to change Animator variables as well as start and stop animations through code.")]
     protected Animator animator;
-
+    
     // Properties disabled rn cause im lazy and they're unneeded so far
     #region Properites
     //public abstract float Cooldown_ActionNormal { get; }
@@ -28,20 +42,22 @@ public abstract class Utility : Item
 
     protected virtual void Awake()
     {
-        // Get and set prefab object
+        // Get and set prefab object if none specified
         if (!prefab)
             prefab = gameObject;
 
-        // Get and set sprite object
+        // Get and set sprite object if none specified
         if (!spriteObject)
             spriteObject = transform.Find("SpriteObject").gameObject;
 
-        // Setup sprite
+        // Setup spriteObject for animations and visual feedback
         spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
         spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
+
+        // Get and set animator object
         animator = spriteObject.GetComponent<Animator>();
 
-        // Resets cooldowns
+        // Resets defaults
         ResetAction();
     }
 
@@ -63,7 +79,8 @@ public abstract class Utility : Item
         // If cooldowns are less than 0, reset tracker to 0. Else, count down timer
         cooldownTracker_ActionNormal -= Time.deltaTime;
         cooldownTracker_ActionSpecial -= Time.deltaTime;
-
+        
+        // Set to 0 to ensure values don't overflow
         if (cooldownTracker_ActionNormal < 0)
             cooldownTracker_ActionNormal = 0;
 
