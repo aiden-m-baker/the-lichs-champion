@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// For cosmetic purposes
+/// Rarity of items. For cosmetic purposes.
 /// </summary>
 public enum Rarity
 {
@@ -14,15 +14,28 @@ public enum Rarity
 }
 
 /// <summary>
-/// Basic Item class. Holds basic information for all types of items used ingame.
+/// Basic Item class. Holds basic information for items obtained by the player. All weapons and utility inherit from this class.
 /// </summary>
 public abstract class Item : MonoBehaviour
 {
-    [Header("Object Params")][SerializeField] protected Sprite sprite;
-    [SerializeField] protected GameObject prefab;
-    [SerializeField] protected GameObject spriteObject;
+    [Header("Object Params")]
+
+    [SerializeField] [Tooltip("The sprite used by the item. Can be used for animations and instantiation.")] 
+    protected Sprite sprite;
+
+    [SerializeField] [Tooltip("The prefab used by the item. Can be used for instatiation.")]
+    protected GameObject prefab;
+
+    [SerializeField] [Tooltip("The gameObject holding the SpriteRenderer for the item's gameObject. Can be used for animations.")]
+    protected GameObject spriteObject;
+
+    [Tooltip("The name of the item. Can be used for UI.")]
     protected string itemName;
+
+    [Tooltip("The description of the item. Can be used for UI.")]
     protected string description;
+
+    [Tooltip("The rarity of the item. Can be used for loot tables, UI, and cosmetic purposes.")]
     protected Rarity rarity;
 
     #region Properties
