@@ -87,5 +87,8 @@ public class Dagger : Weapon
         yield return null;
     }
 
+    private void Ability()
+    {
 
+    }
 }
