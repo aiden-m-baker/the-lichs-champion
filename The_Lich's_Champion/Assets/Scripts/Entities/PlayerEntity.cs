@@ -314,6 +314,7 @@ public class PlayerEntity : Entity
         throw new NotImplementedException();
     }
 
+    //currently not being used, being kept just in case
     public void Dash(InputAction.CallbackContext context)
     {
         // canceled == released
@@ -325,16 +326,23 @@ public class PlayerEntity : Entity
             dashCdTimer = dashCd;
         }
     }
+
     public void OnPickup(InputAction.CallbackContext context)
     {
         isPickingUp = context.started || context.performed;
     }
+
     public void SwingWeaponNormal()
     {
         if (weapon != null)
             weapon.ActionNormal();
     }
 
+    public void SwingWeaponSpecial()
+    {
+        if (weapon != null)
+            weapon.ActionSpecial();
+    }
 
     //determines pick up weapons
     private void OnTriggerStay2D(Collider2D collision)

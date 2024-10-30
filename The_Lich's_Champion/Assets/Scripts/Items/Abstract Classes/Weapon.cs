@@ -72,4 +72,39 @@ public abstract class Weapon : Utility
 
         yield return null;
     }
+
+
+    //for abilities
+    protected virtual void DealDamageSpecial()
+    {
+        if (!entityCollisionDetector)
+            throw new System.NullReferenceException("Entity Collision Detector not found!");
+
+        // Ensure we are not running the routine twice
+        // and run the new routine
+        StopCoroutine(DetectDamageSpecial());
+        StartCoroutine(DetectDamageSpecial());
+
+        //entityCollisionDetector.gameObject.SetActive(false);
+    }
+
+    protected virtual IEnumerator DetectDamageSpecial()
+    {
+        float timeDetectDamageTracker = timeDetectDamage;
+
+        while (timeDetectDamageTracker >= 0)
+        {
+            foreach (Entity e in entityCollisionDetector.EntityHit)
+            {
+                // If entity found (that isnt parent), damage entity
+                if (e.gameObject != transform.parent.gameObject)
+                    e.TakeDamage(damage, transform.position);
+            }
+
+            timeDetectDamageTracker -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return null;
+    }
 }
