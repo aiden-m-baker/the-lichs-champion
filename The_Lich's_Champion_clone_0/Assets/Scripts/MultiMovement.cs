@@ -188,6 +188,7 @@ public class MultiMovement : NetworkBehaviour
     public void OnAim(InputAction.CallbackContext ctx) => aimInput = ctx.ReadValue<Vector2>();
     public void OnAimMouse(InputAction.CallbackContext ctx) => aimInputMouse = mainCam.ScreenToWorldPoint(ctx.ReadValue<Vector2>());
     public void OnDash(InputAction.CallbackContext ctx) => dashPressed = ctx.ReadValue<float>();
+    public void OnAbilityDash(float isPressed) => dashPressed = isPressed != 0.0f ? 1.0f : 0.0f;
     public void ApplyForce(Vector3 direction)
     {
         // if OnMove is already normalized, then pass in the original vector2. 

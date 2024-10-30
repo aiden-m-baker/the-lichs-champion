@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dagger : Weapon
 {
@@ -52,8 +54,42 @@ public class Dagger : Weapon
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
+        ResetAction();
+
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+
+        DealDamageSpecial();
+    }
+
+    protected override IEnumerator DetectDamageSpecial()
+    {
+        float timeDetectDamageTracker = timeDetectDamage;
+        MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
+
+        movement.OnAbilityDash(1.0f);
+
+        //movement.OnDash(1);
+        //yield return new WaitForEndOfFrame();
+
+        //movement.OnDash(0);
+
+        while (timeDetectDamageTracker >= 0)
+        {
+            foreach (Entity e in entityCollisionDetector.EntityHit)
+            {
+                // If entity found (that isnt parent), damage entity
+                //if (e.gameObject != transform.parent.gameObject)
+                    
+            }
+
+            timeDetectDamageTracker -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        movement.OnAbilityDash(0.0f);
+
+        yield return null;
     }
 
     protected override void ResetAction()
@@ -69,23 +105,21 @@ public class Dagger : Weapon
     /// Temporary animation for demonstration purposes
     /// </summary>
     /// <returns></returns>
-    private IEnumerator SwingSwordSprite()
-    {
-        Vector3 rot = Vector3.zero;
-        rot.z = -30;
-        spriteObject.transform.rotation = Quaternion.Euler(rot);
+    //private IEnumerator SwingSwordSprite()
+    //{
+    //    Vector3 rot = Vector3.zero;
+    //    rot.z = -30;
+    //    spriteObject.transform.rotation = Quaternion.Euler(rot);
 
-        yield return new WaitForSeconds(0.05f);
+    //    yield return new WaitForSeconds(0.05f);
 
-        while (rot.z < 95)
-        {
-            rot.z += 1200 * Time.deltaTime;
-            spriteObject.transform.localRotation = Quaternion.Euler(rot);
-            yield return new WaitForEndOfFrame();
-        }
+    //    while (rot.z < 95)
+    //    {
+    //        rot.z += 1200 * Time.deltaTime;
+    //        spriteObject.transform.localRotation = Quaternion.Euler(rot);
+    //        yield return new WaitForEndOfFrame();
+    //    }
 
-        yield return null;
-    }
-
-
+    //    yield return null;
+    //}
 }

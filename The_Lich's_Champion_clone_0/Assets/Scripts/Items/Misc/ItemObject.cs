@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Unity.Netcode;
 
-public class ItemObject : MonoBehaviour
+public class ItemObject : NetworkBehaviour
 {
     [SerializeField] private Item item;
 
