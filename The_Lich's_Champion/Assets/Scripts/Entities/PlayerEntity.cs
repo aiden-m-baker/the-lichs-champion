@@ -338,6 +338,11 @@ public class PlayerEntity : Entity
             weapon.ActionNormal();
     }
 
+    public void SwingWeaponSpecial()
+    {
+        if (weapon != null)
+            weapon.ActionSpecial();
+    }
 
     //determines pick up weapons
     private void OnTriggerStay2D(Collider2D collision)

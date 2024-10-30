@@ -52,8 +52,12 @@ public class Dagger : Weapon
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
+        ResetAction();
+
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+
+        
     }
 
     protected override void ResetAction()
