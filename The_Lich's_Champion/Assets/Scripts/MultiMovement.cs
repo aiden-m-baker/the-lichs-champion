@@ -57,12 +57,11 @@ public class MultiMovement : NetworkBehaviour
 
     // hold previous dash location
     Vector2 dashLocation;
-
+    
     [SerializeField]
-    private Vector3 position, velocity, direction, acceleration;
     private float maxSpeed = 4;
     private float frictionCoeff = 50f;
-
+    
     [SerializeField]
     private bool frictionApplied = false;
 
@@ -241,11 +240,17 @@ public class MultiMovement : NetworkBehaviour
         abilityPressed = isPressed != 0.0f ? 1.0f : 0.0f;
         abilitySpeed = abilitySpeedInput;
     }
+    
     public void ApplyForce(Vector3 direction)
     {
         // if OnMove is already normalized, then pass in the original vector2. 
         // this gives the player more control on the movement. not available for kb+m
-        acceleration += (direction * speed * Time.deltaTime) / mass;
+        _rb.AddForce((direction * speed * Time.deltaTime) / mass);
+    }
+
+    public void Knock(Vector3 movement)
+    {
+        _rb.AddForce(movement, ForceMode2D.Impulse);
     }
 
     private void UpdateTimers()

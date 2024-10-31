@@ -186,12 +186,13 @@ public class PlayerEntity : Entity
         {
             health -= damage;
             iFrameTimer = iFrameDuration;
+            
+            // 0.1f == knockback constant
+            //transform.position += (transform.position - sourceLoc).normalized * 0.1f;
 
-            if (sourceLoc != null)
-            {
-                // 0.1f == knockback constant
-                transform.position += (transform.position - sourceLoc).normalized * 0.1f;
-            }
+            float constant = 25;
+            
+            GetComponent<MultiMovement>().Knock((transform.position - sourceLoc).normalized * constant);
         }
 
     }
