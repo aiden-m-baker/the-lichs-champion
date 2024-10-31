@@ -40,7 +40,7 @@ public class Rapier : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
-        animator.Play("actionNormal_Sword");
+        animator.Play("actionNormal_Rapier");
 
         Invoke("DealDamage", windUpTime);
     }
