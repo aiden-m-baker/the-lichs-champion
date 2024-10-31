@@ -138,17 +138,6 @@ public class PlayerEntity : Entity
         playerInput = GetComponent<PlayerInput>();
     }
 
-    private void OnEnable()
-    {
-        //pickUp = playerInput.Player.WeaponPickUp;
-        //pickUp.Enable();
-    }
-
-    private void OnDisable()
-    {
-        //pickUp.Disable();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -165,6 +154,7 @@ public class PlayerEntity : Entity
     // Update is called once per frame
     void Update()
     {
+        // TODO: Move this to rigidbody or something
         #region Bounds
         if (transform.position.x > screenWorldPos.x - boundsOffset)
             transform.position = new Vector3(screenWorldPos.x - boundsOffset, transform.position.y, 0);
@@ -175,28 +165,6 @@ public class PlayerEntity : Entity
         else if (transform.position.y < -screenWorldPos.y + boundsOffset)
             transform.position = new Vector3(transform.position.x, -screenWorldPos.y + boundsOffset, 0);
         #endregion
-
-        //if (frictionApplied)
-        //{
-        //    frictionApplied = false;
-        //}
-        // apply friction when no keys are pressed
-        // and not while dashing
-        // TODO: remake this for controller
-        //if ((!Input.GetKey(KeyCode.A) && 
-        //    !Input.GetKey(KeyCode.D) && 
-        //    !Input.GetKey(KeyCode.W) && 
-        //    !Input.GetKey(KeyCode.S)) &&
-        //    !isDashing)
-        //{
-        //    //acceleration = Vector3.zero;
-        //    // friction
-        //    Vector3 friction = velocity * -1;
-        //    friction.Normalize();
-        //    friction = friction * frictionCoeff;
-        //    acceleration += friction / mass;
-        //    frictionApplied = true;
-        //}
 
         // count IFrame cooldown
         if (iFrameTimer > 0)
@@ -209,88 +177,6 @@ public class PlayerEntity : Entity
         {
             dashCdTimer -= Time.deltaTime;
         }
-
-        //// if you are dashing, lock the player's movement
-        //// if the dash duration is over, stop dashing
-        //if (isDashing)
-        //{
-        //    dashDurationTimer -= Time.deltaTime;
-        //    if (dashDurationTimer <= 0)
-        //        isDashing = false;
-        //}
-
-        // movement
-        // SimpleMovement();
-
-        // weapon input
-        // SimpleWeaponUse();
-
-        //TakeDamage();
-
-        //velocity += acceleration * Time.deltaTime;
-
-        // clamp the velocity to the max speed
-        //if (isDashing)
-        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
-        //else
-        //    velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-
-        //position += velocity * Time.deltaTime;
-        //direction = velocity.normalized;
-
-        //transform.position = position;
-
-        //acceleration = Vector3.zero;
-
-        //// rotate the player to face the direction they are moving
-        //Vector3 worldPos = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        //worldPos -= transform.position;
-        //Quaternion rotation = Quaternion.LookRotation(Vector3.forward, worldPos.normalized);
-        //transform.rotation = rotation;
-    }
-
-    /// <summary>
-    /// DEPRECATED
-    /// </summary>
-    public void SimpleMovement()
-    {
-        if (Input.GetKey(KeyCode.D) && !isDashing)
-        {
-            acceleration += Vector3.right * speed * Time.deltaTime * 10000;
-        }
-        if (Input.GetKey(KeyCode.A) && !isDashing)
-        {
-            acceleration += Vector3.left * speed * Time.deltaTime * 10000;
-        }
-        if (Input.GetKey(KeyCode.W) && !isDashing)
-        {
-            acceleration += Vector3.up * speed * Time.deltaTime * 10000;
-        }
-        if (Input.GetKey(KeyCode.S) && !isDashing)
-        {
-            acceleration += Vector3.down * speed * Time.deltaTime * 10000;
-        }
-        if (Input.GetKey(KeyCode.Space) && dashCdTimer <= 0)
-        {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            Debug.Log(mousePos);
-            velocity = Vector3.zero;
-            acceleration = Vector3.zero;
-            acceleration += (mousePos - position).normalized * speed * Time.deltaTime * 1000000;
-
-            // reset timers
-            dashCdTimer = dashCd;
-            dashDurationTimer = dashDuration;
-
-            isDashing = true;
-        }
-    }
-    public void SimpleWeaponUse()
-    {
-        // weapon usage
-        if (Input.GetKey(KeyCode.Mouse0) && weapon != null) 
-            weapon.ActionNormal();
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
@@ -312,19 +198,6 @@ public class PlayerEntity : Entity
     public override void ApplyStatusEffect(StatusEffect effect)
     {
         throw new NotImplementedException();
-    }
-
-    //currently not being used, being kept just in case
-    public void Dash(InputAction.CallbackContext context)
-    {
-        // canceled == released
-        // performed == pressed
-        // started == pressed
-        if (context.performed && dashCdTimer <= 0)
-        {
-            Debug.Log("Dash!!");
-            dashCdTimer = dashCd;
-        }
     }
 
     public void OnPickup(InputAction.CallbackContext context)
