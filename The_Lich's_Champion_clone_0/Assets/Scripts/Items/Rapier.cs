@@ -10,7 +10,7 @@ public class Rapier : Weapon
         base.Awake();
 
         // Set sword stats
-        name = "Sword";
+        name = "Rapier";
         rarity = Rarity.Common;
     }
 
