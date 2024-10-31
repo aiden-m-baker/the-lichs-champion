@@ -38,8 +38,11 @@ public class MultiMovement : NetworkBehaviour
     private bool dashing;
     [SerializeField]
     private float dashPressed;
+    [SerializeField]
+    private float abilityPressed;
 
     private float dashSpeed = 35f;
+    private float abilitySpeed = 0.0f;
 
     [SerializeField]
     private float dashTimer = 0f;
@@ -111,6 +114,8 @@ public class MultiMovement : NetworkBehaviour
         if (!dashing)
             _rb.AddForce(movementInput * moveSpeed);
 
+
+        #region non ability dash code
         // if dashing, count down the timer
         if (dashing)
         {
@@ -150,7 +155,50 @@ public class MultiMovement : NetworkBehaviour
                 _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
             }
         }
+        #endregion
 
+
+        #region ability dash code
+        // if dashing, count down the timer
+        if (dashing)
+        {
+            if (aimInput.magnitude != 0)
+            {
+                //_rb.AddForce(dashLocation * dashSpeed);
+            }
+            else
+            {
+                //_rb.AddForce((dashLocation - (Vector2)transform.position).normalized * dashSpeed);
+            }
+        }
+        // if not dashing, set dashing to false
+        if (dashTimer <= 0)
+        {
+            dashing = false;
+        }
+
+        // when key is pressed, and you are not currently dashing, and the cd is done
+        if (abilityPressed == 1 && !dashing)
+        {
+            Debug.Log("Ability Dash");
+            dashing = true;
+            // reset timers
+            dashCdTimer = dashCdMax;
+            dashTimer = dashMax;
+            _rb.velocity = Vector3.zero;
+
+            if (aimInput.magnitude != 0)
+            {
+                dashLocation = aimInput.normalized;
+                _rb.AddForce(aimInput.normalized * abilitySpeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                dashLocation = aimInputMouse.normalized;
+                _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
+            }
+        }
+        #endregion
 
         // count cooldowns
         UpdateTimers();
@@ -188,7 +236,11 @@ public class MultiMovement : NetworkBehaviour
     public void OnAim(InputAction.CallbackContext ctx) => aimInput = ctx.ReadValue<Vector2>();
     public void OnAimMouse(InputAction.CallbackContext ctx) => aimInputMouse = mainCam.ScreenToWorldPoint(ctx.ReadValue<Vector2>());
     public void OnDash(InputAction.CallbackContext ctx) => dashPressed = ctx.ReadValue<float>();
-    public void OnAbilityDash(float isPressed) => dashPressed = isPressed != 0.0f ? 1.0f : 0.0f;
+    public void OnAbilityDash(float isPressed, float abilitySpeedInput)
+    {
+        abilityPressed = isPressed != 0.0f ? 1.0f : 0.0f;
+        abilitySpeed = abilitySpeedInput;
+    }
     public void ApplyForce(Vector3 direction)
     {
         // if OnMove is already normalized, then pass in the original vector2. 
