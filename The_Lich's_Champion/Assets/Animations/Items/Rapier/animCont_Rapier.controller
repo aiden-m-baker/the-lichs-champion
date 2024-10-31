@@ -55,7 +55,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: idle_Sword
+  m_Name: idle_Rapier
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -68,7 +68,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a3bd1dfe3633af34ebc0a393b0de271d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0290ad7f1229e224eab320dbe5756cbe, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -81,7 +81,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: actionNormal_Sword
+  m_Name: actionNormal_Rapier
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -95,7 +95,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2169e13b688636b4cb7cdd03f5bb6ada, type: 2}
+  m_Motion: {fileID: 7400000, guid: 47cdd1f62fa294741874ffb79fbf3f48, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

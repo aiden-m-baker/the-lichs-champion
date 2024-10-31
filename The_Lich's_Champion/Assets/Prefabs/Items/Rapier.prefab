@@ -181,6 +181,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4021596879697635397, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3316300bdcc5d1e438ee0a1b5ef0d7ad, type: 2}
     - target: {fileID: 4233025116558350118, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_Size.x
       value: 1.36
@@ -241,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1101756821
+  GlobalObjectIdHash: 428199024
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
