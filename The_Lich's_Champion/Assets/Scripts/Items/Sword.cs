@@ -52,8 +52,20 @@ public class Sword : Weapon
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
+        ResetAction();
+
         // Set and start countdown
-        cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+        cooldownTracker_ActionNormal = cooldown_ActionNormal;
+
+        entityCollisionDetector.gameObject.SetActive(true);
+
+        MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
+
+        animator.Play("actionSpecial_Sword");
+
+        movement.OnAbilityDash(1.0f, 10.0f);
+
+        Invoke("DealDamageSpecial", windUpTime / 2);
     }
 
     protected override void ResetAction()
