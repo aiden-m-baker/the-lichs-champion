@@ -67,7 +67,7 @@ public class Dagger : Weapon
         float timeDetectDamageTracker = timeDetectDamage;
         MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
 
-        movement.OnAbilityDash(1.0f);
+        movement.OnAbilityDash(1.0f, 20.0f);
 
         //movement.OnDash(1);
         //yield return new WaitForEndOfFrame();
@@ -87,7 +87,7 @@ public class Dagger : Weapon
             yield return new WaitForEndOfFrame();
         }
 
-        movement.OnAbilityDash(0.0f);
+        movement.OnAbilityDash(0.0f, 0.0f);
 
         yield return null;
     }
