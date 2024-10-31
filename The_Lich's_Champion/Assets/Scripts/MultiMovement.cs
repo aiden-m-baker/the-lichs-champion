@@ -197,6 +197,7 @@ public class MultiMovement : NetworkBehaviour
                 dashLocation = aimInputMouse.normalized;
                 _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
             }
+            abilityPressed = 0;
         }
         #endregion
 

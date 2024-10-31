@@ -40,7 +40,14 @@ public class Rapier : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
+        MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
+
+
         animator.Play("actionNormal_Rapier");
+
+        //movement.OnNormDash(1.0f, 20.0f);
+
+        movement.OnAbilityDash(1.0f, 25.0f);
 
         Invoke("DealDamage", windUpTime);
     }
