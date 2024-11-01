@@ -75,7 +75,7 @@ public class MultiMovement : NetworkBehaviour
 
     public bool DisableMovement
     {
-        get { return DisableMovement; }
+        get { return disableMovement; }
         set { DisableMovement = value; }
     }
 

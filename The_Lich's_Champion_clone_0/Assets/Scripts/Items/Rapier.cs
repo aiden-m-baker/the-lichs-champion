@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rapier : Weapon
 {
+    [SerializeField]
+    MultiMovement movement;
 
     protected override void Awake()
     {
@@ -12,6 +14,9 @@ public class Rapier : Weapon
         // Set sword stats
         name = "Rapier";
         rarity = Rarity.Common;
+
+        // set movement
+        movement = transform.parent.GetComponent<MultiMovement>();
     }
 
     private void Update()
@@ -40,7 +45,7 @@ public class Rapier : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
-        MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
+        //MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
 
 
         animator.Play("actionNormal_Rapier");
