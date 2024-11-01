@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6705482306470563878}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.06, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68,11 +68,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.2713632, y: 0.006859094}
-  - {x: 0.15794507, y: 0.25168616}
+  - {x: 0.12877053, y: -0.003089279}
+  - {x: 0.11151957, y: 0.23842174}
   - {x: 0, y: 0.5}
-  - {x: -0.17394966, y: 0.2654044}
-  - {x: -0.30108598, y: 0.006859109}
+  - {x: -0.100995265, y: 0.23555943}
+  - {x: -0.11206782, y: 0.020123497}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -107,15 +107,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551206165857644788, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.107
+      value: 0.152
       objectReference: {fileID: 0}
     - target: {fileID: 551206165857644788, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.092
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 551206165857644788, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.91243553
+      value: 0.9086965
       objectReference: {fileID: 0}
     - target: {fileID: 551206165857644788, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -127,11 +127,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551206165857644788, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.4092205
+      value: 0.41745734
       objectReference: {fileID: 0}
     - target: {fileID: 551206165857644788, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 48.312
+      value: 49.348
       objectReference: {fileID: 0}
     - target: {fileID: 1622817771552621762, guid: 091d83ccc137bd343a130e5e3bba195d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -275,8 +275,8 @@ MonoBehaviour:
   cooldown_ActionSpecial: 10
   damage: 10
   specialDamage: 0
-  timeDetectDamage: 0.2
-  windUpTime: 0.2
+  timeDetectDamage: 0.1
+  windUpTime: 0.1
   entityCollisionDetector: {fileID: 0}
 --- !u!114 &-6703251614802774307
 MonoBehaviour:
