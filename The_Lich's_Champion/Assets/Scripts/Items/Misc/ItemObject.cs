@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Unity.Netcode;
 
-public class ItemObject : NetworkBehaviour
+public class ItemObject : MonoBehaviour
 {
     [SerializeField] private Item item;
 
