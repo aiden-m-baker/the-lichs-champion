@@ -19,6 +19,9 @@ public class PlayerEntity : Entity
     // movement
 
     [SerializeField]
+    private MultiMovement multiMovement;
+
+    [SerializeField]
     private Vector3 position;
     [SerializeField]
     private Vector3 velocity;
@@ -34,6 +37,12 @@ public class PlayerEntity : Entity
     private float frictionCoeff = 10f;
 
     public bool frictionApplied = false;
+
+    private float knockbackCoefficient = 25f;
+
+    // knockback timer variables
+    private float knockbackTimer = 0f;
+    private float knockbackTimerMax = 0.1f;
 
     // weapons
 
@@ -177,6 +186,19 @@ public class PlayerEntity : Entity
         {
             dashCdTimer -= Time.deltaTime;
         }
+
+        // count knockback time
+        if (knockbackTimer > 0)
+        {
+            knockbackTimer -= Time.deltaTime;
+            multiMovement.DisableMovement = true;
+        }
+
+        else if (knockbackTimer <= 0)
+        {
+            if (multiMovement.DisableMovement)
+                multiMovement.DisableMovement = false;
+        }
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
@@ -190,9 +212,10 @@ public class PlayerEntity : Entity
             // 0.1f == knockback constant
             //transform.position += (transform.position - sourceLoc).normalized * 0.1f;
 
-            float constant = 25;
+            //float constant = 25;
             
-            GetComponent<MultiMovement>().Knock((transform.position - sourceLoc).normalized * constant);
+            multiMovement.Knock((transform.position - sourceLoc).normalized * knockbackCoefficient);
+            knockbackTimer = knockbackTimerMax;
         }
 
     }

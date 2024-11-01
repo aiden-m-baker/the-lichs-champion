@@ -65,10 +65,18 @@ public class MultiMovement : NetworkBehaviour
     [SerializeField]
     private bool frictionApplied = false;
 
+    private bool disableMovement;
+
     // properties
     public string CurrentControlScheme
     {
         get { return playerInput.currentControlScheme; }
+    }
+
+    public bool DisableMovement
+    {
+        get { return DisableMovement; }
+        set { DisableMovement = value; }
     }
 
     private void Awake()
@@ -102,8 +110,8 @@ public class MultiMovement : NetworkBehaviour
             aimInput = previousAimInput;
         }
 
-        // if not dashing, allow movement
-        if (!dashing)
+        // if not dashing, or disableMovement is false, allow movement
+        if (!dashing || !disableMovement)
             _rb.AddForce(movementInput * moveSpeed);
 
 

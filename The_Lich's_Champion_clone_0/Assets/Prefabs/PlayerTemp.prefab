@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11afbfe27906074eb8a06a00948c4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiMovement: {fileID: 6084489533226502462}
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
