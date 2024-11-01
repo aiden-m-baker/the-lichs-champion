@@ -41,7 +41,7 @@ public class MultiMovement : NetworkBehaviour
     [SerializeField]
     private float abilityPressed;
 
-    private float dashSpeed = 35f;
+    private float dashSpeed = 30f;
     private float abilitySpeed = 0.0f;
 
     [SerializeField]
@@ -51,7 +51,7 @@ public class MultiMovement : NetworkBehaviour
     // dashCdMax is the total dash cooldown
     // dashCdTimer is a helper variable to count said cooldown
     [SerializeField]
-    private float dashCdMax = 5f;
+    private float dashCdMax = 3f;
     [SerializeField]
     private float dashCdTimer = 0f;
 
@@ -95,13 +95,6 @@ public class MultiMovement : NetworkBehaviour
     void FixedUpdate()
     {
         if (!Application.isFocused) return;
-        //Debug.Log(moveSpeed);
-        //Debug.Log(_rb.velocity);
-        //Debug.Log(dashPressed);
-        //Debug.Log(playerInput.currentControlScheme);
-        // TODO: Add a deadzone to the movement input, so letting go of the joystick doesnt flick you
-        // old non-physics input
-        //transform.position += (Vector3)movementInput * Time.deltaTime * speed;
 
         // restore previous rotation if no input
         if (aimInput.magnitude == 0 && CurrentControlScheme != "MouseKeyboard")
@@ -202,13 +195,6 @@ public class MultiMovement : NetworkBehaviour
 
         // count cooldowns
         UpdateTimers();
-
-        // TODO: Fix Mouse Player Rotation
-        //// look towards your aim stick orientation (or previous orientation)
-        //if (CurrentControlScheme == "MouseKeyboard")
-        //{
-        //    aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
-        //}
         
         if (aimInput.magnitude != 0)
         {

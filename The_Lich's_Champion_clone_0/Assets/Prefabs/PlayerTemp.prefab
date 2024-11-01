@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4079537164
+  GlobalObjectIdHash: 559929238
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -308,14 +308,12 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   dashing: 0
   dashPressed: 0
+  abilityPressed: 0
   dashTimer: 0
   dashMax: 0.15
-  dashCdMax: 5
+  dashCdMax: 3
   dashCdTimer: 0
-  position: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  acceleration: {x: 0, y: 0, z: 0}
+  maxSpeed: 4
   frictionApplied: 0
 --- !u!61 &3572950608319990482
 BoxCollider2D:
