@@ -5,7 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using Unity.VisualScripting;
-
+public enum ControlScheme
+{
+    MouseKeyboard,
+    Controller
+}
 public class MultiMovement : NetworkBehaviour
 {
     // current movement input
@@ -14,6 +18,7 @@ public class MultiMovement : NetworkBehaviour
     // camera
     [SerializeField]
     private Camera mainCam;
+
     
     private Rigidbody2D _rb;
 
@@ -68,9 +73,21 @@ public class MultiMovement : NetworkBehaviour
     public bool disableMovement;
 
     // properties
-    public string CurrentControlScheme
+    public ControlScheme CurrentControlScheme
     {
-        get { return playerInput.currentControlScheme; }
+        get
+        {
+            if (playerInput.currentControlScheme == "MouseKeyboard")
+                return ControlScheme.MouseKeyboard;
+            else if (playerInput.currentControlScheme == "Controller")
+                return ControlScheme.Controller;
+            else
+            {
+                Debug.Log("No Valid Control Scheme Detected! Destroying Player");
+                Destroy(this);
+                throw new Exception("No Valid Control Scheme");
+            }
+        }
     }
 
     public bool DisableMovement
@@ -87,9 +104,10 @@ public class MultiMovement : NetworkBehaviour
             mainCam = Camera.main;
     }
 
-    //private void Start()
-    //{
-    //}
+    private void Start()
+    {
+        Debug.Log(CurrentControlScheme);
+    }
 
     //public override void OnNetworkSpawn()
     //{
@@ -104,31 +122,28 @@ public class MultiMovement : NetworkBehaviour
     {
         if (!Application.isFocused) return;
 
-        // restore previous rotation if no input
-        if (aimInput.magnitude == 0 && CurrentControlScheme != "MouseKeyboard")
+        //Debug.Log(CurrentControlScheme);
+
+        // restore previous rotation if no input (controller only)
+        if (aimInput.magnitude == 0 && CurrentControlScheme != ControlScheme.MouseKeyboard)
         {
             aimInput = previousAimInput;
         }
 
+        _rb.velocity = Vector3.zero;
+
         // if not dashing, or disableMovement is false, allow movement
         if (!dashing || !disableMovement)
+        {
             _rb.AddForce(movementInput * moveSpeed);
+            //Debug.Log("movement input called");
+        }
 
 
         #region non ability dash code
-        // if dashing, count down the timer
-        if (dashing)
-        {
-            if (aimInput.magnitude != 0)
-            {
-                //_rb.AddForce(dashLocation * dashSpeed);
-            }
-            else
-            {
-                //_rb.AddForce((dashLocation - (Vector2)transform.position).normalized * dashSpeed);
-            }
-        }
+        
         // if not dashing, set dashing to false
+        // dash timer is to count player control lockout
         if (dashTimer <= 0)
         {
             dashing = false;
@@ -142,6 +157,7 @@ public class MultiMovement : NetworkBehaviour
             // reset timers
             dashCdTimer = dashCdMax;
             dashTimer = dashMax;
+            // zero the velocity
             _rb.velocity = Vector3.zero;
 
             if (aimInput.magnitude != 0)
