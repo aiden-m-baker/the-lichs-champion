@@ -38,11 +38,11 @@ public class PlayerEntity : Entity
 
     public bool frictionApplied = false;
 
-    private float knockbackCoefficient = 25f;
+    private float knockbackCoefficient = 5f;
 
     // knockback timer variables
     private float knockbackTimer = 0f;
-    private float knockbackTimerMax = 0.1f;
+    private float knockbackTimerMax = 0.2f;
 
     // weapons
 

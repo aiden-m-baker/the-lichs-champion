@@ -65,7 +65,7 @@ public class MultiMovement : NetworkBehaviour
     [SerializeField]
     private bool frictionApplied = false;
 
-    private bool disableMovement;
+    public bool disableMovement;
 
     // properties
     public string CurrentControlScheme
@@ -76,7 +76,7 @@ public class MultiMovement : NetworkBehaviour
     public bool DisableMovement
     {
         get { return disableMovement; }
-        set { DisableMovement = value; }
+        set { disableMovement = value; }
     }
 
     private void Awake()
