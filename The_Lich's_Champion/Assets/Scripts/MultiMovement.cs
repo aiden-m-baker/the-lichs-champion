@@ -203,7 +203,7 @@ public class MultiMovement : NetworkBehaviour
             dashTimer = dashMax;
             _rb.velocity = Vector3.zero;
 
-            if (aimInput.magnitude != 0)
+            if (CurrentControlScheme == ControlScheme.Controller)
             {
                 dashLocation = aimInput.normalized;
                 _rb.AddForce(aimInput.normalized * abilitySpeed, ForceMode2D.Impulse);
@@ -212,7 +212,7 @@ public class MultiMovement : NetworkBehaviour
             {
                 dashLocation = aimInputMouse.normalized;
                 Debug.Log(dashLocation);
-                _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
+                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
             }
             abilityPressed = 0;
         }
