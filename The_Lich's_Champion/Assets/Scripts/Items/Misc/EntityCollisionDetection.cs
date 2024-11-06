@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class EntityCollisionDetection : MonoBehaviour
 {
     private List<GameObject> entityHit = new List<GameObject>();
