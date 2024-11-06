@@ -130,7 +130,7 @@ public class MultiMovement : NetworkBehaviour
             aimInput = previousAimInput;
         }
 
-        _rb.velocity = Vector3.zero;
+        //_rb.velocity = Vector3.zero;
 
         // if not dashing, or disableMovement is false, allow movement
         if (!dashing || !disableMovement)
@@ -160,7 +160,7 @@ public class MultiMovement : NetworkBehaviour
             // zero the velocity
             _rb.velocity = Vector3.zero;
 
-            if (aimInput.magnitude != 0)
+            if (CurrentControlScheme == ControlScheme.Controller)
             {
                 dashLocation = aimInput.normalized;
                 _rb.AddForce(aimInput.normalized * dashSpeed, ForceMode2D.Impulse);
@@ -168,7 +168,7 @@ public class MultiMovement : NetworkBehaviour
             else
             {
                 dashLocation = aimInputMouse.normalized;
-                _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
+                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
             }
         }
         #endregion
