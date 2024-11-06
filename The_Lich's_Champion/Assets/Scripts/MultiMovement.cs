@@ -130,8 +130,7 @@ public class MultiMovement : NetworkBehaviour
             aimInput = previousAimInput;
         }
 
-        //_rb.velocity = Vector3.zero;
-
+        // movement
         // if not dashing, or disableMovement is false, allow movement
         if (!dashing || !disableMovement)
         {
@@ -139,40 +138,8 @@ public class MultiMovement : NetworkBehaviour
             //Debug.Log("movement input called");
         }
 
-
-        #region non ability dash code
-        
-        // if not dashing, set dashing to false
-        // dash timer is to count player control lockout
-        if (dashTimer <= 0)
-        {
-            dashing = false;
-        }
-
-        // when key is pressed, and you are not currently dashing, and the cd is done
-        if (dashPressed == 1 && !dashing && dashCdTimer <= 0)
-        {
-            Debug.Log("DASH BUT ACTUALLY");
-            dashing = true;
-            // reset timers
-            dashCdTimer = dashCdMax;
-            dashTimer = dashMax;
-            // zero the velocity
-            _rb.velocity = Vector3.zero;
-
-            if (CurrentControlScheme == ControlScheme.Controller)
-            {
-                dashLocation = aimInput.normalized;
-                _rb.AddForce(aimInput.normalized * dashSpeed, ForceMode2D.Impulse);
-            }
-            else
-            {
-                dashLocation = aimInputMouse.normalized;
-                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
-            }
-        }
-        #endregion
-
+        // player dash
+        PlayerDash();
 
         #region ability dash code
         // if dashing, count down the timer
@@ -272,53 +239,36 @@ public class MultiMovement : NetworkBehaviour
         if (dashCdTimer >= 0)
             dashCdTimer -= Time.fixedDeltaTime;
     }
+    private void PlayerDash()
+    {
+        // if not dashing, set dashing to false (player lockout)
+        // dash timer is to count player control lockout
+        if (dashTimer <= 0)
+        {
+            dashing = false;
+        }
+
+        // when key is pressed, and you are not currently dashing, and the cd is done
+        if (dashPressed == 1 && !dashing && dashCdTimer <= 0)
+        {
+            Debug.Log("DASH BUT ACTUALLY");
+            dashing = true;
+            // reset timers
+            dashCdTimer = dashCdMax;
+            dashTimer = dashMax;
+            // zero the velocity
+            _rb.velocity = Vector3.zero;
+
+            if (CurrentControlScheme == ControlScheme.Controller)
+            {
+                dashLocation = aimInput.normalized;
+                _rb.AddForce(aimInput.normalized * dashSpeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                dashLocation = aimInputMouse.normalized;
+                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
+            }
+        }
+    }
 }
-
-
-// old physics code
-//if (frictionApplied)
-//    frictionApplied = false;
-//// apply friction when no keys are pressed
-//if (movementInput.magnitude == 0 && !dashing) 
-//{
-//    // zero out acceleration
-//    acceleration = Vector3.zero;
-//    // apply friction
-//    Vector3 friction = velocity * -1;
-//    friction.Normalize();
-//    friction *= frictionCoeff;
-//    ApplyForce(friction);
-//    frictionApplied = true;
-//}
-
-
-//// apply force on direction from controller
-//if (movementInput.magnitude > 0)
-//{
-//    ApplyForce(movementInput);
-//}
-
-//// apply acceleration to velocity
-//velocity += acceleration * Time.deltaTime;
-//// clamp velocity to max speed ( unless you're dashing )
-//if (dashing)
-//    velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
-//else if (!dashing) {
-//    velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-//}
-//// apply velocity to position
-//position += velocity * Time.deltaTime;
-//// TODO: Add a deadzone to the aim input, letting go of the joystick should not flick you
-
-//// apply position to transform
-//transform.position = position;
-
-//// Rotate the player to face the direction of the right joystick
-//// if there is currently no input, apply previously saved input
-//// as current input
-
-//// look towards your aim stick orientation (or previous orientation)
-//if (CurrentControlScheme == "MouseKeyboard")
-//{
-//    aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
-//}
