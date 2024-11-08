@@ -78,6 +78,9 @@ public class MultiMovement : NetworkBehaviour
 
     public bool disableMovement;
 
+    // Crowd Control
+    public bool knockedBack;
+
     // properties
     public ControlScheme CurrentControlScheme
     {
@@ -95,6 +98,13 @@ public class MultiMovement : NetworkBehaviour
             }
         }
     }
+
+    public bool KnockedBack
+    {
+        get { return knockedBack; }
+        set { knockedBack = value; }
+    }
+
     public bool Dashing
     {
         get { return dashing; }
@@ -140,9 +150,9 @@ public class MultiMovement : NetworkBehaviour
             aimInput = previousAimInput;
         }
 
-        // if dashing, disable movement
+        // if dashing, or knocked back, disable movement
         // ADD MORE CONDITIONS IF APPLICABLE
-        if (dashing)
+        if (dashing || knockedBack)
         {
             disableMovement = true;
         }
@@ -217,10 +227,7 @@ public class MultiMovement : NetworkBehaviour
         if (dashCdTimer >= 0)
             dashCdTimer -= Time.fixedDeltaTime;
         if (abilityDashTimer >= 0)
-        {
             abilityDashTimer -= Time.fixedDeltaTime;
-
-        }
     }
     private void PlayerDash()
     {

@@ -42,7 +42,7 @@ public class PlayerEntity : Entity
 
     // knockback timer variables
     private float knockbackTimer = 0f;
-    private float knockbackTimerMax = 0.2f;
+    private float knockbackTimerMax = 0.4f;
 
     // weapons
 
@@ -192,12 +192,15 @@ public class PlayerEntity : Entity
         {
             knockbackTimer -= Time.deltaTime;
             //multiMovement.DisableMovement = true;
+            multiMovement.KnockedBack = true;
         }
 
         else if (knockbackTimer <= 0)
         {
             //if (multiMovement.DisableMovement)
             //    multiMovement.DisableMovement = false;
+            if (multiMovement.KnockedBack)
+                multiMovement.KnockedBack = false;
         }
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
