@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerEntity : Entity
 {
     // all entity stats
-    private int health;
+    public int health;
     private int maxHealth = 100;
     private int damage;
     private float speed = 5;
@@ -70,7 +70,7 @@ public class PlayerEntity : Entity
     public bool isDashing = false;
 
     // player IFrames
-    public float iFrameDuration = 0.5f;
+    public float iFrameDuration = 0.1f;
     public float iFrameTimer = 0f;
 
     // player exclusive stats
@@ -174,6 +174,12 @@ public class PlayerEntity : Entity
         else if (transform.position.y < -screenWorldPos.y + boundsOffset)
             transform.position = new Vector3(transform.position.x, -screenWorldPos.y + boundsOffset, 0);
         #endregion
+
+        // check if player dead
+        if (true)
+        {
+            Destroy(gameObject);
+        }
 
         // count IFrame cooldown
         if (iFrameTimer > 0)

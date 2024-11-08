@@ -142,7 +142,7 @@ MonoBehaviour:
   dashDuration: 0.5
   dashDurationTimer: 0
   isDashing: 0
-  iFrameDuration: 0.5
+  iFrameDuration: 0.1
   iFrameTimer: 0
 --- !u!114 &4801607098141248924
 MonoBehaviour:
@@ -319,6 +319,7 @@ MonoBehaviour:
   maxSpeed: 4
   frictionApplied: 0
   disableMovement: 0
+  knockedBack: 0
 --- !u!61 &3572950608319990482
 BoxCollider2D:
   m_ObjectHideFlags: 0
