@@ -52,13 +52,19 @@ public class MultiMovement : NetworkBehaviour
     [SerializeField]
     private float dashTimer = 0f;
     [SerializeField]
-    private float dashMax = 0.15f;
+    private float dashMax = 0.25f;
     // dashCdMax is the total dash cooldown
     // dashCdTimer is a helper variable to count said cooldown
     [SerializeField]
     private float dashCdMax = 3f;
     [SerializeField]
     private float dashCdTimer = 0f;
+
+    // ability dash timers
+    [SerializeField]
+    private float abilityDashTimer = 0f;
+    [SerializeField]
+    private float abilityDashMax = 0.75f;
 
     // hold previous dash location
     Vector2 dashLocation;
@@ -94,10 +100,11 @@ public class MultiMovement : NetworkBehaviour
         get { return dashing; }
         set { dashing = value; }
     }
-    public bool DisableMovement
+    
+    public float AbilityDashTimer
     {
-        get { return disableMovement; }
-        set { disableMovement = value; }
+        get { return abilityDashTimer; }
+        set { abilityDashTimer = value; }
     }
 
     private void Awake()
@@ -133,9 +140,20 @@ public class MultiMovement : NetworkBehaviour
             aimInput = previousAimInput;
         }
 
+        // if dashing, disable movement
+        // ADD MORE CONDITIONS IF APPLICABLE
+        if (dashing)
+        {
+            disableMovement = true;
+        }
+        else
+        {
+            disableMovement = false;
+        }
+
         // movement
-        // if not dashing, or disableMovement is false, allow movement
-        if (!dashing || !disableMovement)
+        // if disableMovement is false, allow movement
+        if (!disableMovement)
         {
             _rb.AddForce(movementInput * moveSpeed);
             //Debug.Log("movement input called");
@@ -198,12 +216,17 @@ public class MultiMovement : NetworkBehaviour
             dashTimer -= Time.fixedDeltaTime;
         if (dashCdTimer >= 0)
             dashCdTimer -= Time.fixedDeltaTime;
+        if (abilityDashTimer >= 0)
+        {
+            abilityDashTimer -= Time.fixedDeltaTime;
+
+        }
     }
     private void PlayerDash()
     {
         // if not dashing, set dashing to false (player lockout)
         // dash timer is to count player control lockout
-        if (dashTimer <= 0)
+        if (dashTimer <= 0 && abilityDashTimer <= 0)
         {
             dashing = false;
         }
@@ -234,19 +257,17 @@ public class MultiMovement : NetworkBehaviour
 
     private void PlayerAbilityDash()
     {
-        // if not dashing, set dashing to false
-        if (dashTimer <= 0)
+        if (abilityDashTimer <= 0 && dashTimer <= 0)
         {
             dashing = false;
         }
-
         // when key is pressed, and you are not currently dashing, and the cd is done
         if (abilityPressed == 1 && !dashing)
         {
             //Debug.Log("Ability Dash");
             dashing = true;
             // reset timers
-            //dashTimer = dashMax;
+            abilityDashTimer = abilityDashMax;
             _rb.velocity = Vector3.zero;
 
             if (CurrentControlScheme == ControlScheme.Controller)

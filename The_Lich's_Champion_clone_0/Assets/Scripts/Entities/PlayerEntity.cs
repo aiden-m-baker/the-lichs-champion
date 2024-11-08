@@ -191,13 +191,13 @@ public class PlayerEntity : Entity
         if (knockbackTimer > 0)
         {
             knockbackTimer -= Time.deltaTime;
-            multiMovement.DisableMovement = true;
+            //multiMovement.DisableMovement = true;
         }
 
         else if (knockbackTimer <= 0)
         {
-            if (multiMovement.DisableMovement)
-                multiMovement.DisableMovement = false;
+            //if (multiMovement.DisableMovement)
+            //    multiMovement.DisableMovement = false;
         }
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)

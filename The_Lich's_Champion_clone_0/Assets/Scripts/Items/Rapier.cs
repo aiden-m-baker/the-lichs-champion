@@ -56,6 +56,7 @@ public class Rapier : Weapon
         movement.OnAbilityDash(1.0f, 25.0f);
 
         Invoke("DealDamage", windUpTime);
+        Invoke("ResetTimer", windUpTime);
     }
 
     /// <summary>
@@ -76,6 +77,7 @@ public class Rapier : Weapon
         RapierDash();
         Invoke("RapierDash", 0.5f);
         Invoke("RapierDash", 1f);
+        Invoke("ResetTimer", 1.6f);
     }
 
     protected override void ResetAction()
@@ -93,5 +95,11 @@ public class Rapier : Weapon
         animator.Play("actionNormal_Rapier");
         movement.OnAbilityDash(1.0f, 35.0f);
         Invoke("DealDamage", windUpTime);
+    }
+
+    private void ResetTimer()
+    {
+        print("timer reset");
+        movement.AbilityDashTimer = 0;
     }
 }
