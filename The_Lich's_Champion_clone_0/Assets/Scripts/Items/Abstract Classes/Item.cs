@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -16,6 +14,7 @@ public enum Rarity
 /// <summary>
 /// Basic Item class. Holds basic information for items obtained by the player. All weapons and utility inherit from this class.
 /// </summary>
+[DisallowMultipleComponent]
 public abstract class Item : MonoBehaviour
 {
     [Header("Object Params")]

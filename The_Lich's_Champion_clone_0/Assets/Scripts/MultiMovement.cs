@@ -5,7 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using Unity.VisualScripting;
-
+public enum ControlScheme
+{
+    MouseKeyboard,
+    Controller
+}
 public class MultiMovement : NetworkBehaviour
 {
     // current movement input
@@ -14,6 +18,7 @@ public class MultiMovement : NetworkBehaviour
     // camera
     [SerializeField]
     private Camera mainCam;
+
     
     private Rigidbody2D _rb;
 
@@ -68,9 +73,21 @@ public class MultiMovement : NetworkBehaviour
     public bool disableMovement;
 
     // properties
-    public string CurrentControlScheme
+    public ControlScheme CurrentControlScheme
     {
-        get { return playerInput.currentControlScheme; }
+        get
+        {
+            if (playerInput.currentControlScheme == "MouseKeyboard")
+                return ControlScheme.MouseKeyboard;
+            else if (playerInput.currentControlScheme == "Controller")
+                return ControlScheme.Controller;
+            else
+            {
+                Debug.Log("No Valid Control Scheme Detected! Destroying Player");
+                Destroy(this);
+                throw new Exception("No Valid Control Scheme");
+            }
+        }
     }
 
     public bool DisableMovement
@@ -87,9 +104,10 @@ public class MultiMovement : NetworkBehaviour
             mainCam = Camera.main;
     }
 
-    //private void Start()
-    //{
-    //}
+    private void Start()
+    {
+        Debug.Log(CurrentControlScheme);
+    }
 
     //public override void OnNetworkSpawn()
     //{
@@ -104,103 +122,25 @@ public class MultiMovement : NetworkBehaviour
     {
         if (!Application.isFocused) return;
 
-        // restore previous rotation if no input
-        if (aimInput.magnitude == 0 && CurrentControlScheme != "MouseKeyboard")
+        //Debug.Log(CurrentControlScheme);
+
+        // restore previous rotation if no input (controller only)
+        if (aimInput.magnitude == 0 && CurrentControlScheme != ControlScheme.MouseKeyboard)
         {
             aimInput = previousAimInput;
         }
 
+        // movement
         // if not dashing, or disableMovement is false, allow movement
         if (!dashing || !disableMovement)
+        {
             _rb.AddForce(movementInput * moveSpeed);
-
-
-        #region non ability dash code
-        // if dashing, count down the timer
-        if (dashing)
-        {
-            if (aimInput.magnitude != 0)
-            {
-                //_rb.AddForce(dashLocation * dashSpeed);
-            }
-            else
-            {
-                //_rb.AddForce((dashLocation - (Vector2)transform.position).normalized * dashSpeed);
-            }
-        }
-        // if not dashing, set dashing to false
-        if (dashTimer <= 0)
-        {
-            dashing = false;
+            //Debug.Log("movement input called");
         }
 
-        // when key is pressed, and you are not currently dashing, and the cd is done
-        if (dashPressed == 1 && !dashing && dashCdTimer <= 0)
-        {
-            Debug.Log("DASH BUT ACTUALLY");
-            dashing = true;
-            // reset timers
-            dashCdTimer = dashCdMax;
-            dashTimer = dashMax;
-            _rb.velocity = Vector3.zero;
-
-            if (aimInput.magnitude != 0)
-            {
-                dashLocation = aimInput.normalized;
-                _rb.AddForce(aimInput.normalized * dashSpeed, ForceMode2D.Impulse);
-            }
-            else
-            {
-                dashLocation = aimInputMouse.normalized;
-                _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
-            }
-        }
-        #endregion
-
-
-        #region ability dash code
-        // if dashing, count down the timer
-        if (dashing)
-        {
-            if (aimInput.magnitude != 0)
-            {
-                //_rb.AddForce(dashLocation * dashSpeed);
-            }
-            else
-            {
-                //_rb.AddForce((dashLocation - (Vector2)transform.position).normalized * dashSpeed);
-            }
-        }
-        // if not dashing, set dashing to false
-        if (dashTimer <= 0)
-        {
-            dashing = false;
-        }
-
-        // when key is pressed, and you are not currently dashing, and the cd is done
-        if (abilityPressed == 1 && !dashing)
-        {
-            Debug.Log("Ability Dash");
-            dashing = true;
-            // reset timers
-            dashCdTimer = dashCdMax;
-            dashTimer = dashMax;
-            _rb.velocity = Vector3.zero;
-
-            if (aimInput.magnitude != 0)
-            {
-                dashLocation = aimInput.normalized;
-                _rb.AddForce(aimInput.normalized * abilitySpeed, ForceMode2D.Impulse);
-            }
-            else
-            {
-                dashLocation = aimInputMouse.normalized;
-                Debug.Log(dashLocation);
-                _rb.AddForce((aimInputMouse.normalized - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
-            }
-            abilityPressed = 0;
-        }
-        #endregion
+        // player dash
+        PlayerDash();
+        PlayerAbilityDash();
 
         // count cooldowns
         UpdateTimers();
@@ -256,53 +196,68 @@ public class MultiMovement : NetworkBehaviour
         if (dashCdTimer >= 0)
             dashCdTimer -= Time.fixedDeltaTime;
     }
+    private void PlayerDash()
+    {
+        // if not dashing, set dashing to false (player lockout)
+        // dash timer is to count player control lockout
+        if (dashTimer <= 0)
+        {
+            dashing = false;
+        }
+
+        // when key is pressed, and you are not currently dashing, and the cd is done
+        if (dashPressed == 1 && !dashing && dashCdTimer <= 0)
+        {
+            //Debug.Log("DASH BUT ACTUALLY");
+            dashing = true;
+            // reset timers
+            dashCdTimer = dashCdMax;
+            dashTimer = dashMax;
+            // zero the velocity
+            _rb.velocity = Vector3.zero;
+
+            if (CurrentControlScheme == ControlScheme.Controller)
+            {
+                dashLocation = aimInput.normalized;
+                _rb.AddForce(aimInput.normalized * dashSpeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                dashLocation = aimInputMouse.normalized;
+                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    private void PlayerAbilityDash()
+    {
+        // if not dashing, set dashing to false
+        if (dashTimer <= 0)
+        {
+            dashing = false;
+        }
+
+        // when key is pressed, and you are not currently dashing, and the cd is done
+        if (abilityPressed == 1 && !dashing)
+        {
+            //Debug.Log("Ability Dash");
+            dashing = true;
+            // reset timers
+            //dashTimer = dashMax;
+            _rb.velocity = Vector3.zero;
+
+            if (CurrentControlScheme == ControlScheme.Controller)
+            {
+                dashLocation = aimInput.normalized;
+                _rb.AddForce(aimInput.normalized * abilitySpeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                dashLocation = aimInputMouse.normalized;
+                //Debug.Log(dashLocation);
+                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
+            }
+            abilityPressed = 0;
+        }
+    }
 }
-
-
-// old physics code
-//if (frictionApplied)
-//    frictionApplied = false;
-//// apply friction when no keys are pressed
-//if (movementInput.magnitude == 0 && !dashing) 
-//{
-//    // zero out acceleration
-//    acceleration = Vector3.zero;
-//    // apply friction
-//    Vector3 friction = velocity * -1;
-//    friction.Normalize();
-//    friction *= frictionCoeff;
-//    ApplyForce(friction);
-//    frictionApplied = true;
-//}
-
-
-//// apply force on direction from controller
-//if (movementInput.magnitude > 0)
-//{
-//    ApplyForce(movementInput);
-//}
-
-//// apply acceleration to velocity
-//velocity += acceleration * Time.deltaTime;
-//// clamp velocity to max speed ( unless you're dashing )
-//if (dashing)
-//    velocity = Vector3.ClampMagnitude(velocity, maxSpeed * 2);
-//else if (!dashing) {
-//    velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-//}
-//// apply velocity to position
-//position += velocity * Time.deltaTime;
-//// TODO: Add a deadzone to the aim input, letting go of the joystick should not flick you
-
-//// apply position to transform
-//transform.position = position;
-
-//// Rotate the player to face the direction of the right joystick
-//// if there is currently no input, apply previously saved input
-//// as current input
-
-//// look towards your aim stick orientation (or previous orientation)
-//if (CurrentControlScheme == "MouseKeyboard")
-//{
-//    aimInput = mainCam.ScreenToWorldPoint(aimInput) - transform.position;
-//}

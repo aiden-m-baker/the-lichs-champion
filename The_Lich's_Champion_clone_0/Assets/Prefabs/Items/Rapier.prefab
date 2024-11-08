@@ -66,13 +66,13 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.075
   m_Points:
-  - {x: 0.12877053, y: -0.003089279}
-  - {x: 0.11151957, y: 0.23842174}
-  - {x: 0, y: 0.5}
-  - {x: -0.100995265, y: 0.23555943}
-  - {x: -0.11206782, y: 0.020123497}
+  - {x: 0.18186717, y: -0.04492311}
+  - {x: 0.2257581, y: 0.24003068}
+  - {x: 0.008044958, y: 0.50321794}
+  - {x: -0.19592579, y: 0.23716849}
+  - {x: -0.16355553, y: -0.04262723}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -276,8 +276,9 @@ MonoBehaviour:
   damage: 10
   specialDamage: 0
   timeDetectDamage: 0.1
-  windUpTime: 0.1
+  windUpTime: 0.05
   entityCollisionDetector: {fileID: 0}
+  movement: {fileID: 0}
 --- !u!114 &-6703251614802774307
 MonoBehaviour:
   m_ObjectHideFlags: 0
