@@ -89,7 +89,11 @@ public class MultiMovement : NetworkBehaviour
             }
         }
     }
-
+    public bool Dashing
+    {
+        get { return dashing; }
+        set { dashing = value; }
+    }
     public bool DisableMovement
     {
         get { return disableMovement; }
@@ -122,7 +126,6 @@ public class MultiMovement : NetworkBehaviour
     {
         if (!Application.isFocused) return;
 
-        Debug.Log(CurrentControlScheme);
 
         // restore previous rotation if no input (controller only)
         if (aimInput.magnitude == 0 && CurrentControlScheme != ControlScheme.MouseKeyboard)
