@@ -79,7 +79,7 @@ public class MultiMovement : NetworkBehaviour
         {
             if (playerInput.currentControlScheme == "MouseKeyboard")
                 return ControlScheme.MouseKeyboard;
-            else if (playerInput.currentControlScheme == "Controller")
+            else if (playerInput.currentControlScheme == "Gamepad")
                 return ControlScheme.Controller;
             else
             {
@@ -122,7 +122,7 @@ public class MultiMovement : NetworkBehaviour
     {
         if (!Application.isFocused) return;
 
-        //Debug.Log(CurrentControlScheme);
+        Debug.Log(CurrentControlScheme);
 
         // restore previous rotation if no input (controller only)
         if (aimInput.magnitude == 0 && CurrentControlScheme != ControlScheme.MouseKeyboard)
