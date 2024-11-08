@@ -176,7 +176,7 @@ public class PlayerEntity : Entity
         #endregion
 
         // check if player dead
-        if (true)
+        if (IsDead)
         {
             Destroy(gameObject);
         }
