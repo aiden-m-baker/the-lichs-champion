@@ -276,7 +276,7 @@ MonoBehaviour:
   damage: 10
   specialDamage: 0
   timeDetectDamage: 0.1
-  windUpTime: 0.1
+  windUpTime: 0.05
   entityCollisionDetector: {fileID: 0}
   movement: {fileID: 0}
 --- !u!114 &-6703251614802774307

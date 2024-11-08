@@ -208,7 +208,7 @@ public class MultiMovement : NetworkBehaviour
         // when key is pressed, and you are not currently dashing, and the cd is done
         if (dashPressed == 1 && !dashing && dashCdTimer <= 0)
         {
-            Debug.Log("DASH BUT ACTUALLY");
+            //Debug.Log("DASH BUT ACTUALLY");
             dashing = true;
             // reset timers
             dashCdTimer = dashCdMax;
@@ -240,10 +240,10 @@ public class MultiMovement : NetworkBehaviour
         // when key is pressed, and you are not currently dashing, and the cd is done
         if (abilityPressed == 1 && !dashing)
         {
-            Debug.Log("Ability Dash");
+            //Debug.Log("Ability Dash");
             dashing = true;
             // reset timers
-            dashTimer = dashMax;
+            //dashTimer = dashMax;
             _rb.velocity = Vector3.zero;
 
             if (CurrentControlScheme == ControlScheme.Controller)
@@ -254,7 +254,7 @@ public class MultiMovement : NetworkBehaviour
             else
             {
                 dashLocation = aimInputMouse.normalized;
-                Debug.Log(dashLocation);
+                //Debug.Log(dashLocation);
                 _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
             }
             abilityPressed = 0;
