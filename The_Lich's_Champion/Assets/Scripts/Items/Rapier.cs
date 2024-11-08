@@ -6,7 +6,8 @@ public class Rapier : Weapon
 {
     [SerializeField]
     MultiMovement movement;
-    
+
+    Rigidbody2D player;
 
     protected override void Awake()
     {
@@ -18,6 +19,8 @@ public class Rapier : Weapon
 
         // set movement
         movement = transform.parent.GetComponent<MultiMovement>();
+
+        player = transform.parent.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -72,7 +75,6 @@ public class Rapier : Weapon
 
         entityCollisionDetector.gameObject.SetActive(true);
 
-        movement.disableMovement = true;
         RapierDash();
         Invoke("RapierDash", 0.5f);
         Invoke("RapierDash", 1f);
@@ -92,6 +94,7 @@ public class Rapier : Weapon
         print("RapierDash");
         animator.Play("actionNormal_Rapier");
         movement.OnAbilityDash(1.0f, 35.0f);
+        //movement.Dashing = true;
         Invoke("DealDamage", windUpTime);
     }
 }
