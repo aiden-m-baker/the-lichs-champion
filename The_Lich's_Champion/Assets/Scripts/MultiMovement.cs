@@ -140,50 +140,7 @@ public class MultiMovement : NetworkBehaviour
 
         // player dash
         PlayerDash();
-
-        #region ability dash code
-        // if dashing, count down the timer
-        if (dashing)
-        {
-            if (aimInput.magnitude != 0)
-            {
-                //_rb.AddForce(dashLocation * dashSpeed);
-            }
-            else
-            {
-                //_rb.AddForce((dashLocation - (Vector2)transform.position).normalized * dashSpeed);
-            }
-        }
-        // if not dashing, set dashing to false
-        if (dashTimer <= 0)
-        {
-            dashing = false;
-        }
-
-        // when key is pressed, and you are not currently dashing, and the cd is done
-        if (abilityPressed == 1 && !dashing)
-        {
-            Debug.Log("Ability Dash");
-            dashing = true;
-            // reset timers
-            dashCdTimer = dashCdMax;
-            dashTimer = dashMax;
-            _rb.velocity = Vector3.zero;
-
-            if (CurrentControlScheme == ControlScheme.Controller)
-            {
-                dashLocation = aimInput.normalized;
-                _rb.AddForce(aimInput.normalized * abilitySpeed, ForceMode2D.Impulse);
-            }
-            else
-            {
-                dashLocation = aimInputMouse.normalized;
-                Debug.Log(dashLocation);
-                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
-            }
-            abilityPressed = 0;
-        }
-        #endregion
+        PlayerAbilityDash();
 
         // count cooldowns
         UpdateTimers();
@@ -269,6 +226,38 @@ public class MultiMovement : NetworkBehaviour
                 dashLocation = aimInputMouse.normalized;
                 _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
             }
+        }
+    }
+
+    private void PlayerAbilityDash()
+    {
+        // if not dashing, set dashing to false
+        if (dashTimer <= 0)
+        {
+            dashing = false;
+        }
+
+        // when key is pressed, and you are not currently dashing, and the cd is done
+        if (abilityPressed == 1 && !dashing)
+        {
+            Debug.Log("Ability Dash");
+            dashing = true;
+            // reset timers
+            dashTimer = dashMax;
+            _rb.velocity = Vector3.zero;
+
+            if (CurrentControlScheme == ControlScheme.Controller)
+            {
+                dashLocation = aimInput.normalized;
+                _rb.AddForce(aimInput.normalized * abilitySpeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                dashLocation = aimInputMouse.normalized;
+                Debug.Log(dashLocation);
+                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
+            }
+            abilityPressed = 0;
         }
     }
 }

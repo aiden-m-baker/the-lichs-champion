@@ -6,6 +6,7 @@ public class Rapier : Weapon
 {
     [SerializeField]
     MultiMovement movement;
+    
 
     protected override void Awake()
     {
@@ -64,8 +65,17 @@ public class Rapier : Weapon
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
+        ResetAction();
+
         // Set and start countdown
-        cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+        //cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+
+        entityCollisionDetector.gameObject.SetActive(true);
+
+        
+        movement.OnAbilityDash(1.0f, 25.0f);
+        Invoke("DealDamage", windUpTime);
+        
     }
 
     protected override void ResetAction()
