@@ -36,7 +36,7 @@ public abstract class Projectile : MonoBehaviour
     [Header("Projectile Params")]
 
     [SerializeField]
-    [Tooltip("The entity the projectile originates from. Can be used to alter owner Entity data")]
+    [Tooltip("The entity the projectile originates from. Can be used to for special interactins such as altering owner Entity data")]
     protected Entity owner;
 
     [SerializeField]
@@ -53,7 +53,10 @@ public abstract class Projectile : MonoBehaviour
     public GameObject Prefab { get { return prefab; } }
     public GameObject SpriteObject { get { return spriteObject; } }
     public Entity Owner{ get { return owner; } }
-    public Vector2 Direction { get { return direction; } set { direction = value.normalized; } }
+    /// <summary>
+    /// Set the direction through the property. The property will automatically normalize if value is not already normalized
+    /// </summary>
+    public Vector2 Direction { get { return direction; } set { direction = value.sqrMagnitude == 1 ? value : value.normalized; } }
     public float Speed { get { return speed; } }
     #endregion
 
