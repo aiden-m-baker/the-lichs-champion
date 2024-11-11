@@ -10,9 +10,6 @@ public class PlayerEntity : Entity
     private int damage;
     private float speed = 5;
     private float healthRegen;
-    private int energy;
-    private int maxEnergy;
-    private float energyRegen;
 
     // additional fields
 
@@ -29,12 +26,6 @@ public class PlayerEntity : Entity
     private Vector3 direction;
     [SerializeField]
     private Vector3 acceleration;
-    [SerializeField]
-    private float mass = 1;
-    [SerializeField]
-    private float maxSpeed = 4;
-    [SerializeField]
-    private float frictionCoeff = 10f;
 
     public bool frictionApplied = false;
 
@@ -110,24 +101,6 @@ public class PlayerEntity : Entity
     {
         get { return healthRegen; }
         set { healthRegen = value; }
-    }
-
-    public override int Energy 
-    {
-        get { return energy; }
-        set { energy = value; }
-    }
-
-    public override int MaxEnergy 
-    {
-        get { return maxEnergy; }
-        set { maxEnergy = value; }
-    }
-
-    public override float EnergyRegen 
-    {
-        get { return energyRegen; }
-        set { energyRegen = value; }
     }
 
     #endregion

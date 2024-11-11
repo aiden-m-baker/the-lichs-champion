@@ -68,13 +68,6 @@ public class MultiMovement : NetworkBehaviour
 
     // hold previous dash location
     Vector2 dashLocation;
-    
-    [SerializeField]
-    private float maxSpeed = 4;
-    private float frictionCoeff = 50f;
-    
-    [SerializeField]
-    private bool frictionApplied = false;
 
     public bool disableMovement;
 

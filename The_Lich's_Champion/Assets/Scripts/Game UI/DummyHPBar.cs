@@ -10,7 +10,6 @@ public class DummyHPBar : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject fillArea;
     private Entity playerEntity;
-    private float originalScale = 1.0f;
 
     private int previousHP;
     private int currentHP;
