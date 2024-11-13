@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS;
 using UnityEngine;
 
 public class Halberd : Weapon
@@ -11,18 +12,6 @@ public class Halberd : Weapon
         // Set halberd stats
         name = "Halberd";
         rarity = Rarity.Common;
-    }
-
-    private void Update()
-    {
-        //print(cooldownTracker_ActionNormal);
-        //if (Input.GetKey(KeyCode.Mouse0))
-            //ActionNormal();
-    }
-
-    protected override void LateUpdate()
-    {
-        base.LateUpdate();
     }
 
     /// <summary>
@@ -53,6 +42,13 @@ public class Halberd : Weapon
 
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+
+        if (!projectile)
+            return;
+
+        Projectile proj = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+
+        proj.Owner = GetComponentInParent<Entity>();
     }
 
     protected override void ResetAction()

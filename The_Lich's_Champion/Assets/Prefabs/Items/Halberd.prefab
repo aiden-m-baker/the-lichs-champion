@@ -163,6 +163,7 @@ MonoBehaviour:
   specialDamage: 0
   timeDetectDamage: 0.25
   windUpTime: 0.3
+  projectile: {fileID: 8323905713645436683, guid: 22a7bff67a2cff24e8b2b0b1ae1a8ae5, type: 3}
   entityCollisionDetector: {fileID: 1393304839671070023}
 --- !u!1 &8994109614292887904 stripped
 GameObject:

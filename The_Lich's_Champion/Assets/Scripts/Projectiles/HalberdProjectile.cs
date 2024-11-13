@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class HalberdProjectile : Projectile
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        transform.position += direction * speed * Time.deltaTime;
+
+        timeToDestroyTracker -= Time.deltaTime;
+        if (timeToDestroyTracker <= 0)
+        {
+            if(owner)
+                owner.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
+            Destroy(gameObject);
+        }
     }
 }
