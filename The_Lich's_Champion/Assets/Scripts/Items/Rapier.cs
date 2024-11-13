@@ -69,7 +69,6 @@ public class Rapier : Weapon
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
-        ResetAction();
 
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
@@ -86,7 +85,7 @@ public class Rapier : Weapon
     {
         StopAllCoroutines();
         cooldownTracker_ActionNormal = 0;
-        cooldownTracker_ActionSpecial = 0;
+        //cooldownTracker_ActionSpecial = 0;
 
         spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
     }
