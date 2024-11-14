@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class Dagger : Weapon
 {
-
     protected override void Awake()
     {
         base.Awake();
@@ -20,7 +19,7 @@ public class Dagger : Weapon
     {
         //print(cooldownTracker_ActionNormal);
         //if (Input.GetKey(KeyCode.Mouse0))
-            //ActionNormal();
+        //ActionNormal();
     }
 
     protected override void LateUpdate()
@@ -57,7 +56,6 @@ public class Dagger : Weapon
         ResetAction();
 
         // Set and start countdown
-        cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
 
         DealDamageSpecial();
     }
@@ -74,17 +72,25 @@ public class Dagger : Weapon
 
         //movement.OnDash(0);
 
+        bool hit = false;
+
         while (timeDetectDamageTracker >= 0)
         {
             foreach (Entity e in entityCollisionDetector.EntityHit)
             {
                 // If entity found (that isnt parent), damage entity
                 //if (e.gameObject != transform.parent.gameObject)
-                    
+
+                hit = true;
             }
 
             timeDetectDamageTracker -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
+        }
+
+        if (!hit)
+        {
+            cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
         }
 
         movement.OnAbilityDash(0.0f, 0.0f);
