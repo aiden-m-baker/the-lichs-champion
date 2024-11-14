@@ -48,24 +48,6 @@ public class AIEntity : Entity
         set { healthRegen = value; }
     }
 
-    public override int Energy
-    {
-        get { return energy; }
-        set { energy = value; }
-    }
-
-    public override int MaxEnergy
-    {
-        get { return maxEnergy; }
-        set { maxEnergy = value; }
-    }
-
-    public override float EnergyRegen
-    {
-        get { return energyRegen; }
-        set { energyRegen = value; }
-    }
-
     #endregion
     // Start is called before the first frame update
     void Start()

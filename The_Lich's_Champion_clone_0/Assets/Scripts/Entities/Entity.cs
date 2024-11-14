@@ -54,21 +54,6 @@ public abstract class Entity : NetworkBehaviour
     /// Property for the entity's Vamp stat (heal based on damage)
     /// </summary>
     // public abstract float Vamp { get; set; }
-    
-    /// <summary>
-    /// Property for the entity's energy
-    /// </summary>
-    public abstract int Energy { get; set; }
-
-    /// <summary>
-    /// Property for the entity's max energy
-    /// </summary>
-    public abstract int MaxEnergy { get; set; }
-
-    /// <summary>
-    /// Property for the entity's energy regeneration
-    /// </summary>
-    public abstract float EnergyRegen { get; set; }
 
     #endregion
 

@@ -41,22 +41,29 @@ public abstract class Projectile : MonoBehaviour
 
     [SerializeField]
     [Tooltip("The projectile's direction.")]
-    protected Vector2 direction = Vector2.up;
+    protected Vector3 direction = Vector3.zero;
 
     [SerializeField]
     [Min(0)]
     [Tooltip("The speed at which the projectile travels.")]
     protected float speed;
 
+    [SerializeField]
+    [Min(0)]
+    [Tooltip("The time it takes before the object destroys itself.")]
+    protected float timeToDestroy;
+
+    protected float timeToDestroyTracker;
+
     #region Properties
     public Sprite Sprite { get { return sprite; } }
     public GameObject Prefab { get { return prefab; } }
     public GameObject SpriteObject { get { return spriteObject; } }
-    public Entity Owner{ get { return owner; } }
+    public Entity Owner { get { return owner; } set { owner = value; } }
     /// <summary>
     /// Set the direction through the property. The property will automatically normalize if value is not already normalized
     /// </summary>
-    public Vector2 Direction { get { return direction; } set { direction = value.sqrMagnitude == 1 ? value : value.normalized; } }
+    public Vector3 Direction { get { return direction; } set { direction = value.sqrMagnitude == 1 ? value : value.normalized; } }
     public float Speed { get { return speed; } }
     #endregion
 
@@ -78,6 +85,16 @@ public abstract class Projectile : MonoBehaviour
 
         // Get and set animator object
         //animator = spriteObject.GetComponent<Animator>();
-        
+
+        timeToDestroyTracker = timeToDestroy;
+    }
+
+    protected virtual void Update()
+    {
+        transform.position += direction * speed * Time.deltaTime;
+
+        timeToDestroyTracker -= Time.deltaTime;
+        if (timeToDestroyTracker <= 0)
+            Destroy(gameObject);
     }
 }

@@ -19,6 +19,9 @@ public abstract class Weapon : Utility
     [SerializeField] [Min(0)] [Tooltip("Amount of time (in seconds) delayed between the player's input and the first frame damage detection is turned on.")]
     protected float windUpTime;
 
+    [SerializeField] [Tooltip("The projectile object. Used to instantiate projectile objects.")]
+    protected GameObject projectile;
+
     [SerializeField] [Tooltip("The collider object. Used to get information from the weapon's hitbox.")]
     protected EntityCollisionDetection entityCollisionDetector;
 
