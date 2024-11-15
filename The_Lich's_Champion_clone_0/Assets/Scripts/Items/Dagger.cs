@@ -80,7 +80,13 @@ public class Dagger : Weapon
             {
                 // If entity found (that isnt parent), damage entity
                 //if (e.gameObject != transform.parent.gameObject)
-                    
+
+                if (e.gameObject != transform.parent.gameObject)
+                {
+                    e.TakeDamage(damage, transform.position);
+                }
+
+                cooldownTracker_ActionSpecial = 3.5f;
             }
 
             timeDetectDamageTracker -= Time.deltaTime;
