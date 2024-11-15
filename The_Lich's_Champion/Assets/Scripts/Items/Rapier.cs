@@ -69,15 +69,17 @@ public class Rapier : Weapon
     {
         if (cooldownTracker_ActionSpecial > 0) return;
 
-
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
 
         entityCollisionDetector.gameObject.SetActive(true);
 
         RapierDash();
+        Invoke("DealDamage", windUpTime);
         Invoke("RapierDash", 0.5f);
+        Invoke("DealDamage", windUpTime + 0.8f);
         Invoke("RapierDash", 1f);
+        Invoke("DealDamage", windUpTime + 1.5f);
         Invoke("ResetTimer", 1.6f);
     }
 
@@ -96,7 +98,7 @@ public class Rapier : Weapon
         animator.Play("actionNormal_Rapier");
         movement.OnAbilityDash(1.0f, 35.0f);
         //movement.Dashing = true;
-        Invoke("DealDamage", windUpTime);
+        //Invoke("DealDamage", windUpTime);
     }
 
     private void ResetTimer()
