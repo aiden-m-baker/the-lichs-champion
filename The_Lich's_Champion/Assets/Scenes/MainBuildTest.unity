@@ -817,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2662494162147530857, guid: 6991daa8c60688d4ab8d38f24da2615f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3502978034198461793, guid: 6991daa8c60688d4ab8d38f24da2615f, type: 3}
       propertyPath: m_Name
@@ -825,7 +825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3502978034198461793, guid: 6991daa8c60688d4ab8d38f24da2615f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8650188237907634160, guid: 6991daa8c60688d4ab8d38f24da2615f, type: 3}
       propertyPath: GlobalObjectIdHash
