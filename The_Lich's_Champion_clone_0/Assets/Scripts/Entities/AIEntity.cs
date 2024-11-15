@@ -64,6 +64,12 @@ public class AIEntity : Entity
     {
         throw new System.NotImplementedException();
     }
+
+    public override void CrowdControlEntity(float duration)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void ApplyStatusEffect(StatusEffect effect)
     {
         throw new System.NotImplementedException();

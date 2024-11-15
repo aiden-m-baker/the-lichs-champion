@@ -18,7 +18,9 @@ public class Sword : Weapon
     {
         //print(cooldownTracker_ActionNormal);
         //if (Input.GetKey(KeyCode.Mouse0))
-            //ActionNormal();
+        //ActionNormal();
+
+        print(cooldownTracker_ActionSpecial);
     }
 
     protected override void LateUpdate()
@@ -50,10 +52,11 @@ public class Sword : Weapon
     /// </summary>
     public override void ActionSpecial()
     {
+
         if (cooldownTracker_ActionSpecial > 0) return;
 
-        ResetAction();
-
+        ResetSpecialCD();
+        
         // Set and start countdown
         cooldownTracker_ActionNormal = cooldown_ActionNormal;
 
@@ -63,17 +66,23 @@ public class Sword : Weapon
 
         animator.Play("actionSpecial_Sword");
 
-        movement.OnAbilityDash(1.0f, 10.0f);
+        movement.OnAbilityDash(1.0f, 15f);
+        //print("pommel striked");
 
-        Invoke("DealDamageSpecial", windUpTime / 2);
+        Invoke("CrowdControlSpecial", windUpTime / 2);
     }
 
     protected override void ResetAction()
     {
         StopAllCoroutines();
         cooldownTracker_ActionNormal = 0;
-        cooldownTracker_ActionSpecial = 0;
+        //cooldownTracker_ActionSpecial = 0;
 
         spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
+    }
+
+    private void ResetSpecialCD()
+    {
+        cooldownTracker_ActionSpecial = 5;
     }
 }

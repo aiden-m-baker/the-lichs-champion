@@ -91,6 +91,20 @@ public abstract class Weapon : Utility
         //entityCollisionDetector.gameObject.SetActive(false);
     }
 
+    // for abilities that have crowd control
+    protected virtual void CrowdControlSpecial()
+    {
+        if (!entityCollisionDetector)
+            throw new System.NullReferenceException("Entity Collision Detector not found!");
+
+        // Ensure we are not running the routine twice
+        // and run the new routine
+        StopCoroutine(DetectCCSpecial());
+        StartCoroutine(DetectCCSpecial());
+
+        //entityCollisionDetector.gameObject.SetActive(false);
+    }
+
     protected virtual IEnumerator DetectDamageSpecial()
     {
         float timeDetectDamageTracker = timeDetectDamage;
@@ -102,6 +116,25 @@ public abstract class Weapon : Utility
                 // If entity found (that isnt parent), damage entity
                 if (e.gameObject != transform.parent.gameObject)
                     e.TakeDamage(damage, transform.position);
+            }
+
+            timeDetectDamageTracker -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return null;
+    }
+    protected virtual IEnumerator DetectCCSpecial()
+    {
+        float timeDetectDamageTracker = timeDetectDamage;
+
+        while (timeDetectDamageTracker >= 0)
+        {
+            foreach (Entity e in entityCollisionDetector.EntityHit)
+            {
+                // If entity found (that isnt parent), damage entity
+                if (e.gameObject != transform.parent.gameObject)
+                    e.CrowdControlEntity(1.5f);
             }
 
             timeDetectDamageTracker -= Time.deltaTime;

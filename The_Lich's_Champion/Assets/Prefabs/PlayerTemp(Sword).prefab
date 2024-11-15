@@ -346,14 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11afbfe27906074eb8a06a00948c4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiMovement: {fileID: 0}
+  health: 0
+  multiMovement: {fileID: 7016183532657723077}
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
-  mass: 1
-  maxSpeed: 4
-  frictionCoeff: 10
   frictionApplied: 0
   weapon: {fileID: 6885625598322079860}
   playerInput: {fileID: 4564155739556595610}
@@ -535,9 +533,10 @@ MonoBehaviour:
   dashMax: 0.15
   dashCdMax: 5
   dashCdTimer: -0.02
-  maxSpeed: 4
-  frictionApplied: 0
+  abilityDashTimer: 0
+  abilityDashMax: 0.75
   disableMovement: 0
+  knockedBack: 0
 --- !u!61 &7009999883248952932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -862,6 +861,7 @@ MonoBehaviour:
   specialDamage: 15
   timeDetectDamage: 0.2
   windUpTime: 0.2
+  projectile: {fileID: 0}
   entityCollisionDetector: {fileID: 4960651515332507111}
 --- !u!1 &7014239855884923349
 GameObject:

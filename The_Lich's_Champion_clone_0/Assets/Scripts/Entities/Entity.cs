@@ -63,6 +63,8 @@ public abstract class Entity : NetworkBehaviour
     /// <param name="damage">how much will be deducted from player health</param>
     public abstract void TakeDamage(int damage, Vector3 sourceLoc);
 
+    public abstract void CrowdControlEntity(float duration);
+
     /// <summary>
     /// Apply a status effect to the entity
     /// </summary>

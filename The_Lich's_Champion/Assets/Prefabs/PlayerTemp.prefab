@@ -125,14 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11afbfe27906074eb8a06a00948c4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   multiMovement: {fileID: 6084489533226502462}
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
-  mass: 1
-  maxSpeed: 4
-  frictionCoeff: 10
   frictionApplied: 0
   weapon: {fileID: 0}
   playerInput: {fileID: 4801607098141248924}
@@ -142,7 +140,7 @@ MonoBehaviour:
   dashDuration: 0.5
   dashDurationTimer: 0
   isDashing: 0
-  iFrameDuration: 0.1
+  iFrameDuration: 0.2
   iFrameTimer: 0
 --- !u!114 &4801607098141248924
 MonoBehaviour:
@@ -254,19 +252,7 @@ MonoBehaviour:
     m_ActionId: 99d37be9-a2d8-482a-ba2f-1da5da30b6cc
     m_ActionName: Player/WeaponPickUp[/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6084489533226502462}
-        m_TargetAssemblyTypeName: MultiMovement, Assembly-CSharp
-        m_MethodName: OnAimMouse
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 812378dd-75d7-41a7-b65c-febc5db5b1b2
     m_ActionName: Player/AimMouse[/Mouse/position]
   - m_PersistentCalls:
@@ -304,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 4801607098141248924}
   mainCam: {fileID: 0}
+  spriteRenderer: {fileID: 3444343563062101248}
   speed: 5
   mass: 1
   movementInput: {x: 0, y: 0}
@@ -316,8 +303,6 @@ MonoBehaviour:
   dashCdTimer: 0
   abilityDashTimer: 0
   abilityDashMax: 0.75
-  maxSpeed: 4
-  frictionApplied: 0
   disableMovement: 0
   knockedBack: 0
 --- !u!61 &3572950608319990482

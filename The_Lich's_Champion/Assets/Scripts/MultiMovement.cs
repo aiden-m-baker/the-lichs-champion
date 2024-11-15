@@ -18,8 +18,11 @@ public class MultiMovement : NetworkBehaviour
     // camera
     [SerializeField]
     private Camera mainCam;
+    // sprite renderer
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
 
-    
+
     private Rigidbody2D _rb;
 
     [SerializeField]
@@ -73,6 +76,7 @@ public class MultiMovement : NetworkBehaviour
 
     // Crowd Control
     public bool knockedBack;
+    public bool stunned;
 
     // properties
     public ControlScheme CurrentControlScheme
@@ -86,7 +90,6 @@ public class MultiMovement : NetworkBehaviour
             else
             {
                 Debug.Log("No Valid Control Scheme Detected! Destroying Player");
-                Destroy(this);
                 throw new Exception("No Valid Control Scheme");
             }
         }
@@ -110,6 +113,12 @@ public class MultiMovement : NetworkBehaviour
         set { abilityDashTimer = value; }
     }
 
+    public bool Stunned
+    {
+        get { return stunned; }
+        set { stunned = value; }
+    }
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -120,7 +129,7 @@ public class MultiMovement : NetworkBehaviour
 
     private void Start()
     {
-        Debug.Log(CurrentControlScheme);
+        //Debug.Log(CurrentControlScheme);
     }
 
     //public override void OnNetworkSpawn()
@@ -136,7 +145,7 @@ public class MultiMovement : NetworkBehaviour
     {
         if (!Application.isFocused) return;
 
-
+        Debug.Log(CurrentControlScheme);
         // restore previous rotation if no input (controller only)
         if (aimInput.magnitude == 0 && CurrentControlScheme != ControlScheme.MouseKeyboard)
         {
@@ -145,13 +154,17 @@ public class MultiMovement : NetworkBehaviour
 
         // if dashing, or knocked back, disable movement
         // ADD MORE CONDITIONS IF APPLICABLE
-        if (dashing || knockedBack)
+        if (dashing || knockedBack || stunned)
         {
             disableMovement = true;
+            // darken player color when movement is disabled
+            spriteRenderer.color = Color.gray;
         }
         else
         {
             disableMovement = false;
+            // reset player color back to normal
+            spriteRenderer.color = Color.white;
         }
 
         // movement
@@ -169,7 +182,7 @@ public class MultiMovement : NetworkBehaviour
         // count cooldowns
         UpdateTimers();
         
-        if (aimInput.magnitude != 0)
+        if (CurrentControlScheme == ControlScheme.Controller)
         {
             // look towards your aim stick orientation (or previous orientation)
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, aimInput.normalized);
@@ -178,7 +191,7 @@ public class MultiMovement : NetworkBehaviour
         else
         {
             // look towards your aim stick orientation (or previous orientation)
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, aimInputMouse - (Vector2)transform.position);
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, aimInput - (Vector2)transform.position);
             transform.rotation = rotation;
         }
 
@@ -192,7 +205,13 @@ public class MultiMovement : NetworkBehaviour
         movementInput = ctx.ReadValue<Vector2>();
     }
 
-    public void OnAim(InputAction.CallbackContext ctx) => aimInput = ctx.ReadValue<Vector2>();
+    public void OnAim(InputAction.CallbackContext ctx)
+    {
+        if (CurrentControlScheme == ControlScheme.Controller)
+         aimInput = ctx.ReadValue<Vector2>();
+        else if (CurrentControlScheme == ControlScheme.MouseKeyboard)
+         aimInput = mainCam.ScreenToWorldPoint(ctx.ReadValue<Vector2>());
+    }
     public void OnAimMouse(InputAction.CallbackContext ctx) => aimInputMouse = mainCam.ScreenToWorldPoint(ctx.ReadValue<Vector2>());
     public void OnDash(InputAction.CallbackContext ctx) => dashPressed = ctx.ReadValue<float>();
     public void OnAbilityDash(float isPressed, float abilitySpeedInput)
@@ -249,8 +268,8 @@ public class MultiMovement : NetworkBehaviour
             }
             else
             {
-                dashLocation = aimInputMouse.normalized;
-                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
+                dashLocation = aimInput.normalized;
+                _rb.AddForce((aimInput - (Vector2)transform.position).normalized * dashSpeed, ForceMode2D.Impulse);
             }
         }
     }
@@ -277,9 +296,9 @@ public class MultiMovement : NetworkBehaviour
             }
             else
             {
-                dashLocation = aimInputMouse.normalized;
+                dashLocation = aimInput.normalized;
                 //Debug.Log(dashLocation);
-                _rb.AddForce((aimInputMouse - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
+                _rb.AddForce((aimInput - (Vector2)transform.position).normalized * abilitySpeed, ForceMode2D.Impulse);
             }
             abilityPressed = 0;
         }

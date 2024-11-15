@@ -61,8 +61,12 @@ public class PlayerEntity : Entity
     public bool isDashing = false;
 
     // player IFrames
-    public float iFrameDuration = 0.1f;
+    public float iFrameDuration = 0.15f;
     public float iFrameTimer = 0f;
+
+    // crowd control timers
+
+    private float ccTimer = 0f;
 
     // player exclusive stats
 
@@ -173,7 +177,6 @@ public class PlayerEntity : Entity
             //multiMovement.DisableMovement = true;
             multiMovement.KnockedBack = true;
         }
-
         else if (knockbackTimer <= 0)
         {
             //if (multiMovement.DisableMovement)
@@ -181,6 +184,20 @@ public class PlayerEntity : Entity
             if (multiMovement.KnockedBack)
                 multiMovement.KnockedBack = false;
         }
+
+        // count cc time
+        if (ccTimer > 0)
+        {
+            ccTimer -= Time.deltaTime;
+            multiMovement.Stunned = true;
+        }
+        else if (ccTimer <= 0)
+        {
+            if (multiMovement.Stunned)
+                multiMovement.Stunned = false;
+        }
+
+
     }
     public override void TakeDamage(int damage, Vector3 sourceLoc)
     {
@@ -200,6 +217,11 @@ public class PlayerEntity : Entity
             knockbackTimer = knockbackTimerMax;
         }
 
+    }
+
+    public override void CrowdControlEntity(float duration)
+    {
+        ccTimer = duration;
     }
     public override void ApplyStatusEffect(StatusEffect effect)
     {

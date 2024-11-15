@@ -87,6 +87,12 @@ public class TargetDummy : Entity
             }
         }
     }
+
+    public override void CrowdControlEntity(float duration)
+    {
+        throw new NotImplementedException();
+    }
+
     public override void ApplyStatusEffect(StatusEffect effect)
     {
         throw new NotImplementedException();
