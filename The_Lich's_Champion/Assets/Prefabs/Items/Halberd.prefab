@@ -82,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_EdgeRadius
-      value: 0.22
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Points.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Points.Array.data[0].x
@@ -111,6 +111,14 @@ PrefabInstance:
     - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Points.Array.data[3].y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[4].x
+      value: -0.80081826
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242704664851598105, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
+      propertyPath: m_Points.Array.data[4].y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4476986022641726173, guid: 1a2e2254f9eb35f4ca5ad6a981cc7347, type: 3}
       propertyPath: m_Controller

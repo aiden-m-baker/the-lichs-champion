@@ -50,6 +50,11 @@ public abstract class Projectile : MonoBehaviour
 
     [SerializeField]
     [Min(0)]
+    [Tooltip("The damage dealt by the projectile.")]
+    protected int damage;
+
+    [SerializeField]
+    [Min(0)]
     [Tooltip("The time it takes before the object destroys itself.")]
     protected float timeToDestroy;
 
@@ -83,9 +88,6 @@ public abstract class Projectile : MonoBehaviour
 
         entityCollisionDetector = gameObject.GetComponent<EntityCollisionDetection>();
 
-        // Get and set animator object
-        //animator = spriteObject.GetComponent<Animator>();
-
         timeToDestroyTracker = timeToDestroy;
     }
 
@@ -96,5 +98,22 @@ public abstract class Projectile : MonoBehaviour
         timeToDestroyTracker -= Time.deltaTime;
         if (timeToDestroyTracker <= 0)
             Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Damage logic for targeted entity. Damage handling is up to the weapon.
+    /// </summary>
+    /// <param name="e">Entity targeted by the weapon</param>
+    protected virtual void DealDamage()
+    {
+        if (!entityCollisionDetector)
+            throw new System.NullReferenceException("Entity Collision Detector not found!");
+
+        foreach (Entity e in entityCollisionDetector.EntityHit)
+        {
+            // If entity found (that isnt parent), damage entity
+            if (e != owner)
+                e.TakeDamage(damage, transform.position);
+        }
     }
 }
