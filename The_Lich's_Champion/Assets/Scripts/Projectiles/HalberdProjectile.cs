@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class HalberdProjectile : Projectile
 {
-    protected override void Awake()
+    protected void Start()
     {
-        base.Awake();
-
-        // Will implement once aim is a public property
-        //Direction = owner.GetComponent<MultiMovement>().;
+        Direction = owner.GetComponent<MultiMovement>().AimInput;
     }
 
     // Update is called once per frame

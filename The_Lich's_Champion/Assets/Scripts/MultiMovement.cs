@@ -122,6 +122,11 @@ public class MultiMovement : NetworkBehaviour
         set { stunned = value; }
     }
 
+    public Vector2 AimInput
+    {
+        get { return aimInput; }
+    }
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
