@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class HalberdProjectile : Projectile
 {
+    protected void Start()
+    {
+        Direction = owner.GetComponent<MultiMovement>().AimInput;
+    }
+
     // Update is called once per frame
     protected override void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
+        // Rotate sprite
+        spriteObject.transform.Rotate(Vector3.forward * 900 * Time.deltaTime, Space.Self);
 
-        timeToDestroyTracker -= Time.deltaTime;
-        if (timeToDestroyTracker <= 0)
-        {
-            if(owner)
-                owner.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        base.Update();
+    }
 
-            Destroy(gameObject);
-        }
+    private void OnDestroy()
+    {
+        // Move player towards halberd position
+        if (owner)
+            owner.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 }

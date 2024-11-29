@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-
+    MultiMovement movement;
     protected override void Awake()
     {
         base.Awake();
@@ -12,6 +12,9 @@ public class Sword : Weapon
         // Set sword stats
         name = "Sword";
         rarity = Rarity.Common;
+
+        // set multiMovement
+        movement = transform.parent.GetComponent<MultiMovement>();
     }
 
     private void Update()
@@ -58,11 +61,9 @@ public class Sword : Weapon
         ResetSpecialCD();
         
         // Set and start countdown
-        cooldownTracker_ActionNormal = cooldown_ActionNormal;
+        cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
 
         entityCollisionDetector.gameObject.SetActive(true);
-
-        MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
 
         animator.Play("actionSpecial_Sword");
 
@@ -83,6 +84,9 @@ public class Sword : Weapon
 
     private void ResetSpecialCD()
     {
+        StopAllCoroutines();
         cooldownTracker_ActionSpecial = 5;
+
+        spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
     }
 }

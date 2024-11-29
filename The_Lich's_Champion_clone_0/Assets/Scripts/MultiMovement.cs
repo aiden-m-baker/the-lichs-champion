@@ -8,7 +8,8 @@ using Unity.VisualScripting;
 public enum ControlScheme
 {
     MouseKeyboard,
-    Controller
+    Controller,
+    None
 }
 public class MultiMovement : NetworkBehaviour
 {
@@ -83,7 +84,9 @@ public class MultiMovement : NetworkBehaviour
     {
         get
         {
-            if (playerInput.currentControlScheme == "MouseKeyboard")
+            if (!playerInput)
+                return ControlScheme.None;
+            else if (playerInput.currentControlScheme == "MouseKeyboard")
                 return ControlScheme.MouseKeyboard;
             else if (playerInput.currentControlScheme == "Gamepad")
                 return ControlScheme.Controller;
@@ -119,6 +122,11 @@ public class MultiMovement : NetworkBehaviour
         set { stunned = value; }
     }
 
+    public Vector2 AimInput
+    {
+        get { return aimInput; }
+    }
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -145,7 +153,7 @@ public class MultiMovement : NetworkBehaviour
     {
         if (!Application.isFocused) return;
 
-        Debug.Log(CurrentControlScheme);
+        //Debug.Log(CurrentControlScheme);
         // restore previous rotation if no input (controller only)
         if (aimInput.magnitude == 0 && CurrentControlScheme != ControlScheme.MouseKeyboard)
         {
