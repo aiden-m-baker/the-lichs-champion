@@ -23,7 +23,7 @@ public class Sword : Weapon
         //if (Input.GetKey(KeyCode.Mouse0))
         //ActionNormal();
 
-        print(cooldownTracker_ActionSpecial);
+        //print(cooldownTracker_ActionSpecial);
     }
 
     protected override void LateUpdate()
