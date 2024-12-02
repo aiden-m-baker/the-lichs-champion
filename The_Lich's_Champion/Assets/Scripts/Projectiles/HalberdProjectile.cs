@@ -10,9 +10,7 @@ public class HalberdProjectile : Projectile
 
         if(ownerMovement.CurrentControlScheme == ControlScheme.MouseKeyboard)
             Direction = ownerMovement.AimInput - (Vector2)owner.transform.position;
-        else Direction = ownerMovement.AimInput;
-
-        print(direction);
+        else Direction = ownerMovement.AimInput
     }
 
     // Update is called once per frame
