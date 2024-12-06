@@ -20,7 +20,7 @@ public class Halberd : Weapon
     {
         if (cooldownTracker_ActionNormal > 0) return;
 
-        ResetAction();
+        //ResetAction();
 
         // Set and start countdown
         cooldownTracker_ActionNormal = cooldown_ActionNormal;
