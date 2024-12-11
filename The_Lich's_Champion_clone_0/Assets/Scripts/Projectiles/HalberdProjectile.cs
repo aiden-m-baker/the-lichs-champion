@@ -6,7 +6,11 @@ public class HalberdProjectile : Projectile
 {
     protected void Start()
     {
-        Direction = owner.GetComponent<MultiMovement>().AimInput;
+        MultiMovement ownerMovement = owner.GetComponent<MultiMovement>();
+
+        if (ownerMovement.CurrentControlScheme == ControlScheme.MouseKeyboard)
+            Direction = ownerMovement.AimInput - (Vector2)owner.transform.position;
+        else Direction = ownerMovement.AimInput;
     }
 
     // Update is called once per frame

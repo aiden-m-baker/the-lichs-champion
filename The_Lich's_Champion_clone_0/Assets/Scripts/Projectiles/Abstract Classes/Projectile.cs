@@ -86,7 +86,7 @@ public abstract class Projectile : MonoBehaviour
         spriteObject.GetComponent<SpriteRenderer>().sprite = sprite;
         spriteObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
 
-        entityCollisionDetector = gameObject.GetComponent<EntityCollisionDetection>();
+        entityCollisionDetector = GetComponent<EntityCollisionDetection>();
 
         timeToDestroyTracker = timeToDestroy;
     }
@@ -98,21 +98,12 @@ public abstract class Projectile : MonoBehaviour
         timeToDestroyTracker -= Time.deltaTime;
         if (timeToDestroyTracker <= 0)
             Destroy(gameObject);
-    }
 
-    /// <summary>
-    /// Damage logic for targeted entity. Damage handling is up to the weapon.
-    /// </summary>
-    /// <param name="e">Entity targeted by the weapon</param>
-    protected virtual void DealDamage()
-    {
-        if (!entityCollisionDetector)
-            throw new System.NullReferenceException("Entity Collision Detector not found!");
-
+        // Handle damage check
         foreach (Entity e in entityCollisionDetector.EntityHit)
         {
-            // If entity found (that isnt parent), damage entity
-            if (e != owner)
+            // If entity found (that isnt this), damage entity
+            if (e.gameObject != owner.gameObject)
                 e.TakeDamage(damage, transform.position);
         }
     }
