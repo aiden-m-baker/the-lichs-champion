@@ -166,13 +166,10 @@ public class MultiMovement : NetworkBehaviour
         {
             disableMovement = true;
             // darken player color when movement is disabled
-            spriteRenderer.color = Color.gray;
         }
         else
         {
             disableMovement = false;
-            // reset player color back to normal
-            spriteRenderer.color = Color.white;
         }
 
         // movement
@@ -181,6 +178,12 @@ public class MultiMovement : NetworkBehaviour
         {
             _rb.AddForce(movementInput * moveSpeed);
             //Debug.Log("movement input called");
+            if (spriteRenderer.color == Color.gray)
+                spriteRenderer.color = Color.white;
+        }
+        else // if movement is disabled, change character color
+        {
+            spriteRenderer.color = Color.gray;
         }
 
         // player dash

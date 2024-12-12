@@ -134,7 +134,7 @@ public abstract class Weapon : Utility
             {
                 // If entity found (that isnt parent), damage entity
                 if (e.gameObject != transform.parent.gameObject)
-                    e.CrowdControlEntity(1.5f);
+                    e.CrowdControlEntity(1.0f);
             }
 
             timeDetectDamageTracker -= Time.deltaTime;
