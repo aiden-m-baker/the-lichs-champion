@@ -178,12 +178,24 @@ public class MultiMovement : NetworkBehaviour
         {
             _rb.AddForce(movementInput * moveSpeed);
             //Debug.Log("movement input called");
-            if (spriteRenderer.color == Color.gray)
-                spriteRenderer.color = Color.white;
+            // if current color is not a part of the base color collection, set it to white 
+            // which whill turn it back to the base color in GameUI Manager
+            if (spriteRenderer.color != Color.white &&
+                spriteRenderer.color != Color.red &&
+                spriteRenderer.color != Color.blue &&
+                spriteRenderer.color != Color.yellow &&
+                spriteRenderer.color != Color.green)
+                spriteRenderer.color += new Color(0.6f, 0.6f, 0.6f, 0.0f);
         }
         else // if movement is disabled, change character color
         {
-            spriteRenderer.color = Color.gray;
+            // if current color is a base color, add gray
+            if (spriteRenderer.color == Color.white || 
+                spriteRenderer.color == Color.red || 
+                spriteRenderer.color == Color.blue || 
+                spriteRenderer.color == Color.yellow || 
+                spriteRenderer.color == Color.green)
+            spriteRenderer.color -= new Color(0.6f, 0.6f, 0.6f, 0.0f);
         }
 
         // player dash
