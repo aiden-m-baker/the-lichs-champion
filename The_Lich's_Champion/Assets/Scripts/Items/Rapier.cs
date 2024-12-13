@@ -9,6 +9,10 @@ public class Rapier : Weapon
 
     Rigidbody2D player;
 
+    [SerializeField]
+    private AudioClip swordClip;
+    private AudioSource audioSource;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,6 +25,9 @@ public class Rapier : Weapon
         movement = transform.parent.GetComponent<MultiMovement>();
 
         player = transform.parent.GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = swordClip;
     }
 
     private void Update()
@@ -51,6 +58,7 @@ public class Rapier : Weapon
 
         //MultiMovement movement = transform.parent.GetComponent<MultiMovement>();
 
+        audioSource?.Play();
 
         animator.Play("actionNormal_Rapier");
 
@@ -76,10 +84,13 @@ public class Rapier : Weapon
 
         RapierDash();
         Invoke("DealDamage", windUpTime);
+        Invoke("PlaySFX", windUpTime);
         Invoke("RapierDash", 0.5f);
         Invoke("DealDamage", windUpTime + 0.8f);
+        Invoke("PlaySFX", windUpTime + 0.8f);
         Invoke("RapierDash", 1f);
         Invoke("DealDamage", windUpTime + 1.5f);
+        Invoke("PlaySFX", windUpTime + 1.5f);
         Invoke("ResetTimer", 1.6f);
     }
 
@@ -105,5 +116,9 @@ public class Rapier : Weapon
     {
         print("timer reset");
         movement.AbilityDashTimer = 0;
+    }
+    private void PlaySFX()
+    {
+        audioSource?.Play();
     }
 }

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Halberd : Weapon
 {
+    [SerializeField]
+    private AudioClip halberdClip;
+    [SerializeField]
+    private AudioClip thrownClip;
+
+    private AudioSource audioSource;
     protected override void Awake()
     {
         base.Awake();
@@ -11,6 +17,9 @@ public class Halberd : Weapon
         // Set halberd stats
         name = "Halberd";
         rarity = Rarity.Common;
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = halberdClip;
     }
 
     /// <summary>
@@ -29,6 +38,8 @@ public class Halberd : Weapon
 
         animator.Play("actionNormal_Halberd");
 
+        audioSource.clip = halberdClip;
+        Invoke("PlaySFX", windUpTime);    
         Invoke("DealDamage", windUpTime);
     }
 
@@ -47,6 +58,11 @@ public class Halberd : Weapon
 
         Projectile proj = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
 
+        audioSource.clip = thrownClip;
+        Invoke("PlaySFX", 0.0f);
+        Invoke("PlaySFX", 0.25f);
+        Invoke("PlaySFX", 0.5f);
+        Invoke("PlaySFX", 0.75f);
         proj.Owner = GetComponentInParent<Entity>();
     }
 
@@ -57,5 +73,10 @@ public class Halberd : Weapon
         cooldownTracker_ActionSpecial = 0;
 
         spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
+    }
+
+    private void PlaySFX()
+    {
+        audioSource.Play();
     }
 }

@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class Dagger : Weapon
 {
-
+    [SerializeField]
+    private AudioClip daggerClip;
+    private AudioSource audioSource;
     protected override void Awake()
     {
         base.Awake();
@@ -14,6 +16,9 @@ public class Dagger : Weapon
         // Set dagger stats
         name = "Dagger";
         rarity = Rarity.Common;
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = daggerClip;
     }
 
     private void Update()
@@ -44,6 +49,9 @@ public class Dagger : Weapon
 
         animator.Play("actionNormal_Dagger");
 
+        PlaySFX();
+        Invoke("PlaySFX", 0.2f);
+
         Invoke("DealDamage", windUpTime);
     }
 
@@ -58,6 +66,8 @@ public class Dagger : Weapon
 
         // Set and start countdown
         cooldownTracker_ActionSpecial = cooldown_ActionSpecial;
+
+        PlaySFX();
 
         DealDamageSpecial();
     }
@@ -128,4 +138,9 @@ public class Dagger : Weapon
 
     //    yield return null;
     //}
+
+    private void PlaySFX()
+    {
+        audioSource?.Play();
+    }
 }

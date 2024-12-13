@@ -14,6 +14,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     private SpriteRenderer[] spriteRenderers;
 
+    [SerializeField]
+    private List<GameObject> weapons;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,24 @@ public class GameUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            if (weapons[0].activeSelf)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    weapons[i].SetActive(false);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    weapons[i].SetActive(true);
+                }
+            }
+        }
+
         // update list of players, if the only if the amount of players have changed, or
         // if the other lists are not the same size as the player list
         if (players.Count() != GameObject.FindGameObjectsWithTag("Player").Length)

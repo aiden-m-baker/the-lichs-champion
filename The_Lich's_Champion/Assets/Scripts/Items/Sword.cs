@@ -5,6 +5,13 @@ using UnityEngine;
 public class Sword : Weapon
 {
     MultiMovement movement;
+
+    [SerializeField]
+    private AudioClip swordClip;
+    [SerializeField]
+    private AudioClip pommelClip;
+    private AudioSource audioSource;
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,6 +22,9 @@ public class Sword : Weapon
 
         // set multiMovement
         movement = transform.parent.GetComponent<MultiMovement>();
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = swordClip;
     }
 
     private void Update()
@@ -47,6 +57,8 @@ public class Sword : Weapon
 
         animator.Play("actionNormal_Sword");
 
+        audioSource.clip = swordClip;
+        Invoke("PlaySFX", windUpTime);
         Invoke("DealDamage", windUpTime);
     }
 
@@ -70,6 +82,8 @@ public class Sword : Weapon
         movement.OnAbilityDash(1.0f, 15f);
         //print("pommel striked");
 
+        audioSource.clip = pommelClip;
+        Invoke("PlaySFX", windUpTime / 2);
         Invoke("CrowdControlSpecial", windUpTime / 2);
     }
 
@@ -88,5 +102,10 @@ public class Sword : Weapon
         cooldownTracker_ActionSpecial = 5;
 
         spriteObject.transform.rotation = Quaternion.Euler(defaultRotation);
+    }
+
+    private void PlaySFX()
+    {
+        audioSource?.Play();
     }
 }
